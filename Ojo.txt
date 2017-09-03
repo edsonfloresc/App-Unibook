@@ -1,0 +1,4 @@
+Favor leer estos enlaces:
+
+http://ymatias.com/2016/07/27/estandares-de-codificacion-y-nomenclatura-c/
+https://msdn.microsoft.com/es-es/library/cc467548(v=vs.71).aspx
