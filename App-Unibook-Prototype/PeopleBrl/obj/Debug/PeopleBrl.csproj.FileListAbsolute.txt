@@ -1,0 +1,5 @@
+C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleBrl\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleBrl.dll
+C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleBrl\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleBrl.pdb
+C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleBrl\obj\Debug\PeopleBrl.csprojResolveAssemblyReference.cache
+C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleBrl\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleBrl.dll
+C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleBrl\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleBrl.pdb
