@@ -8,3 +8,13 @@ C:\Users\univalle\Desktop\App-Unibook-Prototype\Common\bin\Debug\EntityFramework
 C:\Users\univalle\Desktop\App-Unibook-Prototype\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 C:\Users\univalle\Desktop\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
 C:\Users\univalle\Desktop\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll.config
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.SqlServer.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.xml
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.SqlServer.xml
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb

@@ -2,3 +2,16 @@ C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie
 C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
 C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
 C:\Users\univalle\Desktop\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.SqlServer.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll.config
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.xml
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.SqlServer.xml
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\PeopleDal.csprojResolveAssemblyReference.cache
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll.config

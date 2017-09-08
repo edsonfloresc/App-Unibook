@@ -1,0 +1,5 @@
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\UnitTestProjectPerson\bin\Debug\netcoreapp1.1\UnitTestProjectPerson.deps.json
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\UnitTestProjectPerson\bin\Debug\netcoreapp1.1\UnitTestProjectPerson.runtimeconfig.json
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\UnitTestProjectPerson\bin\Debug\netcoreapp1.1\UnitTestProjectPerson.runtimeconfig.dev.json
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\UnitTestProjectPerson\obj\Debug\netcoreapp1.1\UnitTestProjectPerson.csprojResolveAssemblyReference.cache
+G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\UnitTestProjectPerson\obj\Debug\netcoreapp1.1\UnitTestProjectPerson.AssemblyInfo.cs
