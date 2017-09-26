@@ -14,7 +14,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="id">Id person to search</param>
         /// <returns></returns>
-        public static Person Obtener(int id, PeopleContainer objContex)
+        public static Person Get(int id, PeopleContainer objContex)
         {
             Person personReturn = null;
 
@@ -42,7 +42,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(Person person, PeopleContainer objContex)
+        public static void Insert(Person person, PeopleContainer objContex)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Actualizar(PeopleContainer objContex)
+        public static void Update(PeopleContainer objContex)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="qr"></param>
         /// <param name="objContex"></param>
-        public static void Eliminar(int id, PeopleContainer objContex)
+        public static void Delete(int id, PeopleContainer objContex)
         {
             try
             {
