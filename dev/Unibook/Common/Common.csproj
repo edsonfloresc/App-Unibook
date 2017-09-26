@@ -55,6 +55,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="ModelUnibook.edmx.diagram">
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
     </None>
