@@ -34,32 +34,37 @@
             <End Role="Faculty" EntitySet="FacultySet" />
             <End Role="Career" EntitySet="CareerSet" />
           </AssociationSet>
+          <EntitySet Name="GenderSet" EntityType="ModelUnibook.Gender" />
+          <AssociationSet Name="GenderUser" Association="ModelUnibook.GenderUser">
+            <End Role="Gender" EntitySet="GenderSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="user_Id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="user_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="names" Type="String" Nullable="false" />
-          <Property Name="father_lastName" Type="String" Nullable="false" />
-          <Property Name="mother_lastName" Type="String" Nullable="false" />
-          <Property Name="gender" Type="Int16" Nullable="false" />
-          <Property Name="birthday" Type="DateTime" Nullable="false" />
-          <Property Name="email" Type="String" Nullable="false" />
-          <Property Name="password" Type="Binary" Nullable="false" />
-          <Property Name="roleId" Type="Int16" Nullable="false" />
-          <Property Name="delete" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="GenderId" Type="Int16" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="RoleId" Type="Int16" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
           <NavigationProperty Name="Role" Relationship="ModelUnibook.RoleUser" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderUser" FromRole="User" ToRole="Gender" />
         </EntityType>
         <EntityType Name="Career">
           <Key>
-            <PropertyRef Name="carrer_Id" />
+            <PropertyRef Name="CarrerId" />
           </Key>
-          <Property Name="carrer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
-          <Property Name="faculty_Id" Type="Int16" Nullable="false" />
-          <Property Name="delete" Type="Boolean" Nullable="false" />
+          <Property Name="CarrerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="FacultyId" Type="Int16" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.CareerUserCareer" FromRole="Career" ToRole="UserCareer" />
           <NavigationProperty Name="Faculty" Relationship="ModelUnibook.FacultyCareer" FromRole="Career" ToRole="Faculty" />
         </EntityType>
@@ -74,16 +79,16 @@
         </EntityType>
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="role_Id" />
+            <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="role_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
-          <Property Name="delete" Type="Boolean" Nullable="false" />
+          <Property Name="RoleId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.RoleUser" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="UserCareer" >
-          <Property Name="user_Id" Type="Int64" Nullable="false" />
-          <Property Name="career_Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="CareerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.UserUserCareer" FromRole="UserCareer" ToRole="User" />
           <NavigationProperty Name="Career" Relationship="ModelUnibook.CareerUserCareer" FromRole="UserCareer" ToRole="Career" />
         </EntityType>
@@ -102,6 +107,18 @@
         <Association Name="FacultyCareer">
           <End Type="ModelUnibook.Faculty" Role="Faculty" Multiplicity="1" />
           <End Type="ModelUnibook.Career" Role="Career" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.GenderUser" FromRole="Gender" ToRole="User" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="GenderUser">
+          <End Type="ModelUnibook.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
