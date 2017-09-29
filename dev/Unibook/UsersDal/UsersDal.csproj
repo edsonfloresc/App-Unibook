@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CareerDal.cs" />
+    <Compile Include="FacultyDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleDal.cs" />
+    <Compile Include="UserCareerDal.cs" />
+    <Compile Include="UserDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
