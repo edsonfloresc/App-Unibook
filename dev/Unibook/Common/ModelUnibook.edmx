@@ -4,27 +4,378 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="ModelUnibook.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="ModelUnibookTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="ModelUnibook.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelUnibookStoreContainer">
+    <EntitySet Name="UserSet" EntityType="ModelUnibook.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CareerSet" EntityType="ModelUnibook.Store.CareerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FacultySet" EntityType="ModelUnibook.Store.FacultySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleSet" EntityType="ModelUnibook.Store.RoleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCareerSet" EntityType="ModelUnibook.Store.UserCareerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GenderSet" EntityType="ModelUnibook.Store.GenderSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserUserCareer" Association="ModelUnibook.Store.UserUserCareer">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="UserCareer" EntitySet="UserCareerSet" />
+    </AssociationSet>
+    <AssociationSet Name="CareerUserCareer" Association="ModelUnibook.Store.CareerUserCareer">
+      <End Role="Career" EntitySet="CareerSet" />
+      <End Role="UserCareer" EntitySet="UserCareerSet" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
+      <End Role="Role" EntitySet="RoleSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="FacultyCareer" Association="ModelUnibook.Store.FacultyCareer">
+      <End Role="Faculty" EntitySet="FacultySet" />
+      <End Role="Career" EntitySet="CareerSet" />
+    </AssociationSet>
+    <AssociationSet Name="GenderUser" Association="ModelUnibook.Store.GenderUser">
+      <End Role="Gender" EntitySet="GenderSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GenderId" Type="smallint" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleId" Type="smallint" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Role_RoleId" Type="smallint" Nullable="false" />
+    <Property Name="Gender_GenderId" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CareerSet">
+    <Key>
+      <PropertyRef Name="CareerId" />
+    </Key>
+    <Property Name="CareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacultyId" Type="smallint" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Faculty_faculty_Id" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacultySet">
+    <Key>
+      <PropertyRef Name="faculty_Id" />
+    </Key>
+    <Property Name="faculty_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleSet">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCareerSet">
+    <Key>
+      <PropertyRef Name="UserCareerId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="CareerId" Type="int" Nullable="false" />
+    <Property Name="UserCareerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GenderSet">
+    <Key>
+      <PropertyRef Name="GenderId" />
+    </Key>
+    <Property Name="GenderId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserUserCareer">
+    <End Role="User" Type="ModelUnibook.Store.UserSet" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserCareer">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CareerUserCareer">
+    <End Role="Career" Type="ModelUnibook.Store.CareerSet" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Career">
+        <PropertyRef Name="CareerId" />
+      </Principal>
+      <Dependent Role="UserCareer">
+        <PropertyRef Name="Career_CareerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUser">
+    <End Role="Role" Type="ModelUnibook.Store.RoleSet" Multiplicity="1" />
+    <End Role="User" Type="ModelUnibook.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role_RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FacultyCareer">
+    <End Role="Faculty" Type="ModelUnibook.Store.FacultySet" Multiplicity="1" />
+    <End Role="Career" Type="ModelUnibook.Store.CareerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="faculty_Id" />
+      </Principal>
+      <Dependent Role="Career">
+        <PropertyRef Name="Faculty_faculty_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GenderUser">
+    <End Role="Gender" Type="ModelUnibook.Store.GenderSet" Multiplicity="1" />
+    <End Role="User" Type="ModelUnibook.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Gender_GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelUnibook" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelUnibookContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="ModelUnibook.User" />
+          <EntitySet Name="CareerSet" EntityType="ModelUnibook.Career" />
+          <EntitySet Name="FacultySet" EntityType="ModelUnibook.Faculty" />
+          <EntitySet Name="RoleSet" EntityType="ModelUnibook.Role" />
+          <EntitySet Name="UserCareerSet" EntityType="ModelUnibook.UserCareer" />
+          <AssociationSet Name="UserUserCareer" Association="ModelUnibook.UserUserCareer">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="UserCareer" EntitySet="UserCareerSet" />
+          </AssociationSet>
+          <AssociationSet Name="CareerUserCareer" Association="ModelUnibook.CareerUserCareer">
+            <End Role="Career" EntitySet="CareerSet" />
+            <End Role="UserCareer" EntitySet="UserCareerSet" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUser" Association="ModelUnibook.RoleUser">
+            <End Role="Role" EntitySet="RoleSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="FacultyCareer" Association="ModelUnibook.FacultyCareer">
+            <End Role="Faculty" EntitySet="FacultySet" />
+            <End Role="Career" EntitySet="CareerSet" />
+          </AssociationSet>
+          <EntitySet Name="GenderSet" EntityType="ModelUnibook.Gender" />
+          <AssociationSet Name="GenderUser" Association="ModelUnibook.GenderUser">
+            <End Role="Gender" EntitySet="GenderSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="GenderId" Type="Int16" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="RoleId" Type="Int16" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
+          <NavigationProperty Name="Role" Relationship="ModelUnibook.RoleUser" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderUser" FromRole="User" ToRole="Gender" />
+        </EntityType>
+        <EntityType Name="Career">
+          <Key>
+            <PropertyRef Name="CareerId" />
+          </Key>
+          <Property Name="CareerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="FacultyId" Type="Int16" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.CareerUserCareer" FromRole="Career" ToRole="UserCareer" />
+          <NavigationProperty Name="Faculty" Relationship="ModelUnibook.FacultyCareer" FromRole="Career" ToRole="Faculty" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacultyId" />
+          </Key>
+          <Property Name="FacultyId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Career" Relationship="ModelUnibook.FacultyCareer" FromRole="Faculty" ToRole="Career" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.RoleUser" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserCareer" >
+          <Key>
+            <PropertyRef Name="UserCareerId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="CareerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserUserCareer" FromRole="UserCareer" ToRole="User" />
+          <NavigationProperty Name="Career" Relationship="ModelUnibook.CareerUserCareer" FromRole="UserCareer" ToRole="Career" />
+          <Property Name="UserCareerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="UserUserCareer">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
+        </Association>
+        <Association Name="CareerUserCareer">
+          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="1" />
+          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleUser">
+          <End Type="ModelUnibook.Role" Role="Role" Multiplicity="1" />
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="FacultyCareer">
+          <End Type="ModelUnibook.Faculty" Role="Faculty" Multiplicity="1" />
+          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.GenderUser" FromRole="Gender" ToRole="User" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="GenderUser">
+          <End Type="ModelUnibook.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="ModelUnibook" />
-        <Alias Key="Target" Value="ModelUnibook.Store" />
-        <EntityContainerMapping CdmEntityContainer="ModelUnibookContainer" StorageEntityContainer="ModelUnibookTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelUnibookStoreContainer" CdmEntityContainer="ModelUnibookContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CareerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Career)">
+        <MappingFragment StoreEntitySet="CareerSet">
+          <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacultySet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Faculty)">
+        <MappingFragment StoreEntitySet="FacultySet">
+          <ScalarProperty Name="FacultyId" ColumnName="faculty_Id" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Role)">
+        <MappingFragment StoreEntitySet="RoleSet">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCareerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.UserCareer)">
+        <MappingFragment StoreEntitySet="UserCareerSet">
+          <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GenderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Gender)">
+        <MappingFragment StoreEntitySet="GenderSet">
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserUserCareer" TypeName="ModelUnibook.UserUserCareer" StoreEntitySet="UserCareerSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="UserCareer">
+        <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CareerUserCareer" TypeName="ModelUnibook.CareerUserCareer" StoreEntitySet="UserCareerSet">
+      <EndProperty Name="Career">
+        <ScalarProperty Name="CareerId" ColumnName="Career_CareerId" />
+      </EndProperty>
+      <EndProperty Name="UserCareer">
+        <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoleUser" TypeName="ModelUnibook.RoleUser" StoreEntitySet="UserSet">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="RoleId" ColumnName="Role_RoleId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FacultyCareer" TypeName="ModelUnibook.FacultyCareer" StoreEntitySet="CareerSet">
+      <EndProperty Name="Faculty">
+        <ScalarProperty Name="FacultyId" ColumnName="Faculty_faculty_Id" />
+      </EndProperty>
+      <EndProperty Name="Career">
+        <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GenderUser" TypeName="ModelUnibook.GenderUser" StoreEntitySet="UserSet">
+      <EndProperty Name="Gender">
+        <ScalarProperty Name="GenderId" ColumnName="Gender_GenderId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -37,7 +388,8 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
