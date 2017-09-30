@@ -65,7 +65,7 @@
     </Key>
     <Property Name="faculty_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="delete" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="RoleSet">
     <Key>
@@ -81,7 +81,7 @@
     </Key>
     <Property Name="UserId" Type="bigint" Nullable="false" />
     <Property Name="CareerId" Type="int" Nullable="false" />
-    <Property Name="UserCareerId" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCareerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User_UserId" Type="bigint" Nullable="false" />
     <Property Name="Career_CareerId" Type="int" Nullable="false" />
   </EntityType>
@@ -214,10 +214,10 @@
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
-            <PropertyRef Name="faculty_Id" />
+            <PropertyRef Name="FacultyId" />
           </Key>
-          <Property Name="faculty_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="FacultyId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Career" Relationship="ModelUnibook.FacultyCareer" FromRole="Faculty" ToRole="Career" />
         </EntityType>
@@ -302,9 +302,9 @@
     <EntitySetMapping Name="FacultySet">
       <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Faculty)">
         <MappingFragment StoreEntitySet="FacultySet">
-          <ScalarProperty Name="faculty_Id" ColumnName="faculty_Id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="Deleted" ColumnName="delete" />
+          <ScalarProperty Name="FacultyId" ColumnName="faculty_Id" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -360,7 +360,7 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="FacultyCareer" TypeName="ModelUnibook.FacultyCareer" StoreEntitySet="CareerSet">
       <EndProperty Name="Faculty">
-        <ScalarProperty Name="faculty_Id" ColumnName="Faculty_faculty_Id" />
+        <ScalarProperty Name="FacultyId" ColumnName="Faculty_faculty_Id" />
       </EndProperty>
       <EndProperty Name="Career">
         <ScalarProperty Name="CareerId" ColumnName="CareerId" />

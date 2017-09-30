@@ -24,7 +24,7 @@ namespace UsersDal
             try
             {
                 facultyReturn = (from faculty in objContex.FacultySet
-                                 where faculty.Deleted == false && faculty.FacultyId == id
+                                 where faculty.Deleted == false && faculty.faculty_Id == id
                                  select faculty).Single<Faculty>();
             }
             catch (Exception ex)

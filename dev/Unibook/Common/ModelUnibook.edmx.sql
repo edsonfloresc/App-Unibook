@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/28/2017 22:02:36
+-- Date Created: 09/29/2017 13:03:00
 -- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -90,7 +90,7 @@ GO
 CREATE TABLE [dbo].[FacultySet] (
     [faculty_Id] smallint IDENTITY(1,1) NOT NULL,
     [name] nvarchar(max)  NOT NULL,
-    [delete] bit  NOT NULL
+    [Deleted] bit  NOT NULL
 );
 GO
 
@@ -106,7 +106,7 @@ GO
 CREATE TABLE [dbo].[UserCareerSet] (
     [UserId] bigint  NOT NULL,
     [CareerId] int  NOT NULL,
-    [UserCareerId] nvarchar(max)  NOT NULL,
+    [UserCareerId] bigint IDENTITY(1,1) NOT NULL,
     [User_UserId] bigint  NOT NULL,
     [Career_CareerId] int  NOT NULL
 );

@@ -24,7 +24,7 @@ namespace UsersDal
             try
             {
                 userCareerReturn = (from userCareer in objContex.UserCareerSet
-                                    where userCareer.Id == id
+                                    where userCareer.UserCareerId == id
                                     select userCareer).Single<UserCareer>();
             }
             catch (Exception ex)

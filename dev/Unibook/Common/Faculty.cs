@@ -19,8 +19,8 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
             this.Career = new HashSet<Career>();
         }
     
-        public short faculty_Id { get; set; }
-        public string name { get; set; }
+        public short FacultyId { get; set; }
+        public string Name { get; set; }
         public bool Deleted { get; set; }
     
         public virtual ICollection<Career> Career { get; set; }
