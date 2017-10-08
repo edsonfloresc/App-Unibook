@@ -23,7 +23,7 @@ namespace UsersDal
 
             try
             {
-                userCareerReturn = (from userCareer in objContex.UserCareerSet
+                userCareerReturn = (from userCareer in objContex.UserCareer
                                     where userCareer.UserCareerId == id
                                     select userCareer).Single<UserCareer>();
             }
@@ -44,7 +44,7 @@ namespace UsersDal
         {
             try
             {
-                objContex.UserCareerSet.Add(userCareer);
+                objContex.UserCareer.Add(userCareer);
                 objContex.SaveChanges();
             }
             catch (Exception ex)

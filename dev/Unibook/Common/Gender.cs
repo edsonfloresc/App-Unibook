@@ -16,12 +16,12 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     {
         public Gender()
         {
-            this.User = new HashSet<User>();
+            this.Person = new HashSet<Person>();
         }
     
         public short GenderId { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<Person> Person { get; set; }
     }
 }
