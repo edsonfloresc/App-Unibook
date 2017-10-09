@@ -12,17 +12,12 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     using System;
     using System.Collections.Generic;
     
-    public partial class Faculty
+    public partial class ImageNews
     {
-        public Faculty()
-        {
-            this.Career = new HashSet<Career>();
-        }
-    
-        public short FacultyId { get; set; }
-        public string Name { get; set; }
+        public int ImageId { get; set; }
+        public string PathImage { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual ICollection<Career> Career { get; set; }
+        public virtual News News { get; set; }
     }
 }

@@ -183,6 +183,30 @@
             <End Role="Gender" EntitySet="GenderSet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
+          <EntitySet Name="NewsSet" EntityType="ModelUnibook.News" />
+          <EntitySet Name="ImageNewsSet" EntityType="ModelUnibook.ImageNews" />
+          <EntitySet Name="CategoryNewsSet" EntityType="ModelUnibook.CategoryNews" />
+          <EntitySet Name="CommentNewsSet" EntityType="ModelUnibook.CommentNews" />
+          <AssociationSet Name="CategoryNewsNews" Association="ModelUnibook.CategoryNewsNews">
+            <End Role="CategoryNews" EntitySet="CategoryNewsSet" />
+            <End Role="News" EntitySet="NewsSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserNews" Association="ModelUnibook.UserNews">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="News" EntitySet="NewsSet" />
+          </AssociationSet>
+          <AssociationSet Name="NewsImageNews" Association="ModelUnibook.NewsImageNews">
+            <End Role="News" EntitySet="NewsSet" />
+            <End Role="ImageNews" EntitySet="ImageNewsSet" />
+          </AssociationSet>
+          <AssociationSet Name="NewsCommentNews" Association="ModelUnibook.NewsCommentNews">
+            <End Role="News" EntitySet="NewsSet" />
+            <End Role="CommentNews" EntitySet="CommentNewsSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserCommentNews" Association="ModelUnibook.UserCommentNews">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="CommentNews" EntitySet="CommentNewsSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -200,6 +224,8 @@
           <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
           <NavigationProperty Name="Role" Relationship="ModelUnibook.RoleUser" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderUser" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="News" Relationship="ModelUnibook.UserNews" FromRole="User" ToRole="News" />
+          <NavigationProperty Name="CommentNews" Relationship="ModelUnibook.UserCommentNews" FromRole="User" ToRole="CommentNews" />
         </EntityType>
         <EntityType Name="Career">
           <Key>
@@ -267,6 +293,70 @@
         <Association Name="GenderUser">
           <End Type="ModelUnibook.Gender" Role="Gender" Multiplicity="1" />
           <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Detail" Type="String" Nullable="false" />
+          <Property Name="DateNews" Type="DateTime" Nullable="false" />
+          <Property Name="PublicationNews" Type="DateTime" Nullable="false" />
+          <Property Name="Discontinued" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CategoryNews" Relationship="ModelUnibook.CategoryNewsNews" FromRole="News" ToRole="CategoryNews" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserNews" FromRole="News" ToRole="User" />
+          <NavigationProperty Name="ImageNews" Relationship="ModelUnibook.NewsImageNews" FromRole="News" ToRole="ImageNews" />
+        </EntityType>
+        <EntityType Name="ImageNews">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PathImage" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="ModelUnibook.NewsImageNews" FromRole="ImageNews" ToRole="News" />
+        </EntityType>
+        <EntityType Name="CategoryNews">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCategory" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="ModelUnibook.CategoryNewsNews" FromRole="CategoryNews" ToRole="News" />
+        </EntityType>
+        <EntityType Name="CommentNews">
+          <Key>
+            <PropertyRef Name="CommetId" />
+          </Key>
+          <Property Name="CommetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="ModelUnibook.NewsCommentNews" FromRole="CommentNews" ToRole="News" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserCommentNews" FromRole="CommentNews" ToRole="User" />
+        </EntityType>
+        <Association Name="CategoryNewsNews">
+          <End Type="ModelUnibook.CategoryNews" Role="CategoryNews" Multiplicity="1" />
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="*" />
+        </Association>
+        <Association Name="UserNews">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="*" />
+        </Association>
+        <Association Name="NewsImageNews">
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
+          <End Type="ModelUnibook.ImageNews" Role="ImageNews" Multiplicity="*" />
+        </Association>
+        <Association Name="NewsCommentNews">
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
+          <End Type="ModelUnibook.CommentNews" Role="CommentNews" Multiplicity="*" />
+        </Association>
+        <Association Name="UserCommentNews">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.CommentNews" Role="CommentNews" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

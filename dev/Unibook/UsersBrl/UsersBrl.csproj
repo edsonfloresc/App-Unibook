@@ -7,8 +7,8 @@
     <ProjectGuid>{D977D4A1-464C-4843-9BB7-15EC085825E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UsersBrl</RootNamespace>
-    <AssemblyName>UsersBrl</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.Unibook.UsersBrl</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.Unibook.UsersBrl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

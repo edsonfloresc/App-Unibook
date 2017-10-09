@@ -53,10 +53,19 @@
     <Compile Include="Career.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryNews.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentNews.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageNews.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelUnibook.Context.cs">
@@ -73,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">

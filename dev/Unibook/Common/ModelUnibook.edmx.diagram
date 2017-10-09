@@ -16,6 +16,15 @@
         <AssociationConnector Association="ModelUnibook.FacultyCareer" />
         <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="2" PointY="2.625" />
         <AssociationConnector Association="ModelUnibook.GenderUser" />
+        <EntityTypeShape EntityType="ModelUnibook.News" Width="1.5" PointX="4" PointY="6" />
+        <EntityTypeShape EntityType="ModelUnibook.ImageNews" Width="1.5" PointX="1.625" PointY="7.5" />
+        <EntityTypeShape EntityType="ModelUnibook.CategoryNews" Width="1.5" PointX="6.75" PointY="7.25" />
+        <EntityTypeShape EntityType="ModelUnibook.CommentNews" Width="1.5" PointX="1.375" PointY="5" />
+        <AssociationConnector Association="ModelUnibook.CategoryNewsNews" />
+        <AssociationConnector Association="ModelUnibook.UserNews" />
+        <AssociationConnector Association="ModelUnibook.NewsImageNews" />
+        <AssociationConnector Association="ModelUnibook.NewsCommentNews" />
+        <AssociationConnector Association="ModelUnibook.UserCommentNews" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
