@@ -18,3 +18,13 @@ G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.Sq
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll.config
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.xml
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\Common\obj\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb

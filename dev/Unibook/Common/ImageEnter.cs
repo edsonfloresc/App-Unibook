@@ -15,28 +15,18 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
 using System;
     using System.Collections.Generic;
     
-public partial class Entertainment
+public partial class ImageEnter
 {
 
-    public long EntertainmentId { get; set; }
+    public long ImageId { get; set; }
 
-    public string Title { get; set; }
-
-    public string PlaceAddress { get; set; }
-
-    public System.DateTime DateHour { get; set; }
-
-    public string Details { get; set; }
+    public string PathImage { get; set; }
 
     public bool Deleted { get; set; }
 
-    public bool Discontinued { get; set; }
 
 
-
-    public virtual CategoryEnter CategoryId { get; set; }
-
-    public virtual User UserId { get; set; }
+    public virtual Entertainment EntertainmentId { get; set; }
 
 }
 

@@ -15,18 +15,18 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
 using System;
     using System.Collections.Generic;
     
-public partial class Category
+public partial class sysdiagrams
 {
 
-    public short CategoryId { get; set; }
+    public string name { get; set; }
 
-    public string Description { get; set; }
+    public int principal_id { get; set; }
 
-    public bool Deleted { get; set; }
+    public int diagram_id { get; set; }
 
+    public Nullable<int> version { get; set; }
 
-
-    public virtual Entertainment Entertainment { get; set; }
+    public byte[] definition { get; set; }
 
 }
 

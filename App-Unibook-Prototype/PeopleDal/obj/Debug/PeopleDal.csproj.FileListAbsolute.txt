@@ -15,3 +15,15 @@ G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\PeopleDal.cspro
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
 G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll.config
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll.config
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\Univalle.Fie.Sistemas.UniBook.Common.pdb
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.xml
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\PeopleDal.csprojResolveAssemblyReference.cache
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
+C:\Users\andii\Documents\GitHub\App-Unibook\App-Unibook-Prototype\PeopleDal\obj\Debug\Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb

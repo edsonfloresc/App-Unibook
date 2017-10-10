@@ -44,11 +44,15 @@ public partial class ModelUnibookContainer : DbContext
 
     public virtual DbSet<Gender> GenderSet { get; set; }
 
-    public virtual DbSet<Image> ImageSet { get; set; }
+    public virtual DbSet<ImageEnter> ImageEnterSet { get; set; }
 
     public virtual DbSet<Entertainment> EntertainmentSet { get; set; }
 
-    public virtual DbSet<Category> CategorySet { get; set; }
+    public virtual DbSet<CategoryEnter> CategoryEnterSet { get; set; }
+
+    public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+
+    public virtual DbSet<CommentEnter> CommentEnterSet { get; set; }
 
 }
 

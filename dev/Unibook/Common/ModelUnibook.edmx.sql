@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/02/2017 03:52:24
--- Generated from EDMX file: C:\Users\andii\Desktop\Programacion2\App-Unibook-master\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 10/09/2017 13:27:14
+-- Generated from EDMX file: C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [BddUnibook];
+USE [Unibook];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,11 +17,65 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCareerSet] DROP CONSTRAINT [FK_UserUserCareer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCareerSet] DROP CONSTRAINT [FK_CareerUserCareer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet] DROP CONSTRAINT [FK_RoleUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CareerSet] DROP CONSTRAINT [FK_FacultyCareer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GenderUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet] DROP CONSTRAINT [FK_GenderUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntertainmentImage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ImageSet] DROP CONSTRAINT [FK_EntertainmentImage];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoryEntertainment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EntertainmentSet] DROP CONSTRAINT [FK_CategoryEntertainment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserEntertainment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EntertainmentSet] DROP CONSTRAINT [FK_UserEntertainment];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[CareerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CareerSet];
+GO
+IF OBJECT_ID(N'[dbo].[FacultySet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FacultySet];
+GO
+IF OBJECT_ID(N'[dbo].[RoleSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoleSet];
+GO
+IF OBJECT_ID(N'[dbo].[UserCareerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserCareerSet];
+GO
+IF OBJECT_ID(N'[dbo].[GenderSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GenderSet];
+GO
+IF OBJECT_ID(N'[dbo].[ImageSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ImageSet];
+GO
+IF OBJECT_ID(N'[dbo].[EntertainmentSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EntertainmentSet];
+GO
+IF OBJECT_ID(N'[dbo].[CategorySet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategorySet];
+GO
+IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[sysdiagrams];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -32,11 +86,11 @@ CREATE TABLE [dbo].[UserSet] (
     [UserId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
-    [GenderId] smallint  NOT NULL,
+    [GenderId] smallint  NULL,
     [Birthday] datetime  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [RoleId] smallint  NOT NULL,
+    [RoleId] smallint  NULL,
     [Deleted] bit  NOT NULL,
     [Role_RoleId] smallint  NOT NULL,
     [Gender_GenderId] smallint  NOT NULL
@@ -86,37 +140,54 @@ CREATE TABLE [dbo].[GenderSet] (
 );
 GO
 
--- Creating table 'ImageSet'
-CREATE TABLE [dbo].[ImageSet] (
+-- Creating table 'ImageEnterSet'
+CREATE TABLE [dbo].[ImageEnterSet] (
     [ImageId] bigint IDENTITY(1,1) NOT NULL,
-    [EntertainmentId] bigint  NOT NULL,
     [PathImage] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [Entertainment_EntertainmentId] bigint  NOT NULL
+    [EntertainmentId_EntertainmentId] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'EntertainmentSet'
 CREATE TABLE [dbo].[EntertainmentSet] (
     [EntertainmentId] bigint IDENTITY(1,1) NOT NULL,
-    [CategoryId] smallint  NOT NULL,
-    [UserId] bigint  NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [PlaceAddress] nvarchar(max)  NOT NULL,
     [DateHour] datetime  NOT NULL,
     [Details] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Discontinued] bit  NOT NULL,
-    [User_UserId] bigint  NOT NULL
+    [CategoryId_CategoryId] smallint  NOT NULL,
+    [UserId_UserId] bigint  NOT NULL
 );
 GO
 
--- Creating table 'CategorySet'
-CREATE TABLE [dbo].[CategorySet] (
+-- Creating table 'CategoryEnterSet'
+CREATE TABLE [dbo].[CategoryEnterSet] (
     [CategoryId] smallint IDENTITY(1,1) NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Deleted] bit  NOT NULL,
-    [Entertainment_EntertainmentId] bigint  NOT NULL
+    [Deleted] bit  NOT NULL
+);
+GO
+
+-- Creating table 'sysdiagrams'
+CREATE TABLE [dbo].[sysdiagrams] (
+    [name] nvarchar(128)  NOT NULL,
+    [principal_id] int  NOT NULL,
+    [diagram_id] int IDENTITY(1,1) NOT NULL,
+    [version] int  NULL,
+    [definition] varbinary(max)  NULL
+);
+GO
+
+-- Creating table 'CommentEnterSet'
+CREATE TABLE [dbo].[CommentEnterSet] (
+    [CommentId] bigint IDENTITY(1,1) NOT NULL,
+    [CommentText] nvarchar(max)  NOT NULL,
+    [DateHour] datetime  NOT NULL,
+    [UserId_UserId] bigint  NOT NULL,
+    [EntertainmentId_EntertainmentId] bigint  NOT NULL
 );
 GO
 
@@ -160,9 +231,9 @@ ADD CONSTRAINT [PK_GenderSet]
     PRIMARY KEY CLUSTERED ([GenderId] ASC);
 GO
 
--- Creating primary key on [ImageId] in table 'ImageSet'
-ALTER TABLE [dbo].[ImageSet]
-ADD CONSTRAINT [PK_ImageSet]
+-- Creating primary key on [ImageId] in table 'ImageEnterSet'
+ALTER TABLE [dbo].[ImageEnterSet]
+ADD CONSTRAINT [PK_ImageEnterSet]
     PRIMARY KEY CLUSTERED ([ImageId] ASC);
 GO
 
@@ -172,10 +243,22 @@ ADD CONSTRAINT [PK_EntertainmentSet]
     PRIMARY KEY CLUSTERED ([EntertainmentId] ASC);
 GO
 
--- Creating primary key on [CategoryId] in table 'CategorySet'
-ALTER TABLE [dbo].[CategorySet]
-ADD CONSTRAINT [PK_CategorySet]
+-- Creating primary key on [CategoryId] in table 'CategoryEnterSet'
+ALTER TABLE [dbo].[CategoryEnterSet]
+ADD CONSTRAINT [PK_CategoryEnterSet]
     PRIMARY KEY CLUSTERED ([CategoryId] ASC);
+GO
+
+-- Creating primary key on [diagram_id] in table 'sysdiagrams'
+ALTER TABLE [dbo].[sysdiagrams]
+ADD CONSTRAINT [PK_sysdiagrams]
+    PRIMARY KEY CLUSTERED ([diagram_id] ASC);
+GO
+
+-- Creating primary key on [CommentId] in table 'CommentEnterSet'
+ALTER TABLE [dbo].[CommentEnterSet]
+ADD CONSTRAINT [PK_CommentEnterSet]
+    PRIMARY KEY CLUSTERED ([CommentId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -252,10 +335,38 @@ ON [dbo].[UserSet]
     ([Gender_GenderId]);
 GO
 
--- Creating foreign key on [User_UserId] in table 'EntertainmentSet'
+-- Creating foreign key on [EntertainmentId_EntertainmentId] in table 'ImageEnterSet'
+ALTER TABLE [dbo].[ImageEnterSet]
+ADD CONSTRAINT [FK_EntertainmentImage]
+    FOREIGN KEY ([EntertainmentId_EntertainmentId])
+    REFERENCES [dbo].[EntertainmentSet]
+        ([EntertainmentId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentImage'
+CREATE INDEX [IX_FK_EntertainmentImage]
+ON [dbo].[ImageEnterSet]
+    ([EntertainmentId_EntertainmentId]);
+GO
+
+-- Creating foreign key on [CategoryId_CategoryId] in table 'EntertainmentSet'
+ALTER TABLE [dbo].[EntertainmentSet]
+ADD CONSTRAINT [FK_CategoryEntertainment]
+    FOREIGN KEY ([CategoryId_CategoryId])
+    REFERENCES [dbo].[CategoryEnterSet]
+        ([CategoryId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryEntertainment'
+CREATE INDEX [IX_FK_CategoryEntertainment]
+ON [dbo].[EntertainmentSet]
+    ([CategoryId_CategoryId]);
+GO
+
+-- Creating foreign key on [UserId_UserId] in table 'EntertainmentSet'
 ALTER TABLE [dbo].[EntertainmentSet]
 ADD CONSTRAINT [FK_UserEntertainment]
-    FOREIGN KEY ([User_UserId])
+    FOREIGN KEY ([UserId_UserId])
     REFERENCES [dbo].[UserSet]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -263,35 +374,35 @@ ADD CONSTRAINT [FK_UserEntertainment]
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserEntertainment'
 CREATE INDEX [IX_FK_UserEntertainment]
 ON [dbo].[EntertainmentSet]
-    ([User_UserId]);
+    ([UserId_UserId]);
 GO
 
--- Creating foreign key on [Entertainment_EntertainmentId] in table 'CategorySet'
-ALTER TABLE [dbo].[CategorySet]
-ADD CONSTRAINT [FK_EntertainmentCategory]
-    FOREIGN KEY ([Entertainment_EntertainmentId])
+-- Creating foreign key on [UserId_UserId] in table 'CommentEnterSet'
+ALTER TABLE [dbo].[CommentEnterSet]
+ADD CONSTRAINT [FK_UserCommentEnter]
+    FOREIGN KEY ([UserId_UserId])
+    REFERENCES [dbo].[UserSet]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCommentEnter'
+CREATE INDEX [IX_FK_UserCommentEnter]
+ON [dbo].[CommentEnterSet]
+    ([UserId_UserId]);
+GO
+
+-- Creating foreign key on [EntertainmentId_EntertainmentId] in table 'CommentEnterSet'
+ALTER TABLE [dbo].[CommentEnterSet]
+ADD CONSTRAINT [FK_EntertainmentCommentEnter]
+    FOREIGN KEY ([EntertainmentId_EntertainmentId])
     REFERENCES [dbo].[EntertainmentSet]
         ([EntertainmentId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
--- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentCategory'
-CREATE INDEX [IX_FK_EntertainmentCategory]
-ON [dbo].[CategorySet]
-    ([Entertainment_EntertainmentId]);
-GO
-
--- Creating foreign key on [Entertainment_EntertainmentId] in table 'ImageSet'
-ALTER TABLE [dbo].[ImageSet]
-ADD CONSTRAINT [FK_EntertainmentImage]
-    FOREIGN KEY ([Entertainment_EntertainmentId])
-    REFERENCES [dbo].[EntertainmentSet]
-        ([EntertainmentId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentImage'
-CREATE INDEX [IX_FK_EntertainmentImage]
-ON [dbo].[ImageSet]
-    ([Entertainment_EntertainmentId]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentCommentEnter'
+CREATE INDEX [IX_FK_EntertainmentCommentEnter]
+ON [dbo].[CommentEnterSet]
+    ([EntertainmentId_EntertainmentId]);
 GO
 
 -- --------------------------------------------------

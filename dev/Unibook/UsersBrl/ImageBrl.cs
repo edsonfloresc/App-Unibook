@@ -8,85 +8,88 @@ using Univalle.Fie.Sistemas.Unibook.UsersDal;
 
 namespace Univalle.Fie.Sistemas.Unibook.UsersBrl
 {
-    public class CategoryBrl
+    public class ImageBrl
     {
+
         #region metodos
         /// <summary>
-        /// Method for Get Category like object
+        /// Method for get a Image like object
         /// </summary>
-        /// <param name="id">id from Category Table for search</param>
+        /// <param name="id">id from Image</param>
         /// <param name="objContex"></param>
-        /// <returns>return a Category Object</returns>
-        public static CategoryEnter Get(int id, ModelUnibookContainer objContex)
+        /// <returns></returns>
+        public static ImageEnter Get(int id, ModelUnibookContainer objContex)
         {
+
+
 
             try
             {
-                return CategoryDal.Get(id,objContex);
+                return ImageDal.Get(id, objContex);
             }
-         
-            catch (Exception )
+
+            catch (Exception)
             {
-              
+
             }
 
             return null;
         }
 
         /// <summary>
-        /// Method for insert a new Category 
+        /// Method for insert a Image
         /// </summary>
-        /// <param name="entertainment"> object from class Category for insert</param>
+        /// <param name="image">object for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(CategoryEnter category, ModelUnibookContainer objContex)
+        public static void Insert(ImageEnter image, ModelUnibookContainer objContex)
         {
             try
             {
-                CategoryDal.Insert(category,objContex);
+                ImageDal.Insert(image, objContex);
             }
-          
-            catch (Exception )
+
+            catch (Exception)
             {
-           
+
             }
         }
 
 
         /// <summary>
-        /// Method for Update Category
+        /// Method for update a image object in database 
         /// </summary>
-        /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
         public static void Update(ModelUnibookContainer objContex)
         {
             try
             {
-                CategoryDal.Update(objContex);
+                ImageDal.Update(objContex);
             }
-          
-            catch (Exception )
+
+            catch (Exception)
             {
-            
+
             }
         }
 
         /// <summary>
-        /// Method for Delete from presentation but not in database
+        /// Method for deleted in presentation but put true en deleted image
         /// </summary>
-        /// <param name="id">id from Category for make deleted on true</param>
+        /// <param name="id">id from image object</param>
         /// <param name="objContex"></param>
         public static void Delete(int id, ModelUnibookContainer objContex)
         {
             try
             {
-                CategoryDal.Delete(id,objContex);
+                ImageDal.Delete(id, objContex);
             }
-        
-            catch (Exception )
+
+            catch (Exception)
             {
-              
+
             }
         }
         #endregion
+
     }
 }

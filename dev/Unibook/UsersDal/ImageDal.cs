@@ -8,26 +8,26 @@ using Univalle.Fie.Sistemas.Unibook.Common;
 
 namespace Univalle.Fie.Sistemas.Unibook.UsersDal
 {
-    public class CategoryDal
+    public class ImageDal
     {
-
         #region metodos
+     
         /// <summary>
-        /// Method for Get Category like object
+        /// Method for get a Image like object
         /// </summary>
-        /// <param name="id">id from Category Table for search</param>
+        /// <param name="id">id from Image</param>
         /// <param name="objContex"></param>
-        /// <returns>return a Category Object</returns>
-        public static CategoryEnter Get(int id, ModelUnibookContainer objContex)
+        /// <returns></returns>
+        public static ImageEnter Get(int id, ModelUnibookContainer objContex)
         {
-            CategoryEnter categoryReturn = null;
+            ImageEnter ImageReturn = null;
 
 
             try
             {
-                categoryReturn = (from category in objContex.CategoryEnterSet
-                                  where category.Deleted == false && category.CategoryId == id
-                                  select category).Single<CategoryEnter>();
+                ImageReturn = (from image in objContex.ImageEnterSet
+                               where image.Deleted == false && image.ImageId == id
+                               select image).Single<ImageEnter>();
             }
             catch (DbEntityValidationException ex)
             {
@@ -38,19 +38,19 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
                 throw ex;
             }
 
-            return categoryReturn;
+            return ImageReturn;
         }
 
         /// <summary>
-        /// Method for insert a new Category 
+        /// Method for insert a Image
         /// </summary>
-        /// <param name="category"> object from class Category for insert</param>
+        /// <param name="image">object for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(CategoryEnter category, ModelUnibookContainer objContex)
+        public static void Insert(ImageEnter image, ModelUnibookContainer objContex)
         {
             try
             {
-                objContex.CategoryEnterSet.Add(category);
+                objContex.ImageEnterSet.Add(image);
                 objContex.SaveChanges();
             }
             catch (DbEntityValidationException ex)
@@ -63,12 +63,10 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
             }
         }
 
-       
-        /// <summary>
-        /// Method for Update Category
-        /// </summary>
-        /// <param name="category">Object to update</param>
-        /// <param name="objContex"></param>
+     /// <summary>
+     /// Method for update a image object in database 
+     /// </summary>
+     /// <param name="objContex"></param>
         public static void Update(ModelUnibookContainer objContex)
         {
             try
@@ -85,17 +83,17 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
             }
         }
 
-        /// <summary>
-        /// Method for Delete from presentation but not in database
-        /// </summary>
-        /// <param name="id">id from Category for make deleted on true</param>
-        /// <param name="objContex"></param>
+       /// <summary>
+       /// Method for deleted in presentation but put true en deleted image
+       /// </summary>
+       /// <param name="id">id from image object</param>
+       /// <param name="objContex"></param>
         public static void Delete(int id, ModelUnibookContainer objContex)
         {
             try
             {
-                CategoryEnter category = objContex.CategoryEnterSet.Find(id);
-                category.Deleted = true;
+                ImageEnter image = objContex.ImageEnterSet.Find(id);
+                image.Deleted = true;
                 objContex.SaveChanges();
             }
             catch (DbEntityValidationException ex)
@@ -108,5 +106,6 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
             }
         }
         #endregion
+
     }
 }

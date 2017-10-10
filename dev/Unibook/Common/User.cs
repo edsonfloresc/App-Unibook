@@ -25,6 +25,8 @@ public partial class User
 
         this.Entertainment = new HashSet<Entertainment>();
 
+        this.CommentEnter = new HashSet<CommentEnter>();
+
     }
 
 
@@ -34,7 +36,7 @@ public partial class User
 
     public string LastName { get; set; }
 
-    public short GenderId { get; set; }
+    public Nullable<short> GenderId { get; set; }
 
     public System.DateTime Birthday { get; set; }
 
@@ -42,7 +44,7 @@ public partial class User
 
     public string Password { get; set; }
 
-    public short RoleId { get; set; }
+    public Nullable<short> RoleId { get; set; }
 
     public bool Deleted { get; set; }
 
@@ -55,6 +57,8 @@ public partial class User
     public virtual Gender Gender { get; set; }
 
     public virtual ICollection<Entertainment> Entertainment { get; set; }
+
+    public virtual ICollection<CommentEnter> CommentEnter { get; set; }
 
 }
 

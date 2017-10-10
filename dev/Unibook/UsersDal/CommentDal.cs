@@ -7,27 +7,27 @@ using System.Data.Entity.Validation;
 using Univalle.Fie.Sistemas.Unibook.Common;
 
 namespace Univalle.Fie.Sistemas.Unibook.UsersDal
-{
-    public class CategoryDal
+{      //florescedson@gmail.com
+    public class CommentDal
     {
 
         #region metodos
         /// <summary>
-        /// Method for Get Category like object
+        /// Method for Get CommentEnter like object
         /// </summary>
-        /// <param name="id">id from Category Table for search</param>
+        /// <param name="id">id from CommentEnter Table for search</param>
         /// <param name="objContex"></param>
-        /// <returns>return a Category Object</returns>
-        public static CategoryEnter Get(int id, ModelUnibookContainer objContex)
+        /// <returns>return a CommentEnter Object</returns>
+        public static CommentEnter Get(int id, ModelUnibookContainer objContex)
         {
-            CategoryEnter categoryReturn = null;
+            CommentEnter commentReturn = null;
 
 
             try
             {
-                categoryReturn = (from category in objContex.CategoryEnterSet
-                                  where category.Deleted == false && category.CategoryId == id
-                                  select category).Single<CategoryEnter>();
+                commentReturn = (from comment in objContex.CommentEnterSet
+                                 where comment.Deleted == false && comment.CommentId == id
+                                 select comment).Single<CommentEnter>();
             }
             catch (DbEntityValidationException ex)
             {
@@ -38,19 +38,19 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
                 throw ex;
             }
 
-            return categoryReturn;
+            return commentReturn;
         }
 
         /// <summary>
-        /// Method for insert a new Category 
+        /// Method for insert a new CommentEnter 
         /// </summary>
-        /// <param name="category"> object from class Category for insert</param>
+        /// <param name="category"> object from class CommentEnter for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(CategoryEnter category, ModelUnibookContainer objContex)
+        public static void Insert(CommentEnter comment, ModelUnibookContainer objContex)
         {
             try
             {
-                objContex.CategoryEnterSet.Add(category);
+                objContex.CommentEnterSet.Add(comment);
                 objContex.SaveChanges();
             }
             catch (DbEntityValidationException ex)
@@ -63,11 +63,10 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
             }
         }
 
-       
+
         /// <summary>
-        /// Method for Update Category
+        /// Method for Update CommentEnter
         /// </summary>
-        /// <param name="category">Object to update</param>
         /// <param name="objContex"></param>
         public static void Update(ModelUnibookContainer objContex)
         {
@@ -88,14 +87,14 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
         /// <summary>
         /// Method for Delete from presentation but not in database
         /// </summary>
-        /// <param name="id">id from Category for make deleted on true</param>
+        /// <param name="id">id from CommentEnter for make deleted on true</param>
         /// <param name="objContex"></param>
         public static void Delete(int id, ModelUnibookContainer objContex)
         {
             try
             {
-                CategoryEnter category = objContex.CategoryEnterSet.Find(id);
-                category.Deleted = true;
+                CommentEnter comment = objContex.CommentEnterSet.Find(id);
+                comment.Deleted = true;
                 objContex.SaveChanges();
             }
             catch (DbEntityValidationException ex)

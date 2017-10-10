@@ -58,7 +58,7 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersBrl
         /// </summary>
         /// <param name="entertainment"> object from class Entertainment for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(Entertainment entertainment, Image image, ModelUnibookContainer objContex)
+        public static void Insert(Entertainment entertainment, ImageEnter image, ModelUnibookContainer objContex)
         {
             try
             {
@@ -76,11 +76,11 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersBrl
         /// </summary>
         /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
-        public static void Update(Entertainment entertainment, ModelUnibookContainer objContex)
+        public static void Update( ModelUnibookContainer objContex)
         {
             try
             {
-                EntertainmentDal.Update(entertainment,objContex);
+                EntertainmentDal.Update(objContex);
             }
         
             catch (Exception )

@@ -15,20 +15,22 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
 using System;
     using System.Collections.Generic;
     
-public partial class Image
+public partial class CommentEnter
 {
 
-    public long ImageId { get; set; }
+    public long CommentId { get; set; }
 
-    public long EntertainmentId { get; set; }
+    public string CommentText { get; set; }
 
-    public string PathImage { get; set; }
+    public System.DateTime DateHour { get; set; }
 
     public bool Deleted { get; set; }
 
 
 
-    public virtual Entertainment Entertainment { get; set; }
+    public virtual User UserId { get; set; }
+
+    public virtual Entertainment EntertainmentId { get; set; }
 
 }
 

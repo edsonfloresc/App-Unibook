@@ -69,14 +69,14 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
         /// </summary>
         /// <param name="entertainment"> object from class Entertainment for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(Entertainment entertainment, Image image, ModelUnibookContainer objContex)
+        public static void Insert(Entertainment entertainment, ImageEnter image, ModelUnibookContainer objContex)
         {
             try
             {
                 var LastId = objContex.EntertainmentSet.OrderByDescending(x => x.EntertainmentId).First().EntertainmentId;
-                image.EntertainmentId = LastId+1;
+               // image.EntertainmentId = 
                 objContex.EntertainmentSet.Add(entertainment);
-                objContex.ImageSet.Add(image);
+                objContex.ImageEnterSet.Add(image);
                 objContex.SaveChanges();
             }
             catch (DbEntityValidationException ex)
@@ -93,7 +93,7 @@ namespace Univalle.Fie.Sistemas.Unibook.UsersDal
         /// </summary>
         /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
-        public static void Update(Entertainment entertainment, ModelUnibookContainer objContex)
+        public static void Update(ModelUnibookContainer objContex)
         {
             try
             {

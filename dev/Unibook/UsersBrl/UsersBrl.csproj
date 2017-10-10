@@ -50,8 +50,10 @@
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
     <Compile Include="CategoryBrl.cs" />
+    <Compile Include="CommentBrl.cs" />
     <Compile Include="EntertainmentBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
+    <Compile Include="ImageBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
     <Compile Include="UserBrl.cs" />

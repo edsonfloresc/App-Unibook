@@ -16,11 +16,11 @@ namespace ConsoleAppPruebas
             PeopleContainer context = new PeopleContainer();
             PersonBrl.Insertar(person, context);
 
-            Person person1 = PersonBrl.Get(1, context);
-            person1.Name = "Pedro";
-            PersonBrl.Update(context);
+            //Person person1 = PersonBrl.Get(1, context);
+            //person1.Name = "Pedro";
+            //PersonBrl.Update(context);
 
-            PersonBrl.Delete(1, context);
+            //PersonBrl.Delete(1, context);
         }
     }
 }
