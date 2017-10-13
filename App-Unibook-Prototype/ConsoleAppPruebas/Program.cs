@@ -12,12 +12,12 @@ namespace ConsoleAppPruebas
     {
         static void Main(string[] args)
         {
-            Person person = new Person() { Name = "Roger", Deleted = false, FirstName = "Aguilar" };
+            Person person = new Person() { FirstName = "Roger", Deleted = false, LastName = "Aguilar" };
             PeopleContainer context = new PeopleContainer();
             PersonBrl.Insertar(person, context);
 
             Person person1 = PersonBrl.Get(1, context);
-            person1.Name = "Pedro";
+            person1.FirstName = "Pedro";
             PersonBrl.Update(context);
 
             PersonBrl.Delete(1, context);

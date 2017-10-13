@@ -8,8 +8,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
 </Schema>

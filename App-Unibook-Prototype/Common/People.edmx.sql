@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/08/2017 06:48:50
--- Generated from EDMX file: G:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\People.edmx
+-- Date Created: 10/13/2017 05:44:32
+-- Generated from EDMX file: d:\PRJ\DEV\App-Unibook\App-Unibook-Prototype\Common\People.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -22,6 +22,9 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[PersonSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -30,8 +33,8 @@ GO
 -- Creating table 'PersonSet'
 CREATE TABLE [dbo].[PersonSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
+    [FirstName] nvarchar(100)  NOT NULL,
+    [LastName] nvarchar(100)  NOT NULL,
     [Deleted] bit  NOT NULL
 );
 GO
