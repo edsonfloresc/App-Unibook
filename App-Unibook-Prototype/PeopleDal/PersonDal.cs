@@ -21,16 +21,25 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
 
             try
             {
-                personReturn = (from person in objContex.PersonSet
-                            where person.Deleted == false && person.Id == id
-                            select person).Single<Person>();
+                bool exist = (from person in objContex.PersonSet
+                               where person.Deleted == false && person.Id == id
+                               select person).Count() > 0;
+                if (exist)
+                {
+                    personReturn = (from person in objContex.PersonSet
+                                    where person.Deleted == false && person.Id == id
+                                    select person).Single<Person>();
+                }
+                
             }
             catch (DbEntityValidationException ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -51,10 +60,12 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
             }
             catch (DbEntityValidationException ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -72,10 +83,12 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
             }
             catch (DbEntityValidationException ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -95,10 +108,12 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
             }
             catch (DbEntityValidationException ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
