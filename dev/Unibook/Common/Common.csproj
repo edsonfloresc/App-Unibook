@@ -53,6 +53,9 @@
     <Compile Include="Career.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
@@ -73,6 +76,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">

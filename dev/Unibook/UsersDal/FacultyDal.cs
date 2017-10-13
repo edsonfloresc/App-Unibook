@@ -23,8 +23,8 @@ namespace UsersDal
 
             try
             {
-                facultyReturn = (from faculty in objContex.FacultySet
-                                 where faculty.Deleted == false && faculty.faculty_Id == id
+                facultyReturn = (from faculty in objContex.Faculty
+                                 where faculty.Deleted == false && faculty.FacultyId == id
                                  select faculty).Single<Faculty>();
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@ namespace UsersDal
         {
             try
             {
-                objContex.FacultySet.Add(faculty);
+                objContex.Faculty.Add(faculty);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace UsersDal
         {
             try
             {
-                Faculty faculty = objContex.FacultySet.Find(id);
+                Faculty faculty = objContex.Faculty.Find(id);
                 faculty.Deleted = true;
                 objContex.SaveChanges();
             }
