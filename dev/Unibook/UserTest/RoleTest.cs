@@ -12,11 +12,40 @@ namespace UserTest
         public void TestCreateRole()
         {
             Role role = new Role();
-            role.Name = "Administrador";
+            role.Name = "Estudiante";
             role.Deleted = false;
             ModelUnibookContainer content = new ModelUnibookContainer();
             RoleBrl.Insertar(role, content);
+            Role actual = RoleBrl.Get(3, content);
+            Assert.AreEqual(role, actual);
+        }
+
+        [TestMethod]
+        public void TestEditRole()
+        {
+            ModelUnibookContainer content = new ModelUnibookContainer();
+            Role role = RoleBrl.Get(1, content);
+            role.Name = "Admin";
+            RoleBrl.Update(role, content);
             Assert.AreEqual(true, true);
+        }
+
+        [TestMethod]
+        public void TestDeleteRole()
+        {
+            ModelUnibookContainer content = new ModelUnibookContainer();
+            Role role = RoleBrl.Get(1, content);
+            role.Deleted = true;
+            RoleBrl.Update(role, content);
+            Assert.AreEqual(true, true);
+        }
+
+        [TestMethod]
+        public void TestGetRole()
+        {
+            ModelUnibookContainer content = new ModelUnibookContainer();
+            Role actual = RoleBrl.Get(1, content);
+            Assert.AreEqual(actual, actual);
         }
     }
 }
