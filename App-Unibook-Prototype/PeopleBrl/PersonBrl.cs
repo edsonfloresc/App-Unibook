@@ -21,10 +21,9 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
             {
                 PersonDal.Insert(person, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-            
+                throw ex;
             }
         }
 
@@ -36,16 +35,17 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
         /// <returns></returns>
         public static Person Get(int id, PeopleContainer objContex)
         {
+            Person person = null;
             try
             {
-                return PersonDal.Get(id, objContex);
+              person =  PersonDal.Get(id, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
 
-            return null;
+            return person;
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
             {
                 PersonDal.Update(objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
@@ -75,9 +75,9 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
             {
                 PersonDal.Delete(id, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
     }
