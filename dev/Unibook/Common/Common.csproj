@@ -32,11 +32,12 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -51,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Career.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryAcademic.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommentAcademic.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Contact.cs">
@@ -81,7 +88,19 @@
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicationAcademic.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PublicationMatterCareerFaculty.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Role.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subject.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubjectCareer.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -99,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <Fakes Include="Fakes\EntityFramework.fakes" />
     <None Include="ModelUnibook.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelUnibook.Context.cs</LastGenOutput>

@@ -21,9 +21,10 @@ namespace UsersBrl
             {
                 RoleDal.Insert(role, objContex);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+
+
             }
         }
 

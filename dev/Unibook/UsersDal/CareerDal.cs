@@ -23,7 +23,7 @@ namespace UsersDal
 
             try
             {
-                careerReturn = (from career in objContex.Career
+                careerReturn = (from career in objContex.CareerSet
                                 where career.Deleted == false && career.CareerId == id
                                 select career).Single<Career>();
             }
@@ -44,7 +44,7 @@ namespace UsersDal
         {
             try
             {
-                objContex.Career.Add(career);
+                objContex.CareerSet.Add(career);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace UsersDal
         {
             try
             {
-                Career career = objContex.Career.Find(id);
+                Career career = objContex.CareerSet.Find(id);
                 career.Deleted = true;
                 objContex.SaveChanges();
             }
