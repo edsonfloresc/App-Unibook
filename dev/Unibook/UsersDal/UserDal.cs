@@ -23,7 +23,7 @@ namespace UsersDal
 
             try
             {
-                userReturn = (from user in objContex.UserSet
+                userReturn = (from user in objContex.User
                               where user.Deleted == false && user.UserId == id
                               select user).Single<User>();
             }
@@ -44,7 +44,7 @@ namespace UsersDal
         {
             try
             {
-                objContex.UserSet.Add(user);
+                objContex.User.Add(user);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace UsersDal
         {
             try
             {
-                User user = objContex.UserSet.Find(id);
+                User user = objContex.User.Find(id);
                 user.Deleted = true;
                 objContex.SaveChanges();
             }
