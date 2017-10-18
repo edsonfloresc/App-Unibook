@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/17/2017 21:54:38
+-- Date Created: 10/17/2017 23:58:43
 -- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -26,9 +26,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GenderPerson]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_GenderPerson];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_PersonUser];
-GO
 IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
 GO
@@ -37,6 +34,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
 
 -- --------------------------------------------------
