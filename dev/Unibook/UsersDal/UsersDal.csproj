@@ -7,8 +7,8 @@
     <ProjectGuid>{0C35FC1F-5130-43D2-9C6B-F5467EAEE3B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Univalle.Fie.Sistemas.Unibook.UsersDal</RootNamespace>
-    <AssemblyName>Univalle.Fie.Sistemas.Unibook.UsersDal</AssemblyName>
+    <RootNamespace>UsersDal</RootNamespace>
+    <AssemblyName>UsersDal</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,11 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerDal.cs" />
-    <Compile Include="CategoryDal.cs" />
-    <Compile Include="CommentDal.cs" />
-    <Compile Include="EntertainmentDal.cs" />
     <Compile Include="FacultyDal.cs" />
-    <Compile Include="ImageDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDal.cs" />
     <Compile Include="UserCareerDal.cs" />
