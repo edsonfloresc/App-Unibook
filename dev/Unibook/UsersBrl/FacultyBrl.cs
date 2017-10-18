@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using UsersDal;
+using Univalle.Fie.Sistemas.UniBook.UsersDal;
 
-namespace UsersBrl
+namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 {
     public class FacultyBrl
     {

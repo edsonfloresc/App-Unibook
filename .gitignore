@@ -1,11 +1,6 @@
 *.dll
 *.pdb
 *.exe
-<<<<<<< HEAD
+dev/Unibook/packages/
 obj
 bin
-=======
-*.cache
-obj
-debug
->>>>>>> 4891370b227da12cfa88a16a24ba4e98561f4dec

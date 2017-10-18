@@ -7,8 +7,8 @@
     <ProjectGuid>{D977D4A1-464C-4843-9BB7-15EC085825E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UsersBrl</RootNamespace>
-    <AssemblyName>UsersBrl</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UsersBrl</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UsersBrl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
+    <Compile Include="GenderBrl.cs" />
+    <Compile Include="PersonBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
     <Compile Include="UserBrl.cs" />

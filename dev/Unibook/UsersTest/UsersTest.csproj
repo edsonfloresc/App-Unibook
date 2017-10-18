@@ -7,8 +7,8 @@
     <ProjectGuid>{983907DC-529D-45DB-80A4-75FDAA1667B1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UsersTest</RootNamespace>
-    <AssemblyName>UsersTest</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UsersTest</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UsersTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

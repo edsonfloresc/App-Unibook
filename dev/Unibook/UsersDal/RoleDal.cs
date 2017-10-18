@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
 
-namespace UsersDal
+namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
     public class RoleDal
     {
@@ -29,6 +29,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -49,6 +50,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -66,6 +68,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -85,6 +88,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }

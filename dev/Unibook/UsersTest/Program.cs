@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsersTest
+namespace Univalle.Fie.Sistemas.UniBook.UsersTest
 {
     class Program
     {

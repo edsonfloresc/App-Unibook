@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using UsersDal;
+using Univalle.Fie.Sistemas.UniBook.UsersDal;
 
-namespace UsersBrl
+namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 {
     public class UserBrl
     {
@@ -33,7 +33,7 @@ namespace UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
-        public static User Get(int id, ModelUnibookContainer objContex)
+        public static User Get(long id, ModelUnibookContainer objContex)
         {
             try
             {

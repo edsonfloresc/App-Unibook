@@ -7,8 +7,8 @@
     <ProjectGuid>{4BFFA263-6828-491D-B6EA-FC1C1223AC51}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserTest</RootNamespace>
-    <AssemblyName>UserTest</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UserTest</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UserTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -57,6 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RoleTest.cs" />
+    <Compile Include="PersonTest.cs" />
+    <Compile Include="GenderTest.cs" />
+    <Compile Include="FacultyTest.cs" />
+    <Compile Include="CareerTest.cs" />
+    <Compile Include="UserCareerTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

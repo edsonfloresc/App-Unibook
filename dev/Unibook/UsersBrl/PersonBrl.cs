@@ -8,18 +8,38 @@ using Univalle.Fie.Sistemas.UniBook.UsersDal;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 {
-    public class UserCareerBrl
+    public class PersonBrl
     {
         /// <summary>
-        /// Create a new user Career
+        /// Get a person with identifier
         /// </summary>
-        /// <param name="userCareer"></param>
+        /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(UserCareer userCareer, ModelUnibookContainer objContex)
+        /// <returns></returns>
+        public static Person Get(long id, ModelUnibookContainer objContex)
         {
             try
             {
-                UserCareerDal.Insert(userCareer, objContex);
+                return PersonDal.Get(id, objContex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Create a new person
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="objContex"></param>
+        public static void Insertar(Person person, ModelUnibookContainer objContex)
+        {
+            try
+            {
+                PersonDal.Insert(person, objContex);
             }
             catch (Exception ex)
             {
@@ -28,39 +48,19 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         }
 
         /// <summary>
-        /// Get a user Career with identifier
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="objContex"></param>
-        /// <returns></returns>
-        public static UserCareer Get(int id, ModelUnibookContainer objContex)
-        {
-            try
-            {
-                return UserCareerDal.Get(id, objContex);
-            }
-            catch (Exception)
-            {
-
-            }
-
-            return null;
-        }
-
-        /// <summary>
         /// Update changes in the context
         /// </summary>
-        /// <param name="userCareer"></param>
+        /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Update(UserCareer userCareer, ModelUnibookContainer objContex)
+        public static void Update(Person person, ModelUnibookContainer objContex)
         {
             try
             {
-                UserCareerDal.Update(userCareer, objContex);
+                PersonDal.Update(person, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
     }

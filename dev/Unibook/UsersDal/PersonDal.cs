@@ -7,25 +7,23 @@ using Univalle.Fie.Sistemas.Unibook.Common;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
-    public class UserCareerDal
+    public class PersonDal
     {
-        #region metodos
-
         /// <summary>
-        /// Get user career by id
+        /// Get person by id
         /// </summary>
-        /// <param name="id">Id user career to search</param>
+        /// <param name="id">Id person to search</param>
         /// <returns></returns>
-        public static UserCareer Get(int id, ModelUnibookContainer objContex)
+        public static Person Get(long id, ModelUnibookContainer objContex)
         {
-            UserCareer userCareerReturn = null;
+            Person personReturn = null;
 
 
             try
             {
-                userCareerReturn = (from userCareer in objContex.UserCareer
-                                    where userCareer.UserCareerId == id
-                                    select userCareer).Single<UserCareer>();
+                personReturn = (from person in objContex.Person
+                              where person.PersonId == id
+                              select person).Single<Person>();
             }
             catch (Exception ex)
             {
@@ -33,19 +31,19 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                 throw ex;
             }
 
-            return userCareerReturn;
+            return personReturn;
         }
 
         /// <summary>
-        /// Insert a user Career
+        /// Insert a person
         /// </summary>
-        /// <param name="userCareer"></param>
+        /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Insert(UserCareer userCareer, ModelUnibookContainer objContex)
+        public static void Insert(Person person, ModelUnibookContainer objContex)
         {
             try
             {
-                objContex.UserCareer.Add(userCareer);
+                objContex.Person.Add(person);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
@@ -56,11 +54,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         }
 
         /// <summary>
-        /// Update a user Career
+        /// Update a user
         /// </summary>
-        /// <param name="userCareer"></param>
+        /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Update(UserCareer userCareer, ModelUnibookContainer objContex)
+        public static void Update(Person person, ModelUnibookContainer objContex)
         {
             try
             {
@@ -72,7 +70,5 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                 throw ex;
             }
         }
-
-        #endregion metodos
     }
 }
