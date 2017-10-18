@@ -21,7 +21,7 @@ namespace UsersBrl
             {
                 UserDal.Insert(user, objContex);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -65,7 +65,7 @@ namespace UsersBrl
         }
 
         /// <summary>
-        /// 
+        /// Deleted a user
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>

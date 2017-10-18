@@ -14,12 +14,11 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class CommentNews
     {
-        public int CommetId { get; set; }
+        public int CommentId { get; set; }
         public string Message { get; set; }
         public System.DateTime Date { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual News News { get; set; }
-        public virtual User User { get; set; }
+        public virtual News NewsId { get; set; }
     }
 }

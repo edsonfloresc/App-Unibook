@@ -18,6 +18,6 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public string PathImage { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual News News { get; set; }
+        public virtual News NewsId { get; set; }
     }
 }

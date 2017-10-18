@@ -59,6 +59,9 @@
     <Compile Include="CommentNews.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
@@ -84,6 +87,9 @@
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
     </Compile>
     <Compile Include="News.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

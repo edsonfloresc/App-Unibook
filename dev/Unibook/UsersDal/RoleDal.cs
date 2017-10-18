@@ -23,7 +23,7 @@ namespace UsersDal
 
             try
             {
-                roleReturn = (from role in objContex.RoleSet
+                roleReturn = (from role in objContex.Role
                               where role.Deleted == false && role.RoleId == id
                               select role).Single<Role>();
             }
@@ -44,7 +44,7 @@ namespace UsersDal
         {
             try
             {
-                objContex.RoleSet.Add(role);
+                objContex.Role.Add(role);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace UsersDal
         {
             try
             {
-                Role role = objContex.RoleSet.Find(id);
+                Role role = objContex.Role.Find(id);
                 role.Deleted = true;
                 objContex.SaveChanges();
             }

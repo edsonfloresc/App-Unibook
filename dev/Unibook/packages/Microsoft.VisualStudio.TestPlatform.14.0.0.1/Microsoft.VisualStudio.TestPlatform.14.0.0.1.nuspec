@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.VisualStudio.TestPlatform</id>
+    <version>14.0.0.1</version>
+    <title>Microsoft VisualStudio TestPlatform TestFramework</title>
+    <authors>yehudak</authors>
+    <owners>yehudak</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=329770</licenseUrl>
+    <projectUrl>https://dot.net/</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides Dlls:
+Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+and
+Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</description>
+    <summary />
+    <copyright>© Microsoft Corporation.  All rights reserved.</copyright>
+  </metadata>
+</package>
