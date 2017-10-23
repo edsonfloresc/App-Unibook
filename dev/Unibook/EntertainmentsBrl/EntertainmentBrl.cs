@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsDal;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 {
@@ -37,56 +38,106 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         }
 
         /// <summary>
+        /// Method for Get Entertainment like object
+        /// </summary>
+        /// <param name="id">id from Entertainment Table for search</param>
+        /// <param name="objContex"></param>
+        /// <returns>return a Entertainment Object</returns>
+        public static EntertainmentDto GetDto(int id, ModelUnibookContainer objContex)
+        {
+
+            EntertainmentDto entertainmentDto = null;
+
+            try
+            {
+                
+                Entertainment entertainment = EntertainmentDal.Get(id, objContex);
+                entertainmentDto = new EntertainmentDto();
+
+                entertainmentDto.EntertainmentId = entertainment.EntertainmentId;
+                entertainmentDto.Title = entertainment.Title;
+                entertainmentDto.PlaceAddress = entertainment.PlaceAddress;
+                entertainmentDto.DateHour = entertainment.DateHour;
+                entertainmentDto.Details = entertainment.Details;
+                entertainmentDto.Deleted = entertainment.Deleted;
+                entertainmentDto.Discontinued = entertainment.Discontinued;
+                entertainmentDto.CategoryEnter = new CategoryEnterDto();
+                entertainmentDto.CategoryEnter.CategoryId = entertainment.CategoryEnter.CategoryId;
+                entertainmentDto.CategoryEnter.Description = entertainment.CategoryEnter.Description;
+                entertainmentDto.CategoryEnter.Deleted = entertainment.CategoryEnter.Deleted;
+                entertainmentDto.User = new UserDto();
+                entertainmentDto.User.UserId = entertainment.User.UserId;
+                entertainmentDto.User.Email = entertainment.User.Email;
+                entertainmentDto.User.Password = entertainment.User.Password;
+                entertainmentDto.User.Deleted = entertainment.User.Deleted;
+                entertainmentDto.User.RoleId = entertainment.User.RoleId;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return entertainmentDto;
+        }
+
+        /// <summary>
         /// Method for insert a new Entertainment without image
         /// </summary>
         /// <param name="entertainment"> object from class Entertainment for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(Entertainment entertainment, ModelUnibookContainer objContex)
+        public static void Insert(EntertainmentDto entertainmentDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Entertainment entertainment = new Entertainment();
+            
+                entertainment.Title = entertainmentDto.Title;
+                entertainment.PlaceAddress = entertainmentDto.PlaceAddress;
+                entertainment.DateHour = entertainmentDto.DateHour;
+                entertainment.Details = entertainmentDto.Details;
+                entertainment.Deleted = entertainmentDto.Deleted;
+                entertainment.Discontinued = entertainmentDto.Discontinued;
+                entertainment.CategoryEnter = CategoryBrl.Get(entertainment.CategoryEnter.CategoryId, objContex);
+                entertainment.User = UsersBrl.UserBrl.Get(int.Parse(entertainment.User.UserId.ToString()),objContex);
+            
                 EntertainmentDal.Insert(entertainment, objContex);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
-        /// <summary>
-        /// Method for insert a new Entertainment with image
-        /// </summary>
-        /// <param name="entertainment"> object from class Entertainment for insert</param>
-        /// <param name="objContex"></param>
-        public static void Insert(Entertainment entertainment, ImageEnter image, ModelUnibookContainer objContex)
-        {
-            try
-            {
-                EntertainmentDal.Insert(entertainment, image, objContex);
-            }
-
-            catch (Exception)
-            {
-
-            }
-        }
+     
 
         /// <summary>
         /// Method for Update Entertainment
         /// </summary>
         /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
-        public static void Update(ModelUnibookContainer objContex)
+        public static void Update(EntertainmentDto entertainmentDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Entertainment entertainment = EntertainmentBrl.Get(int.Parse(entertainmentDto.EntertainmentId.ToString()), objContex);
+                entertainment.Title = entertainmentDto.Title;
+                entertainment.PlaceAddress = entertainmentDto.PlaceAddress;
+                entertainment.DateHour = entertainmentDto.DateHour;
+                entertainment.Details = entertainmentDto.Details;
+                entertainment.Deleted = entertainmentDto.Deleted;
+                entertainment.Discontinued = entertainmentDto.Discontinued;
+                entertainment.CategoryEnter = CategoryBrl.Get(entertainment.CategoryEnter.CategoryId, objContex);
+                entertainment.User = UsersBrl.UserBrl.Get(int.Parse(entertainment.User.UserId.ToString()), objContex);
+
+    
                 EntertainmentDal.Update(objContex);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 

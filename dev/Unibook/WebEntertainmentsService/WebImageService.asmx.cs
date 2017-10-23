@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using UsersBrl;
 
 namespace WebEntertainmentsService
@@ -22,7 +23,7 @@ namespace WebEntertainmentsService
         ModelUnibookContainer content = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(ImageEnter image)
+        public void Insert(ImageEnterDto image)
         {
             try
             {
@@ -37,14 +38,14 @@ namespace WebEntertainmentsService
 
 
         [WebMethod]
-        public void Update(ImageEnter image)
+        public void Update(ImageEnterDto image)
         {
             try
             {
-                ImageEnter image1 = ImageBrl.Get(int.Parse(image.ImageId.ToString()), content);
+                ImageEnterDto image1 = ImageBrl.GetDto(int.Parse(image.ImageId.ToString()), content);
                 image1.PathImage = image.PathImage;
 
-                ImageBrl.Update(content);
+                ImageBrl.Update(image1,content);
             }
             catch (Exception ex)
             {

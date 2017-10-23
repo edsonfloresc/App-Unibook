@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{78B6017A-554F-41E0-A189-346BA7B75A3B}</ProjectGuid>
+    <ProjectGuid>{D3F417C3-E4CD-433B-BE5C-EDEC77B0F03D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Univalle.Fie.Sistemas.Unibook.EntertainmentsDal</RootNamespace>
-    <AssemblyName>Univalle.Fie.Sistemas.Unibook.EntertainmentsDal</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.CommonDto</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.CommonDto</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,29 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryDal.cs" />
-    <Compile Include="CategoryListDal.cs" />
-    <Compile Include="CommentDal.cs" />
-    <Compile Include="CommentListDal.cs" />
-    <Compile Include="EntertainmentDal.cs" />
-    <Compile Include="EntertainmentListDal.cs" />
-    <Compile Include="ImageDal.cs" />
-    <Compile Include="ImageListDal.cs" />
+    <Compile Include="CategoryEnterDto.cs" />
+    <Compile Include="CommentEnterDto.cs" />
+    <Compile Include="EntertainmentDto.cs" />
+    <Compile Include="GenderDto.cs" />
+    <Compile Include="ImageEnterDto.cs" />
+    <Compile Include="PersonDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
-      <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
-      <Name>UsersBrl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Compile Include="RoleDto.cs" />
+    <Compile Include="UserDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

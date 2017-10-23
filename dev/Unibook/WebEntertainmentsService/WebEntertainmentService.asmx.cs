@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using UsersBrl;
+
 
 namespace WebEntertainmentsService
 {
@@ -22,7 +24,7 @@ namespace WebEntertainmentsService
         ModelUnibookContainer content = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(Entertainment entertainment)
+        public void Insert(EntertainmentDto entertainment)
         {
             try
             {
@@ -37,7 +39,7 @@ namespace WebEntertainmentsService
 
 
         [WebMethod]
-        public void Update(Entertainment entertainment)
+        public void Update(EntertainmentDto entertainment)
         {
             try
             {
@@ -48,7 +50,7 @@ namespace WebEntertainmentsService
                 entertainment1.Discontinued = entertainment.Discontinued;
                 entertainment1.Deleted = entertainment.Deleted;
 
-                EntertainmentBrl.Update(content);
+                EntertainmentBrl.Update(entertainment,content);
             }
             catch (Exception ex)
             {

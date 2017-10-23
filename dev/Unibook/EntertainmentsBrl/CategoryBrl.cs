@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsDal;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 {
@@ -18,12 +19,19 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// <param name="id">id from Category Table for search</param>
         /// <param name="objContex"></param>
         /// <returns>return a Category Object</returns>
-        public static CategoryEnter Get(int id, ModelUnibookContainer objContex)
+        public static CategoryEnterDto GetDto(int id, ModelUnibookContainer objContex)
         {
 
+            CategoryEnterDto categoryDto = null;
             try
             {
-                return CategoryDal.Get(id, objContex);
+
+                CategoryEnter category = CategoryDal.Get(id, objContex);
+                categoryDto = new CategoryEnterDto();
+                categoryDto.CategoryId = category.CategoryId;
+                categoryDto.Description = category.Description;
+                categoryDto.Deleted = category.Deleted;
+
             }
 
             catch (Exception)
@@ -31,7 +39,27 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 return null;
             }
 
+            return categoryDto;
+        }
 
+        public static CategoryEnter Get(int id, ModelUnibookContainer objContex)
+        {
+
+            CategoryEnter category = null;
+            try
+            {
+
+                 category = CategoryDal.Get(id, objContex);
+                
+
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return category;
         }
 
         /// <summary>
@@ -39,16 +67,20 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// </summary>
         /// <param name="entertainment"> object from class Category for insert</param>
         /// <param name="objContex"></param>
-        public static void Insert(CategoryEnter category, ModelUnibookContainer objContex)
+        public static void Insert(CategoryEnterDto categoryDto, ModelUnibookContainer objContex)
         {
             try
             {
+                CategoryEnter category = new CategoryEnter();
+                category.CategoryId = categoryDto.CategoryId;
+                category.Description = categoryDto.Description;
+                category.Deleted = categoryDto.Deleted;
                 CategoryDal.Insert(category, objContex);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
@@ -58,16 +90,20 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// </summary>
         /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
-        public static void Update(ModelUnibookContainer objContex)
+        public static void Update(CategoryEnterDto categoryDto ,ModelUnibookContainer objContex)
         {
             try
             {
+                //CategoryDal.Update(objContex);
+                CategoryEnter category = CategoryBrl.Get(categoryDto.CategoryId, objContex);
+                category.Description = categoryDto.Description;
+                category.Deleted = categoryDto.Deleted;
                 CategoryDal.Update(objContex);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 

@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
+      <Project>{d3f417c3-e4cd-433b-be5c-edec77b0f03d}</Project>
+      <Name>CommonDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
       <Name>Common</Name>
@@ -69,6 +73,10 @@
     <ProjectReference Include="..\EntertainmentsDal\EntertainmentsDal.csproj">
       <Project>{78b6017a-554f-41e0-a189-346ba7b75a3b}</Project>
       <Name>EntertainmentsDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
+      <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
+      <Name>UsersBrl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

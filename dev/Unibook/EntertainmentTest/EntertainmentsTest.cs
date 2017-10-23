@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
 using UsersBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
 {
@@ -72,15 +73,15 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         {
        
 
-            Entertainment entertainment = new Entertainment(); 
+            EntertainmentDto entertainment = new EntertainmentDto(); 
             entertainment.Title = "Noche de cine Univalle";
             entertainment.DateHour = DateTime.Now;
             entertainment.PlaceAddress = "Cine center av. ramon rivero";
             entertainment.Details = "Ven a disfrutar de una noche con la familia univalle en el cine center las entradas a 10 bs.";
             entertainment.Discontinued = false;
             entertainment.Deleted = false;
-            entertainment.CategoryEnter = CategoryBrl.Get(1, content);
-            entertainment.User = UserBrl.Get(1, content);
+            entertainment.CategoryEnter = CategoryBrl.GetDto(1, content);
+          //  entertainment.User = UserBrl.GetDto(1, content);
             EntertainmentBrl.Insert(entertainment, content);
             Entertainment actual = EntertainmentBrl.Get(1, content);
             Assert.AreEqual(entertainment, actual);
@@ -90,9 +91,9 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         [TestMethod]
         public void TestEditEntertainment()
         {
-            Entertainment entertainment = EntertainmentBrl.Get(1, content);
+            EntertainmentDto entertainment = EntertainmentBrl.GetDto(1, content);
             entertainment.Details = "cambiamos details";
-            EntertainmentBrl.Update(content);
+            EntertainmentBrl.Update(entertainment,content);
             Assert.AreEqual(true, true);
         }
 

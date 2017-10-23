@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using UsersBrl;
 
 namespace WebEntertainmentsService
@@ -22,7 +23,7 @@ namespace WebEntertainmentsService
         ModelUnibookContainer content = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(CategoryEnter category)
+        public void Insert(CategoryEnterDto category)
         {
             try
             {
@@ -37,14 +38,14 @@ namespace WebEntertainmentsService
 
 
         [WebMethod]
-        public void Update(CategoryEnter category)
+        public void Update(CategoryEnterDto category)
         {
             try
             {
-                CategoryEnter category1 = CategoryBrl.Get(category.CategoryId, content);
+                CategoryEnterDto category1 = CategoryBrl.GetDto(category.CategoryId, content);
                 category1.Description = category.Description;
               
-                CategoryBrl.Update(content);
+                CategoryBrl.Update(category1,content);
             }
             catch (Exception ex)
             {

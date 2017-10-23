@@ -66,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
+      <Project>{d3f417c3-e4cd-433b-be5c-edec77b0f03d}</Project>
+      <Name>CommonDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
       <Name>Common</Name>

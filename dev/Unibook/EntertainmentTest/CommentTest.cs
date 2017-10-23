@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
 using UsersBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
 {
@@ -67,12 +68,12 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         {
 
 
-            CommentEnter comment = new CommentEnter();
+            CommentEnterDto comment = new CommentEnterDto();
             comment.CommentText = "Ejemplo de comentario";
             comment.DateHour = DateTime.Now;
             comment.Deleted = false;
-            comment.Entertainment = EntertainmentBrl.Get(1, content);
-            comment.User = UserBrl.Get(1, content);
+            comment.Entertainment = EntertainmentBrl.GetDto(1, content);
+            //comment.User = UserBrl.GetDto(1, content);
             CommentBrl.Insert(comment, content);
             CommentEnter actual = CommentBrl.Get(1, content);
             Assert.AreEqual(comment, actual);
@@ -82,9 +83,9 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         [TestMethod]
         public void TestEditComment()
         {
-            CommentEnter comment = CommentBrl.Get(1, content);
+            CommentEnterDto comment = CommentBrl.GetDto(1, content);
             comment.CommentText= "cambiamos de comentario";
-            CommentBrl.Update(content);
+            CommentBrl.Update(comment,content);
             Assert.AreEqual(true, true);
         }
 

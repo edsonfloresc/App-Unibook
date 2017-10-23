@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl;
 using UsersBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
 {
@@ -68,7 +69,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         {
 
 
-            ImageEnter image = new ImageEnter();
+            ImageEnterDto image = new ImageEnterDto();
             image.PathImage = "Ejemplo de path";
             image.Deleted = false;
             ImageBrl.Insert(image, content);
@@ -80,9 +81,9 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentTest
         [TestMethod]
         public void TestEditImage()
         {
-            ImageEnter image = ImageBrl.Get(1, content);
+            ImageEnterDto image = ImageBrl.GetDto(1, content);
             image.PathImage = "cambiamos de path";
-            ImageBrl.Update(content);
+            ImageBrl.Update(image,content);
             Assert.AreEqual(true, true);
         }
 
