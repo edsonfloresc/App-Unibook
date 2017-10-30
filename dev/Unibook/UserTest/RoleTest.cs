@@ -16,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
             Role role = new Role();
             role.Name = "Administrador";
             role.Deleted = false;
-            RoleBrl.Insertar(role, content);
+            //RoleBrl.Insertar(role, content);
             Role actual = RoleBrl.Get(1, content);
             Assert.AreEqual(role, actual);
         }
@@ -26,7 +26,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
         {
             Role role = RoleBrl.Get(1, content);
             role.Name = "Admin";
-            RoleBrl.Update(role, content);
+            //RoleBrl.Update(role, content);
             Assert.AreEqual(true, true);
         }
 
@@ -35,7 +35,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
         {
             Role role = RoleBrl.Get(1, content);
             role.Deleted = true;
-            RoleBrl.Update(role, content);
+            //RoleBrl.Update(role, content);
             Assert.AreEqual(true, true);
         }
 

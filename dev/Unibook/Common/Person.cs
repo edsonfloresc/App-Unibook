@@ -24,7 +24,6 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public string Name { get; set; }
         public string LastName { get; set; }
         public System.DateTime Birthday { get; set; }
-    
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual ICollection<User> User { get; set; }

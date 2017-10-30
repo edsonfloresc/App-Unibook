@@ -16,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="id">Id role to search</param>
         /// <returns></returns>
-        public static Role Get(int id, ModelUnibookContainer objContex)
+        public static Role Get(long id, ModelUnibookContainer objContex)
         {
             Role roleReturn = null;
 
@@ -78,7 +78,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Delete(int id, ModelUnibookContainer objContex)
+        public static void Delete(long id, ModelUnibookContainer objContex)
         {
             try
             {

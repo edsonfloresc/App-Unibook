@@ -18,7 +18,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
             Career career = CareerBrl.Get(1, content);
             userCareer.Career = career;
             userCareer.User = user;
-            UserCareerBrl.Insertar(userCareer, content);
+            //UserCareerBrl.Insertar(userCareer, content);
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
             UserCareer userCareer = UserCareerBrl.Get(1, content);
             User user = UserBrl.Get(2, content);
             userCareer.User = user;
-            UserCareerBrl.Update(userCareer, content);
+            //UserCareerBrl.Update(userCareer, content);
         }
     }
 }

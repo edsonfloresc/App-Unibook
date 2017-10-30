@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.UniBook.UsersDal;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
@@ -15,10 +16,14 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="role"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(Role role, ModelUnibookContainer objContex)
+        public static void Insertar(RoleDto roleDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Role role = new Role();
+                role.Name = roleDto.Name;
+                role.RoleId = roleDto.RoleId;
+                role.Deleted = roleDto.Deleted; 
                 RoleDal.Insert(role, objContex);
             }
             catch (Exception ex)
@@ -33,18 +38,44 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
-        public static Role Get(int id, ModelUnibookContainer objContex)
+        public static Role Get(long id, ModelUnibookContainer objContex)
         {
+            Role role = null;
             try
             {
-                return RoleDal.Get(id, objContex);
+                role = RoleDal.Get(id, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
 
-            return null;
+            return role;
+        }
+
+        /// <summary>
+        /// Get a role with identifier
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
+        public static RoleDto GetDto(long id, ModelUnibookContainer objContex)
+        {
+            RoleDto roleDto = null;
+            try
+            {
+                Role role = RoleDal.Get(id, objContex);
+                roleDto = new RoleDto();
+                roleDto.RoleId = role.RoleId;
+                roleDto.Name = role.Name;
+                roleDto.Deleted = roleDto.Deleted;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return roleDto;
         }
 
         /// <summary>
@@ -52,15 +83,18 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="role"></param>
         /// <param name="objContex"></param>
-        public static void Update(Role role, ModelUnibookContainer objContex)
+        public static void Update(RoleDto roleDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Role role = RoleBrl.Get(roleDto.RoleId, objContex); ;
+                role.Name = roleDto.Name;
+                role.Deleted = roleDto.Deleted;
                 RoleDal.Update(role, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
@@ -69,15 +103,15 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Delete(int id, ModelUnibookContainer objContex)
+        public static void Delete(long id, ModelUnibookContainer objContex)
         {
             try
             {
                 RoleDal.Delete(id, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
     }

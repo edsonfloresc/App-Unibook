@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
 namespace WebRegisterUserServices
@@ -23,11 +24,11 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-        public void InsertUser(User user)
+        public void Insert(UserDto userDto)
         {
             try
             {
-                UserBrl.Insertar(user, dbcontex);
+                UserBrl.Insertar(userDto, dbcontex);
             }
             catch (Exception ex)
             {
@@ -38,11 +39,11 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-        public void UpdateUser(User user)
+        public void Update(UserDto personDto)
         {
             try
             {
-                UserBrl.Update(user, dbcontex);
+                UserBrl.Update(personDto, dbcontex);
             }
             catch (Exception ex)
             {
@@ -53,7 +54,7 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-        public void DeleteUser(int id)
+        public void Delete(long id)
         {
             try
             {
@@ -68,20 +69,22 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-        public User GetUser(long id)
+        public UserDto Get(long id)
         {
-            User user = null;
+            UserDto personDto = null;
             try
             {
-                user = UserBrl.Get(id, dbcontex);
+                personDto = UserBrl.GetDto(id, dbcontex);
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return user;
+            return personDto;
 
         }
+
     }
 }

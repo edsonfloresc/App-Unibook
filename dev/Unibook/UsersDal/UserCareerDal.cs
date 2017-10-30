@@ -16,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="id">Id user career to search</param>
         /// <returns></returns>
-        public static UserCareer Get(int id, ModelUnibookContainer objContex)
+        public static UserCareer Get(long id, ModelUnibookContainer objContex)
         {
             UserCareer userCareerReturn = null;
 

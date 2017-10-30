@@ -20,7 +20,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
             user.Email = "rodrigosiles@gmail.com";
             user.Role = RoleBrl.Get(1, container);
             user.Person = PersonBrl.Get(1, container);
-            UserBrl.Insertar(user, container);
+            //UserBrl.Insertar(user, container);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
         {
             User user = UserBrl.Get(1, container);
             user.Email = "robertoNogales@gmail.com";
-            UserBrl.Update(user, container);
+            //UserBrl.Update(user, container);
         }
     }
 }
