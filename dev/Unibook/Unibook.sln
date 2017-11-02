@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersBrl", "UsersBrl\UsersBrl.csproj", "{D977D4A1-464C-4843-9BB7-15EC085825E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersTest", "UsersTest\UsersTest.csproj", "{983907DC-529D-45DB-80A4-75FDAA1667B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C950FA67-3957-4E2B-BAAC-2A1A623CCE99} = {C950FA67-3957-4E2B-BAAC-2A1A623CCE99}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTest", "UserTest\UserTest.csproj", "{4BFFA263-6828-491D-B6EA-FC1C1223AC51}"
 EndProject
