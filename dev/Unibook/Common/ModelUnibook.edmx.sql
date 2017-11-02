@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2017 15:51:19
--- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 10/29/2017 22:23:31
+-- Generated from EDMX file: C:\Users\Gonzalo\Documents\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -38,6 +38,18 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_PersonQuestion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[QuestionSet] DROP CONSTRAINT [FK_PersonQuestion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonAnswer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnswerSet] DROP CONSTRAINT [FK_PersonAnswer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoryQuestion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[QuestionSet] DROP CONSTRAINT [FK_CategoryQuestion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_QuestionAnswer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnswerSet] DROP CONSTRAINT [FK_QuestionAnswer];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -66,6 +78,15 @@ IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Contact];
+GO
+IF OBJECT_ID(N'[dbo].[CategorySet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategorySet];
+GO
+IF OBJECT_ID(N'[dbo].[AnswerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AnswerSet];
+GO
+IF OBJECT_ID(N'[dbo].[QuestionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[QuestionSet];
 GO
 
 -- --------------------------------------------------
@@ -143,6 +164,37 @@ CREATE TABLE [dbo].[Contact] (
 );
 GO
 
+-- Creating table 'CategorySet'
+CREATE TABLE [dbo].[CategorySet] (
+    [CategoryId] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Purpose] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'AnswerSet'
+CREATE TABLE [dbo].[AnswerSet] (
+    [AnswerId] int IDENTITY(1,1) NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [QuestionId] int  NOT NULL,
+    [PersonId] bigint  NOT NULL,
+    [Points] smallint  NOT NULL,
+    [Solution] bit  NOT NULL
+);
+GO
+
+-- Creating table 'QuestionSet'
+CREATE TABLE [dbo].[QuestionSet] (
+    [QuestionId] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [PersonId] bigint  NOT NULL,
+    [Points] smallint  NOT NULL,
+    [Solved] bit  NOT NULL,
+    [CategoryId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -193,6 +245,24 @@ GO
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [PK_Contact]
     PRIMARY KEY CLUSTERED ([ContactId] ASC);
+GO
+
+-- Creating primary key on [CategoryId] in table 'CategorySet'
+ALTER TABLE [dbo].[CategorySet]
+ADD CONSTRAINT [PK_CategorySet]
+    PRIMARY KEY CLUSTERED ([CategoryId] ASC);
+GO
+
+-- Creating primary key on [AnswerId] in table 'AnswerSet'
+ALTER TABLE [dbo].[AnswerSet]
+ADD CONSTRAINT [PK_AnswerSet]
+    PRIMARY KEY CLUSTERED ([AnswerId] ASC);
+GO
+
+-- Creating primary key on [QuestionId] in table 'QuestionSet'
+ALTER TABLE [dbo].[QuestionSet]
+ADD CONSTRAINT [PK_QuestionSet]
+    PRIMARY KEY CLUSTERED ([QuestionId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -296,6 +366,66 @@ ADD CONSTRAINT [FK_PersonUser]
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [PersonId] in table 'QuestionSet'
+ALTER TABLE [dbo].[QuestionSet]
+ADD CONSTRAINT [FK_PersonQuestion]
+    FOREIGN KEY ([PersonId])
+    REFERENCES [dbo].[Person]
+        ([PersonId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonQuestion'
+CREATE INDEX [IX_FK_PersonQuestion]
+ON [dbo].[QuestionSet]
+    ([PersonId]);
+GO
+
+-- Creating foreign key on [PersonId] in table 'AnswerSet'
+ALTER TABLE [dbo].[AnswerSet]
+ADD CONSTRAINT [FK_PersonAnswer]
+    FOREIGN KEY ([PersonId])
+    REFERENCES [dbo].[Person]
+        ([PersonId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonAnswer'
+CREATE INDEX [IX_FK_PersonAnswer]
+ON [dbo].[AnswerSet]
+    ([PersonId]);
+GO
+
+-- Creating foreign key on [CategoryId] in table 'QuestionSet'
+ALTER TABLE [dbo].[QuestionSet]
+ADD CONSTRAINT [FK_CategoryQuestion]
+    FOREIGN KEY ([CategoryId])
+    REFERENCES [dbo].[CategorySet]
+        ([CategoryId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryQuestion'
+CREATE INDEX [IX_FK_CategoryQuestion]
+ON [dbo].[QuestionSet]
+    ([CategoryId]);
+GO
+
+-- Creating foreign key on [QuestionId] in table 'AnswerSet'
+ALTER TABLE [dbo].[AnswerSet]
+ADD CONSTRAINT [FK_QuestionAnswer]
+    FOREIGN KEY ([QuestionId])
+    REFERENCES [dbo].[QuestionSet]
+        ([QuestionId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_QuestionAnswer'
+CREATE INDEX [IX_FK_QuestionAnswer]
+ON [dbo].[AnswerSet]
+    ([QuestionId]);
 GO
 
 -- --------------------------------------------------

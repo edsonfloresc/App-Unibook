@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d82e5e6e17134a6c846d05ee89a978f3" Name="Diagram1" >
+      <Diagram DiagramId="d82e5e6e17134a6c846d05ee89a978f3" Name="Diagram1" ZoomLevel="77" >
         <EntityTypeShape EntityType="ModelUnibook.User" Width="1.625" PointX="4.25" PointY="1.625" />
         <EntityTypeShape EntityType="ModelUnibook.Career" Width="1.5" PointX="10.5" PointY="1.5" />
         <EntityTypeShape EntityType="ModelUnibook.Faculty" Width="1.5" PointX="12.875" PointY="1.75" />
@@ -14,12 +14,19 @@
         <AssociationConnector Association="ModelUnibook.CareerUserCareer" />
         <AssociationConnector Association="ModelUnibook.RoleUser" />
         <AssociationConnector Association="ModelUnibook.FacultyCareer" />
-        <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="7.375" PointY="5" />
+        <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="7.25" PointY="5" />
         <EntityTypeShape EntityType="ModelUnibook.Person" Width="1.5" PointX="4.375" PointY="5" />
         <EntityTypeShape EntityType="ModelUnibook.Contact" Width="1.5" PointX="1.5" PointY="5" />
         <AssociationConnector Association="ModelUnibook.GenderPerson" />
         <AssociationConnector Association="ModelUnibook.PersonContact" />
         <AssociationConnector Association="ModelUnibook.PersonUser" />
+        <EntityTypeShape EntityType="ModelUnibook.Question" Width="1.5" PointX="4" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="ModelUnibook.PersonQuestion" />
+        <EntityTypeShape EntityType="ModelUnibook.Answer" Width="1.5" PointX="8.25" PointY="8.75" />
+        <AssociationConnector Association="ModelUnibook.PersonAnswer" />
+        <EntityTypeShape EntityType="ModelUnibook.Category" Width="1.5" PointX="1.125" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="ModelUnibook.CategoryQuestion" />
+        <AssociationConnector Association="ModelUnibook.QuestionAnswer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

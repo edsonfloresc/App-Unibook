@@ -12,26 +12,17 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Category
     {
-        public Person()
+        public Category()
         {
-            this.Contact = new HashSet<Contact>();
             this.Question = new HashSet<Question>();
-            this.Answer = new HashSet<Answer>();
         }
     
-        public long PersonId { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
-        public string LastName { get; set; }
-        public short GenderId { get; set; }
-        public System.DateTime Birthday { get; set; }
-        public long UserId { get; set; }
+        public string Purpose { get; set; }
     
-        public virtual Gender Gender { get; set; }
-        public virtual ICollection<Contact> Contact { get; set; }
-        public virtual User User { get; set; }
         public virtual ICollection<Question> Question { get; set; }
-        public virtual ICollection<Answer> Answer { get; set; }
     }
 }
