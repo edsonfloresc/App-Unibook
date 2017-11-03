@@ -8,9 +8,10 @@ using Univalle.Fie.Sistemas.UniBook.Common;
 
 namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
 {
+
     public class PersonsListDal
     {
-        public static List<Person> Get(PeopleContainer objContex)
+        public static List<Person> Get(ModelPeopleAppContainer objContex)
         {
             List<Person> personsReturn = null;
 
@@ -18,8 +19,8 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
             try
             {
                 personsReturn = (from person in objContex.PersonSet
-                                where person.Deleted == false 
-                                select person).ToList<Person>();
+                                 where person.Deleted == false
+                                 select person).ToList<Person>();
             }
             catch (DbEntityValidationException ex)
             {

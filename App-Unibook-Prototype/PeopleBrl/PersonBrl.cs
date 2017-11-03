@@ -15,7 +15,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
         /// </summary>
         /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(Person person, PeopleContainer objContex)
+        public static void Insertar(Person person, ModelPeopleAppContainer objContex)
         {
             try
             {
@@ -33,12 +33,12 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
-        public static Person Get(int id, PeopleContainer objContex)
+        public static Person Get(Guid id, ModelPeopleAppContainer objContex)
         {
             Person person = null;
             try
             {
-              person =  PersonDal.Get(id, objContex);
+                person = PersonDal.Get(id, objContex);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
         /// Update changes in the context
         /// </summary>
         /// <param name="objContex"></param>
-        public static void Update(PeopleContainer objContex)
+        public static void Update(ModelPeopleAppContainer objContex)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleBrl
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Delete(int id, PeopleContainer objContex)
+        public static void Delete(Guid id, ModelPeopleAppContainer objContex)
         {
             try
             {

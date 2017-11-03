@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.UniBook.Common;
+
 
 namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
 {
+    /// <summary>
+    /// Person data access layer
+    /// </summary>
     public class PersonDal
     {
         #region metodos
@@ -14,7 +21,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="id">Id person to search</param>
         /// <returns></returns>
-        public static Person Get(int id, PeopleContainer objContex)
+       public static Person Get(Guid id, ModelPeopleAppContainer objContex)
         {
             Person personReturn = null;
 
@@ -22,15 +29,15 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
             try
             {
                 bool exist = (from person in objContex.PersonSet
-                               where person.Deleted == false && person.Id == id
-                               select person).Count() > 0;
+                              where person.Deleted == false && person.Id == id
+                              select person).Count() > 0;
                 if (exist)
                 {
                     personReturn = (from person in objContex.PersonSet
                                     where person.Deleted == false && person.Id == id
                                     select person).Single<Person>();
                 }
-                
+
             }
             catch (DbEntityValidationException ex)
             {
@@ -51,7 +58,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
         /// </summary>
         /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Insert(Person person, PeopleContainer objContex)
+        public static void Insert(Person person, ModelPeopleAppContainer objContex)
         {
             try
             {
@@ -69,13 +76,13 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
                 throw ex;
             }
         }
-        
+
         /// <summary>
         /// Inserta un  Person
         /// </summary>
         /// <param name="person"></param>
         /// <param name="objContex"></param>
-        public static void Update(PeopleContainer objContex)
+        public static void Update(ModelPeopleAppContainer objContex)
         {
             try
             {
@@ -92,13 +99,13 @@ namespace Univalle.Fie.Sistemas.UniBook.PeopleDal
                 throw ex;
             }
         }
-        
+
         /// <summary>
         /// Elimina un Codigo QR
         /// </summary>
         /// <param name="qr"></param>
         /// <param name="objContex"></param>
-        public static void Delete(int id, PeopleContainer objContex)
+        public static void Delete(Guid id, ModelPeopleAppContainer objContex)
         {
             try
             {
