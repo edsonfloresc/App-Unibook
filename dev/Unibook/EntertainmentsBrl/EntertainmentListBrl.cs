@@ -28,9 +28,9 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                         PlaceAddress = item.PlaceAddress,
                         Details = item.Details,
                         Discontinued = item.Discontinued,
-                        CategoryEnter = new CategoryEnterDto() { CategoryId= item.CategoryEnter.CategoryId, Description=item.CategoryEnter.Description, Deleted=item.CategoryEnter.Deleted},
-                        User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Password = item.User.Password, Deleted = item.User.Deleted, RoleId = item.User.RoleId }
-        
+                        CategoryEnter = new CategoryEnterDto() { CategoryId = item.CategoryEnter.CategoryId, Description = item.CategoryEnter.Description, Deleted = item.CategoryEnter.Deleted },
+                  //      User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Password = item.User.Password, Deleted = item.User.Deleted }
+
 
                     };
 

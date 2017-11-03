@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00A7D530-15DE-4EA9-85C7-FF59EEADC5EF}</ProjectGuid>
+    <ProjectGuid>{67729D38-0C9B-4719-95C7-8639B09D3A53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,12 +59,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
-      <Project>{d3f417c3-e4cd-433b-be5c-edec77b0f03d}</Project>
+    <ProjectReference Include="..\CommonRegister\CommonDto.csproj">
+      <Project>{10993fea-0f5b-4694-840f-3fcd3f9c9db2}</Project>
       <Name>CommonDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -71,13 +68,17 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntertainmentsDal\EntertainmentsDal.csproj">
-      <Project>{78b6017a-554f-41e0-a189-346ba7b75a3b}</Project>
+      <Project>{cf28f847-1c01-4bc9-8831-c72702a25ac5}</Project>
       <Name>EntertainmentsDal</Name>
     </ProjectReference>
     <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
       <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
       <Name>UsersBrl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

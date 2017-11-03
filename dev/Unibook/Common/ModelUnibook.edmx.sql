@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/17/2017 21:32:27
+-- Date Created: 11/01/2017 03:05:20
 -- Generated from EDMX file: C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -17,26 +17,38 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contact] DROP CONSTRAINT [FK_PersonContact];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GenderPerson]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_GenderPerson];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
+GO
 IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_UserUserCareer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GenderPerson]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_GenderPerson];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonContact]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Contact] DROP CONSTRAINT [FK_PersonContact];
-GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoryEnterEntertainment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Entertainment] DROP CONSTRAINT [FK_CategoryEnterEntertainment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntertainmentCommentEnter]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CommentEnter] DROP CONSTRAINT [FK_EntertainmentCommentEnter];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCommentEnter]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CommentEnter] DROP CONSTRAINT [FK_UserCommentEnter];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntertainmentImageEnter]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ImageEnter] DROP CONSTRAINT [FK_EntertainmentImageEnter];
 GO
 
 -- --------------------------------------------------
@@ -67,6 +79,18 @@ GO
 IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Contact];
 GO
+IF OBJECT_ID(N'[dbo].[CategoryEnter]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategoryEnter];
+GO
+IF OBJECT_ID(N'[dbo].[Entertainment]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Entertainment];
+GO
+IF OBJECT_ID(N'[dbo].[CommentEnter]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CommentEnter];
+GO
+IF OBJECT_ID(N'[dbo].[ImageEnter]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ImageEnter];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -77,8 +101,9 @@ CREATE TABLE [dbo].[User] (
     [UserId] bigint IDENTITY(1,1) NOT NULL,
     [Email] nvarchar(50)  NOT NULL,
     [Password] nvarchar(50)  NOT NULL,
-    [RoleId] smallint  NOT NULL,
-    [Deleted] bit  NOT NULL
+    [Deleted] bit  NOT NULL,
+    [Role_RoleId] smallint  NOT NULL,
+    [Person_PersonId] bigint  NOT NULL
 );
 GO
 
@@ -86,8 +111,8 @@ GO
 CREATE TABLE [dbo].[Career] (
     [CareerId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(30)  NOT NULL,
-    [FacultyId] smallint  NOT NULL,
-    [Deleted] bit  NOT NULL
+    [Deleted] bit  NOT NULL,
+    [Faculty_FacultyId] smallint  NOT NULL
 );
 GO
 
@@ -109,9 +134,9 @@ GO
 
 -- Creating table 'UserCareer'
 CREATE TABLE [dbo].[UserCareer] (
-    [UserId] bigint  NOT NULL,
-    [CareerId] int  NOT NULL,
-    [UserCareerId] bigint IDENTITY(1,1) NOT NULL
+    [UserCareerId] bigint IDENTITY(1,1) NOT NULL,
+    [User_UserId] bigint  NOT NULL,
+    [Career_CareerId] int  NOT NULL
 );
 GO
 
@@ -127,9 +152,8 @@ CREATE TABLE [dbo].[Person] (
     [PersonId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(25)  NOT NULL,
     [LastName] nvarchar(25)  NOT NULL,
-    [GenderId] smallint  NOT NULL,
     [Birthday] datetime  NOT NULL,
-    [UserId] bigint  NOT NULL
+    [Gender_GenderId] smallint  NOT NULL
 );
 GO
 
@@ -139,7 +163,7 @@ CREATE TABLE [dbo].[Contact] (
     [Data] nvarchar(max)  NOT NULL,
     [Description] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [PersonId] bigint  NOT NULL
+    [Person_PersonId] bigint  NOT NULL
 );
 GO
 
@@ -160,8 +184,8 @@ CREATE TABLE [dbo].[Entertainment] (
     [Details] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Discontinued] bit  NOT NULL,
-    [CategoryId] smallint  NOT NULL,
-    [UserId] bigint  NOT NULL
+    [CategoryEnter] smallint  NOT NULL,
+    [User] bigint  NOT NULL
 );
 GO
 
@@ -171,8 +195,8 @@ CREATE TABLE [dbo].[CommentEnter] (
     [CommentText] nvarchar(max)  NOT NULL,
     [DateHour] datetime  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [EntertainmentId] bigint  NOT NULL,
-    [UserId] bigint  NOT NULL
+    [Entertainment] bigint  NOT NULL,
+    [User] bigint  NOT NULL
 );
 GO
 
@@ -181,7 +205,7 @@ CREATE TABLE [dbo].[ImageEnter] (
     [ImageId] bigint IDENTITY(1,1) NOT NULL,
     [PathImage] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [EntertainmentId] bigint  NOT NULL
+    [Entertainment] bigint  NOT NULL
 );
 GO
 
@@ -265,40 +289,10 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [UserId] in table 'UserCareer'
-ALTER TABLE [dbo].[UserCareer]
-ADD CONSTRAINT [FK_UserUserCareer]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[User]
-        ([UserId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserUserCareer'
-CREATE INDEX [IX_FK_UserUserCareer]
-ON [dbo].[UserCareer]
-    ([UserId]);
-GO
-
--- Creating foreign key on [CareerId] in table 'UserCareer'
-ALTER TABLE [dbo].[UserCareer]
-ADD CONSTRAINT [FK_CareerUserCareer]
-    FOREIGN KEY ([CareerId])
-    REFERENCES [dbo].[Career]
-        ([CareerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CareerUserCareer'
-CREATE INDEX [IX_FK_CareerUserCareer]
-ON [dbo].[UserCareer]
-    ([CareerId]);
-GO
-
--- Creating foreign key on [RoleId] in table 'User'
+-- Creating foreign key on [Role_RoleId] in table 'User'
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [FK_RoleUser]
-    FOREIGN KEY ([RoleId])
+    FOREIGN KEY ([Role_RoleId])
     REFERENCES [dbo].[Role]
         ([RoleId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -307,43 +301,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoleUser'
 CREATE INDEX [IX_FK_RoleUser]
 ON [dbo].[User]
-    ([RoleId]);
+    ([Role_RoleId]);
 GO
 
--- Creating foreign key on [FacultyId] in table 'Career'
-ALTER TABLE [dbo].[Career]
-ADD CONSTRAINT [FK_FacultyCareer]
-    FOREIGN KEY ([FacultyId])
-    REFERENCES [dbo].[Faculty]
-        ([FacultyId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FacultyCareer'
-CREATE INDEX [IX_FK_FacultyCareer]
-ON [dbo].[Career]
-    ([FacultyId]);
-GO
-
--- Creating foreign key on [GenderId] in table 'Person'
-ALTER TABLE [dbo].[Person]
-ADD CONSTRAINT [FK_GenderPerson]
-    FOREIGN KEY ([GenderId])
-    REFERENCES [dbo].[Gender]
-        ([GenderId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GenderPerson'
-CREATE INDEX [IX_FK_GenderPerson]
-ON [dbo].[Person]
-    ([GenderId]);
-GO
-
--- Creating foreign key on [PersonId] in table 'Contact'
+-- Creating foreign key on [Person_PersonId] in table 'Contact'
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [FK_PersonContact]
-    FOREIGN KEY ([PersonId])
+    FOREIGN KEY ([Person_PersonId])
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -352,22 +316,88 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonContact'
 CREATE INDEX [IX_FK_PersonContact]
 ON [dbo].[Contact]
-    ([PersonId]);
+    ([Person_PersonId]);
 GO
 
--- Creating foreign key on [UserId] in table 'User'
+-- Creating foreign key on [Gender_GenderId] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [FK_GenderPerson]
+    FOREIGN KEY ([Gender_GenderId])
+    REFERENCES [dbo].[Gender]
+        ([GenderId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GenderPerson'
+CREATE INDEX [IX_FK_GenderPerson]
+ON [dbo].[Person]
+    ([Gender_GenderId]);
+GO
+
+-- Creating foreign key on [Faculty_FacultyId] in table 'Career'
+ALTER TABLE [dbo].[Career]
+ADD CONSTRAINT [FK_FacultyCareer]
+    FOREIGN KEY ([Faculty_FacultyId])
+    REFERENCES [dbo].[Faculty]
+        ([FacultyId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FacultyCareer'
+CREATE INDEX [IX_FK_FacultyCareer]
+ON [dbo].[Career]
+    ([Faculty_FacultyId]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'UserCareer'
+ALTER TABLE [dbo].[UserCareer]
+ADD CONSTRAINT [FK_UserUserCareer]
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserUserCareer'
+CREATE INDEX [IX_FK_UserUserCareer]
+ON [dbo].[UserCareer]
+    ([User_UserId]);
+GO
+
+-- Creating foreign key on [Career_CareerId] in table 'UserCareer'
+ALTER TABLE [dbo].[UserCareer]
+ADD CONSTRAINT [FK_CareerUserCareer]
+    FOREIGN KEY ([Career_CareerId])
+    REFERENCES [dbo].[Career]
+        ([CareerId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CareerUserCareer'
+CREATE INDEX [IX_FK_CareerUserCareer]
+ON [dbo].[UserCareer]
+    ([Career_CareerId]);
+GO
+
+-- Creating foreign key on [Person_PersonId] in table 'User'
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([UserId])
+    FOREIGN KEY ([Person_PersonId])
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
+CREATE INDEX [IX_FK_PersonUser]
+ON [dbo].[User]
+    ([Person_PersonId]);
+GO
+
 -- Creating foreign key on [CategoryEnter_CategoryId] in table 'Entertainment'
 ALTER TABLE [dbo].[Entertainment]
 ADD CONSTRAINT [FK_CategoryEnterEntertainment]
-    FOREIGN KEY ([CategoryId])
+    FOREIGN KEY ([CategoryEnter])
     REFERENCES [dbo].[CategoryEnter]
         ([CategoryId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -376,28 +406,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoryEnterEntertainment'
 CREATE INDEX [IX_FK_CategoryEnterEntertainment]
 ON [dbo].[Entertainment]
-    ([CategoryId]);
-GO
-
--- Creating foreign key on [Entertainment_EntertainmentId] in table 'ImageEnter'
-ALTER TABLE [dbo].[ImageEnter]
-ADD CONSTRAINT [FK_EntertainmentImageEnter]
-    FOREIGN KEY ([EntertainmentId])
-    REFERENCES [dbo].[Entertainment]
-        ([EntertainmentId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentImageEnter'
-CREATE INDEX [IX_FK_EntertainmentImageEnter]
-ON [dbo].[ImageEnter]
-    ([EntertainmentId]);
+    ([CategoryEnter]);
 GO
 
 -- Creating foreign key on [Entertainment_EntertainmentId] in table 'CommentEnter'
 ALTER TABLE [dbo].[CommentEnter]
 ADD CONSTRAINT [FK_EntertainmentCommentEnter]
-    FOREIGN KEY ([EntertainmentId])
+    FOREIGN KEY ([Entertainment])
     REFERENCES [dbo].[Entertainment]
         ([EntertainmentId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -406,28 +421,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentCommentEnter'
 CREATE INDEX [IX_FK_EntertainmentCommentEnter]
 ON [dbo].[CommentEnter]
-    ([EntertainmentId]);
-GO
-
--- Creating foreign key on [User_UserId] in table 'Entertainment'
-ALTER TABLE [dbo].[Entertainment]
-ADD CONSTRAINT [FK_UserEntertainment]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[User]
-        ([UserId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserEntertainment'
-CREATE INDEX [IX_FK_UserEntertainment]
-ON [dbo].[Entertainment]
-    ([UserId]);
+    ([Entertainment]);
 GO
 
 -- Creating foreign key on [User_UserId] in table 'CommentEnter'
 ALTER TABLE [dbo].[CommentEnter]
 ADD CONSTRAINT [FK_UserCommentEnter]
-    FOREIGN KEY ([UserId])
+    FOREIGN KEY ([User])
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -436,7 +436,37 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserCommentEnter'
 CREATE INDEX [IX_FK_UserCommentEnter]
 ON [dbo].[CommentEnter]
-    ([UserId]);
+    ([User]);
+GO
+
+-- Creating foreign key on [Entertainment_EntertainmentId] in table 'ImageEnter'
+ALTER TABLE [dbo].[ImageEnter]
+ADD CONSTRAINT [FK_EntertainmentImageEnter]
+    FOREIGN KEY ([Entertainment])
+    REFERENCES [dbo].[Entertainment]
+        ([EntertainmentId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentImageEnter'
+CREATE INDEX [IX_FK_EntertainmentImageEnter]
+ON [dbo].[ImageEnter]
+    ([Entertainment]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'Entertainment'
+ALTER TABLE [dbo].[Entertainment]
+ADD CONSTRAINT [FK_UserEntertainment]
+    FOREIGN KEY ([User])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserEntertainment'
+CREATE INDEX [IX_FK_UserEntertainment]
+ON [dbo].[Entertainment]
+    ([User]);
 GO
 
 -- --------------------------------------------------

@@ -16,8 +16,8 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     {
         public Entertainment()
         {
-            this.ImageEnter = new HashSet<ImageEnter>();
             this.CommentEnter = new HashSet<CommentEnter>();
+            this.ImageEnter = new HashSet<ImageEnter>();
         }
     
         public long EntertainmentId { get; set; }
@@ -29,8 +29,8 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public bool Discontinued { get; set; }
     
         public virtual CategoryEnter CategoryEnter { get; set; }
-        public virtual ICollection<ImageEnter> ImageEnter { get; set; }
         public virtual ICollection<CommentEnter> CommentEnter { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<ImageEnter> ImageEnter { get; set; }
+        public virtual User Users { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 imageDto.ImageId = image.ImageId;
                 imageDto.PathImage = image.PathImage;
                 imageDto.Deleted = image.Deleted;
-           
+
                 imageDto.Entertainment = new EntertainmentDto();
                 imageDto.Entertainment.EntertainmentId = image.Entertainment.EntertainmentId;
                 imageDto.Entertainment.Title = image.Entertainment.Title;
@@ -65,8 +65,8 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 imageDto.Entertainment.Details = image.Entertainment.Details;
                 imageDto.Entertainment.Deleted = image.Entertainment.Deleted;
                 imageDto.Entertainment.Discontinued = image.Entertainment.Discontinued;
-               
-               
+
+
             }
 
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 image.PathImage = imageDto.PathImage;
                 image.Deleted = imageDto.Deleted;
                 image.Entertainment = EntertainmentBrl.Get(int.Parse(imageDto.Entertainment.EntertainmentId.ToString()), objContex);
-         
+
                 ImageDal.Insert(image, objContex);
             }
 

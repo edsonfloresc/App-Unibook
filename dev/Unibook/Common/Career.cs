@@ -21,10 +21,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
         public int CareerId { get; set; }
         public string Name { get; set; }
-        public short FacultyId { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual ICollection<UserCareer> UserCareer { get; set; }
         public virtual Faculty Faculty { get; set; }
+        public virtual ICollection<UserCareer> UserCareer { get; set; }
     }
 }

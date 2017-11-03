@@ -49,8 +49,8 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             try
             {
 
-                 category = CategoryDal.Get(id, objContex);
-                
+                category = CategoryDal.Get(id, objContex);
+
 
             }
 
@@ -90,7 +90,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// </summary>
         /// <param name="entertainment">Object to update</param>
         /// <param name="objContex"></param>
-        public static void Update(CategoryEnterDto categoryDto ,ModelUnibookContainer objContex)
+        public static void Update(CategoryEnterDto categoryDto, ModelUnibookContainer objContex)
         {
             try
             {

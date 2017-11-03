@@ -7,6 +7,7 @@ using Univalle.Fie.Sistemas.Unibook.EntertainmentsDal;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
 using Univalle.Fie.Sistemas.UniBook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 {
@@ -50,7 +51,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 
             try
             {
-                
+
                 Entertainment entertainment = EntertainmentDal.Get(id, objContex);
                 entertainmentDto = new EntertainmentDto();
 
@@ -59,18 +60,18 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 entertainmentDto.PlaceAddress = entertainment.PlaceAddress;
                 entertainmentDto.DateHour = entertainment.DateHour;
                 entertainmentDto.Details = entertainment.Details;
-                entertainmentDto.Deleted = entertainment.Deleted;
-                entertainmentDto.Discontinued = entertainment.Discontinued;
-                entertainmentDto.CategoryEnter = new CategoryEnterDto();
-                entertainmentDto.CategoryEnter.CategoryId = entertainment.CategoryEnter.CategoryId;
-                entertainmentDto.CategoryEnter.Description = entertainment.CategoryEnter.Description;
-                entertainmentDto.CategoryEnter.Deleted = entertainment.CategoryEnter.Deleted;
-                entertainmentDto.User = new UserDto();
-                entertainmentDto.User.UserId = entertainment.User.UserId;
-                entertainmentDto.User.Email = entertainment.User.Email;
-                entertainmentDto.User.Password = entertainment.User.Password;
-                entertainmentDto.User.Deleted = entertainment.User.Deleted;
-                entertainmentDto.User.RoleId = entertainment.User.RoleId;
+                //entertainmentDto.Deleted = entertainment.Deleted;
+                //entertainmentDto.Discontinued = entertainment.Discontinued;
+                //entertainmentDto.CategoryEnter = new CategoryEnterDto();
+                //entertainmentDto.CategoryEnter.CategoryId = entertainment.CategoryEnter.CategoryId;
+                //entertainmentDto.CategoryEnter.Description = entertainment.CategoryEnter.Description;
+                //entertainmentDto.CategoryEnter.Deleted = entertainment.CategoryEnter.Deleted;
+                //entertainmentDto.User = new UserDto();
+                //entertainmentDto.User.UserId = entertainment.User.UserId;
+                //entertainmentDto.User.Email = entertainment.User.Email;
+                //entertainmentDto.User.Password = entertainment.User.Password;
+                //entertainmentDto.User.Deleted = entertainment.User.Deleted;
+               // entertainmentDto.User.RoleId = entertainment.User.RoleId;
             }
 
             catch (Exception)
@@ -91,16 +92,16 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             try
             {
                 Entertainment entertainment = new Entertainment();
-            
+
                 entertainment.Title = entertainmentDto.Title;
                 entertainment.PlaceAddress = entertainmentDto.PlaceAddress;
                 entertainment.DateHour = entertainmentDto.DateHour;
                 entertainment.Details = entertainmentDto.Details;
                 entertainment.Deleted = entertainmentDto.Deleted;
                 entertainment.Discontinued = entertainmentDto.Discontinued;
-                entertainment.CategoryEnter = CategoryBrl.Get(entertainment.CategoryEnter.CategoryId, objContex);
-                entertainment.User = UsersBrl.UserBrl.Get(int.Parse(entertainment.User.UserId.ToString()),objContex);
-            
+                entertainment.CategoryEnter = CategoryBrl.Get(entertainmentDto.CategoryEnter.CategoryId, objContex);
+                entertainment.Users = UserBrl.Get(entertainmentDto.User.UserId, objContex);
+
                 EntertainmentDal.Insert(entertainment, objContex);
             }
 
@@ -110,7 +111,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             }
         }
 
-     
+
 
         /// <summary>
         /// Method for Update Entertainment
@@ -129,9 +130,9 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 entertainment.Deleted = entertainmentDto.Deleted;
                 entertainment.Discontinued = entertainmentDto.Discontinued;
                 entertainment.CategoryEnter = CategoryBrl.Get(entertainment.CategoryEnter.CategoryId, objContex);
-                entertainment.User = UsersBrl.UserBrl.Get(int.Parse(entertainment.User.UserId.ToString()), objContex);
+                //entertainment.User = UserBrl.Get(int.Parse(entertainment.User.UserId.ToString()), objContex);
 
-    
+
                 EntertainmentDal.Update(objContex);
             }
 

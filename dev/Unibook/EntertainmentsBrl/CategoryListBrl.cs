@@ -16,24 +16,24 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         public static List<CategoryEnterDto> Get(ModelUnibookContainer objContex)
         {
             try
-            { 
-            List<CategoryEnterDto> categoryList = new List<CategoryEnterDto>();
-            foreach (var item in CategoryListDal.Get(objContex))
             {
-                    CategoryEnterDto category = new CategoryEnterDto()
+                List<CategoryEnterDto> categoryList = new List<CategoryEnterDto>();
+                foreach (var item in CategoryListDal.Get(objContex))
                 {
-                    Deleted = item.Deleted,
-                    Description = item.Description,
-                    CategoryId = item.CategoryId
-                  
-                   
-                };
+                    CategoryEnterDto category = new CategoryEnterDto()
+                    {
+                        Deleted = item.Deleted,
+                        Description = item.Description,
+                        CategoryId = item.CategoryId
+
+
+                    };
 
                     categoryList.Add(category);
-            }
+                }
 
-            return categoryList;
-        }
+                return categoryList;
+            }
             catch (DbEntityValidationException ex)
             {
                 throw ex;

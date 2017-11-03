@@ -7,6 +7,7 @@ using Univalle.Fie.Sistemas.Unibook.EntertainmentsDal;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
 using Univalle.Fie.Sistemas.UniBook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
 namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 {
@@ -26,37 +27,37 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             try
             {
 
-                CommentEnter comment = CommentDal.Get(id, objContex);
-                commentDto = new CommentEnterDto();
-                commentDto.CommentId = comment.CommentId;
-                commentDto.CommentText = comment.CommentText;
-                commentDto.DateHour = comment.DateHour;
-                commentDto.Deleted = comment.Deleted;
-                commentDto.Entertainment = new EntertainmentDto();
-                commentDto.Entertainment.EntertainmentId = comment.Entertainment.EntertainmentId;
-                commentDto.Entertainment.Title = comment.Entertainment.Title;
-                commentDto.Entertainment.PlaceAddress = comment.Entertainment.PlaceAddress;
-                commentDto.Entertainment.DateHour = comment.Entertainment.DateHour;
-                commentDto.Entertainment.Details = comment.Entertainment.Details;
-                commentDto.Entertainment.Deleted = comment.Entertainment.Deleted;
-                commentDto.Entertainment.Discontinued = comment.Entertainment.Discontinued;
-                commentDto.Entertainment.User = new UserDto();
-                commentDto.Entertainment.User.UserId = comment.Entertainment.User.UserId;
-                commentDto.Entertainment.User.Email = comment.Entertainment.User.Email;
-                commentDto.Entertainment.User.Password = comment.Entertainment.User.Password;
-                commentDto.Entertainment.User.Deleted = comment.Entertainment.User.Deleted;
-                commentDto.Entertainment.User.RoleId = comment.Entertainment.User.RoleId;
-                commentDto.Entertainment.CategoryEnter = new CategoryEnterDto();
-                commentDto.Entertainment.CategoryEnter.CategoryId = comment.Entertainment.CategoryEnter.CategoryId;
-                commentDto.Entertainment.CategoryEnter.Description = comment.Entertainment.CategoryEnter.Description;
-                commentDto.Entertainment.CategoryEnter.Deleted = comment.Entertainment.CategoryEnter.Deleted;
-                commentDto.User = new UserDto();
-                commentDto.User.UserId = comment.User.UserId;
-                commentDto.User.Email = comment.User.Email;
-                commentDto.User.Password = comment.User.Password;
-                commentDto.User.Deleted = comment.User.Deleted;
-                commentDto.User.RoleId = comment.User.RoleId;
-           
+           //     CommentEnter comment = CommentDal.Get(id, objContex);
+           //     commentDto = new CommentEnterDto();
+           //     commentDto.CommentId = comment.CommentId;
+           //     commentDto.CommentText = comment.CommentText;
+           //     commentDto.DateHour = comment.DateHour;
+           //     commentDto.Deleted = comment.Deleted;
+           //     commentDto.Entertainment = new EntertainmentDto();
+           //     commentDto.Entertainment.EntertainmentId = comment.Entertainment.EntertainmentId;
+           //     commentDto.Entertainment.Title = comment.Entertainment.Title;
+           //     commentDto.Entertainment.PlaceAddress = comment.Entertainment.PlaceAddress;
+           //     commentDto.Entertainment.DateHour = comment.Entertainment.DateHour;
+           //     commentDto.Entertainment.Details = comment.Entertainment.Details;
+           //     commentDto.Entertainment.Deleted = comment.Entertainment.Deleted;
+           //     commentDto.Entertainment.Discontinued = comment.Entertainment.Discontinued;
+           //     commentDto.Entertainment.User = new UserDto();
+           //     commentDto.Entertainment.User.UserId = comment.Entertainment.User.UserId;
+           //     commentDto.Entertainment.User.Email = comment.Entertainment.User.Email;
+           //     commentDto.Entertainment.User.Password = comment.Entertainment.User.Password;
+           //     commentDto.Entertainment.User.Deleted = comment.Entertainment.User.Deleted;
+           ////     commentDto.Entertainment.User.RoleId = comment.Entertainment.User.RoleId;
+           //     commentDto.Entertainment.CategoryEnter = new CategoryEnterDto();
+           //     commentDto.Entertainment.CategoryEnter.CategoryId = comment.Entertainment.CategoryEnter.CategoryId;
+           //     commentDto.Entertainment.CategoryEnter.Description = comment.Entertainment.CategoryEnter.Description;
+           //     commentDto.Entertainment.CategoryEnter.Deleted = comment.Entertainment.CategoryEnter.Deleted;
+           //     commentDto.User = new UserDto();
+           //     commentDto.User.UserId = comment.User.UserId;
+           //     commentDto.User.Email = comment.User.Email;
+           //     commentDto.User.Password = comment.User.Password;
+           //     commentDto.User.Deleted = comment.User.Deleted;
+           //    // commentDto.User.RoleId = comment.User.RoleId;
+
 
             }
 
@@ -97,14 +98,14 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         {
             try
             {
-               
+
 
                 CommentEnter comment = new CommentEnter();
                 comment.CommentText = commentDto.CommentText;
                 comment.DateHour = commentDto.DateHour;
                 comment.Deleted = commentDto.Deleted;
                 comment.Entertainment = EntertainmentBrl.Get(int.Parse(commentDto.Entertainment.EntertainmentId.ToString()), objContex);
-                comment.User = UsersBrl.UserBrl.Get(int.Parse(comment.User.UserId.ToString()), objContex);
+                comment.User = UserBrl.Get(int.Parse(comment.User.UserId.ToString()), objContex);
                 CommentDal.Insert(comment, objContex);
             }
 
@@ -119,17 +120,17 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// Method for Update CommentEnter
         /// </summary>
         /// <param name="objContex"></param>
-        public static void Update(CommentEnterDto commentDto,ModelUnibookContainer objContex)
+        public static void Update(CommentEnterDto commentDto, ModelUnibookContainer objContex)
         {
             try
             {
-               
+
                 CommentEnter comment = CommentBrl.Get(int.Parse(commentDto.CommentId.ToString()), objContex);
                 comment.CommentText = commentDto.CommentText;
                 comment.DateHour = commentDto.DateHour;
                 comment.Deleted = commentDto.Deleted;
                 comment.Entertainment = EntertainmentBrl.Get(int.Parse(commentDto.Entertainment.EntertainmentId.ToString()), objContex);
-                comment.User = UsersBrl.UserBrl.Get(int.Parse(comment.User.UserId.ToString()), objContex);
+                comment.User = UserBrl.Get(int.Parse(comment.User.UserId.ToString()), objContex);
                 CommentDal.Update(objContex);
             }
 
