@@ -19,7 +19,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
             this.User = new HashSet<User>();
         }
     
-        public short RoleId { get; set; }
+        public long RoleId { get; set; }
         public string Name { get; set; }
         public bool Deleted { get; set; }
     

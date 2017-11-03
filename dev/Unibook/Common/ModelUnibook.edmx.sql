@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2017 15:51:19
+-- Date Created: 10/17/2017 23:58:43
 -- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -17,23 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contact] DROP CONSTRAINT [FK_PersonContact];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GenderPerson]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_GenderPerson];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
+GO
 IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_UserUserCareer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GenderPerson]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_GenderPerson];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonContact]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Contact] DROP CONSTRAINT [FK_PersonContact];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
@@ -77,8 +77,9 @@ CREATE TABLE [dbo].[User] (
     [UserId] bigint IDENTITY(1,1) NOT NULL,
     [Email] nvarchar(50)  NOT NULL,
     [Password] nvarchar(50)  NOT NULL,
-    [RoleId] smallint  NOT NULL,
-    [Deleted] bit  NOT NULL
+    [Deleted] bit  NOT NULL,
+    [Role_RoleId] smallint  NOT NULL,
+    [Person_PersonId] bigint  NOT NULL
 );
 GO
 
@@ -86,8 +87,8 @@ GO
 CREATE TABLE [dbo].[Career] (
     [CareerId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(30)  NOT NULL,
-    [FacultyId] smallint  NOT NULL,
-    [Deleted] bit  NOT NULL
+    [Deleted] bit  NOT NULL,
+    [Faculty_FacultyId] smallint  NOT NULL
 );
 GO
 
@@ -109,9 +110,9 @@ GO
 
 -- Creating table 'UserCareer'
 CREATE TABLE [dbo].[UserCareer] (
-    [UserId] bigint  NOT NULL,
-    [CareerId] int  NOT NULL,
-    [UserCareerId] bigint IDENTITY(1,1) NOT NULL
+    [UserCareerId] bigint IDENTITY(1,1) NOT NULL,
+    [User_UserId] bigint  NOT NULL,
+    [Career_CareerId] int  NOT NULL
 );
 GO
 
@@ -127,9 +128,8 @@ CREATE TABLE [dbo].[Person] (
     [PersonId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(25)  NOT NULL,
     [LastName] nvarchar(25)  NOT NULL,
-    [GenderId] smallint  NOT NULL,
     [Birthday] datetime  NOT NULL,
-    [UserId] bigint  NOT NULL
+    [Gender_GenderId] smallint  NOT NULL
 );
 GO
 
@@ -139,7 +139,7 @@ CREATE TABLE [dbo].[Contact] (
     [Data] nvarchar(max)  NOT NULL,
     [Description] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [PersonId] bigint  NOT NULL
+    [Person_PersonId] bigint  NOT NULL
 );
 GO
 
@@ -199,40 +199,10 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [UserId] in table 'UserCareer'
-ALTER TABLE [dbo].[UserCareer]
-ADD CONSTRAINT [FK_UserUserCareer]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[User]
-        ([UserId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserUserCareer'
-CREATE INDEX [IX_FK_UserUserCareer]
-ON [dbo].[UserCareer]
-    ([UserId]);
-GO
-
--- Creating foreign key on [CareerId] in table 'UserCareer'
-ALTER TABLE [dbo].[UserCareer]
-ADD CONSTRAINT [FK_CareerUserCareer]
-    FOREIGN KEY ([CareerId])
-    REFERENCES [dbo].[Career]
-        ([CareerId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CareerUserCareer'
-CREATE INDEX [IX_FK_CareerUserCareer]
-ON [dbo].[UserCareer]
-    ([CareerId]);
-GO
-
--- Creating foreign key on [RoleId] in table 'User'
+-- Creating foreign key on [Role_RoleId] in table 'User'
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [FK_RoleUser]
-    FOREIGN KEY ([RoleId])
+    FOREIGN KEY ([Role_RoleId])
     REFERENCES [dbo].[Role]
         ([RoleId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -241,43 +211,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoleUser'
 CREATE INDEX [IX_FK_RoleUser]
 ON [dbo].[User]
-    ([RoleId]);
+    ([Role_RoleId]);
 GO
 
--- Creating foreign key on [FacultyId] in table 'Career'
-ALTER TABLE [dbo].[Career]
-ADD CONSTRAINT [FK_FacultyCareer]
-    FOREIGN KEY ([FacultyId])
-    REFERENCES [dbo].[Faculty]
-        ([FacultyId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FacultyCareer'
-CREATE INDEX [IX_FK_FacultyCareer]
-ON [dbo].[Career]
-    ([FacultyId]);
-GO
-
--- Creating foreign key on [GenderId] in table 'Person'
-ALTER TABLE [dbo].[Person]
-ADD CONSTRAINT [FK_GenderPerson]
-    FOREIGN KEY ([GenderId])
-    REFERENCES [dbo].[Gender]
-        ([GenderId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GenderPerson'
-CREATE INDEX [IX_FK_GenderPerson]
-ON [dbo].[Person]
-    ([GenderId]);
-GO
-
--- Creating foreign key on [PersonId] in table 'Contact'
+-- Creating foreign key on [Person_PersonId] in table 'Contact'
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [FK_PersonContact]
-    FOREIGN KEY ([PersonId])
+    FOREIGN KEY ([Person_PersonId])
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -286,16 +226,82 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonContact'
 CREATE INDEX [IX_FK_PersonContact]
 ON [dbo].[Contact]
-    ([PersonId]);
+    ([Person_PersonId]);
 GO
 
--- Creating foreign key on [UserId] in table 'User'
+-- Creating foreign key on [Gender_GenderId] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [FK_GenderPerson]
+    FOREIGN KEY ([Gender_GenderId])
+    REFERENCES [dbo].[Gender]
+        ([GenderId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GenderPerson'
+CREATE INDEX [IX_FK_GenderPerson]
+ON [dbo].[Person]
+    ([Gender_GenderId]);
+GO
+
+-- Creating foreign key on [Faculty_FacultyId] in table 'Career'
+ALTER TABLE [dbo].[Career]
+ADD CONSTRAINT [FK_FacultyCareer]
+    FOREIGN KEY ([Faculty_FacultyId])
+    REFERENCES [dbo].[Faculty]
+        ([FacultyId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FacultyCareer'
+CREATE INDEX [IX_FK_FacultyCareer]
+ON [dbo].[Career]
+    ([Faculty_FacultyId]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'UserCareer'
+ALTER TABLE [dbo].[UserCareer]
+ADD CONSTRAINT [FK_UserUserCareer]
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserUserCareer'
+CREATE INDEX [IX_FK_UserUserCareer]
+ON [dbo].[UserCareer]
+    ([User_UserId]);
+GO
+
+-- Creating foreign key on [Career_CareerId] in table 'UserCareer'
+ALTER TABLE [dbo].[UserCareer]
+ADD CONSTRAINT [FK_CareerUserCareer]
+    FOREIGN KEY ([Career_CareerId])
+    REFERENCES [dbo].[Career]
+        ([CareerId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CareerUserCareer'
+CREATE INDEX [IX_FK_CareerUserCareer]
+ON [dbo].[UserCareer]
+    ([Career_CareerId]);
+GO
+
+-- Creating foreign key on [Person_PersonId] in table 'User'
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([UserId])
+    FOREIGN KEY ([Person_PersonId])
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
+CREATE INDEX [IX_FK_PersonUser]
+ON [dbo].[User]
+    ([Person_PersonId]);
 GO
 
 -- --------------------------------------------------
