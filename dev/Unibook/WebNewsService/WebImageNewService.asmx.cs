@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
-
-namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
+namespace Univalle.Fie.Sistemas.UniBook.WebNewsService
 {
     /// <summary>
     /// Descripción breve de WebImageNewService
@@ -19,6 +18,12 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     // [System.Web.Script.Services.ScriptService]
     public class WebImageNewService : System.Web.Services.WebService
     {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hola a todos";
+        }
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
         public void InsertImageNew(ImageNewsDto imagenewdto)

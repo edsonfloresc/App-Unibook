@@ -4,31 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d82e5e6e17134a6c846d05ee89a978f3" Name="Diagram1" ZoomLevel="88" >
+      <Diagram DiagramId="d82e5e6e17134a6c846d05ee89a978f3" Name="Diagram1" >
         <EntityTypeShape EntityType="ModelUnibook.User" Width="1.625" PointX="4.25" PointY="1.625" />
         <EntityTypeShape EntityType="ModelUnibook.Career" Width="1.5" PointX="10.5" PointY="1.5" />
-        <EntityTypeShape EntityType="ModelUnibook.Faculty" Width="1.5" PointX="12.875" PointY="1.75" />
+        <EntityTypeShape EntityType="ModelUnibook.Faculty" Width="1.5" PointX="13.25" PointY="1.5" />
         <EntityTypeShape EntityType="ModelUnibook.Role" Width="1.5" PointX="1.625" PointY="1.875" />
         <EntityTypeShape EntityType="ModelUnibook.UserCareer" Width="1.5" PointX="7.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="7.375" PointY="5" />
+        <EntityTypeShape EntityType="ModelUnibook.Person" Width="1.5" PointX="4.375" PointY="5" />
+        <EntityTypeShape EntityType="ModelUnibook.Contact" Width="1.5" PointX="1.5" PointY="5" />
+        <AssociationConnector Association="ModelUnibook.RoleUser" />
+        <AssociationConnector Association="ModelUnibook.PersonContact" />
+        <AssociationConnector Association="ModelUnibook.GenderPerson" />
+        <AssociationConnector Association="ModelUnibook.FacultyCareer" />
         <AssociationConnector Association="ModelUnibook.UserUserCareer" />
         <AssociationConnector Association="ModelUnibook.CareerUserCareer" />
-        <AssociationConnector Association="ModelUnibook.RoleUser" />
-        <AssociationConnector Association="ModelUnibook.FacultyCareer" />
-        <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="7.375" PointY="5" />
-        <EntityTypeShape EntityType="ModelUnibook.Person" Width="1.5" PointX="4.875" PointY="5.5" />
-        <EntityTypeShape EntityType="ModelUnibook.Contact" Width="1.5" PointX="1.375" PointY="4.5" />
-        <AssociationConnector Association="ModelUnibook.GenderPerson" />
-        <AssociationConnector Association="ModelUnibook.PersonContact" />
         <AssociationConnector Association="ModelUnibook.PersonUser" />
-        <EntityTypeShape EntityType="ModelUnibook.News" Width="1.5" PointX="3.125" PointY="7.875" />
-        <EntityTypeShape EntityType="ModelUnibook.ImageNews" Width="1.5" PointX="1" PointY="9.375" />
-        <EntityTypeShape EntityType="ModelUnibook.CategoryNews" Width="1.5" PointX="5.625" PointY="8.75" />
-        <EntityTypeShape EntityType="ModelUnibook.CommentNews" Width="1.5" PointX="0.875" PointY="7.125" />
+        <EntityTypeShape EntityType="ModelUnibook.News" Width="1.5" PointX="3.375" PointY="7.5" />
+        <EntityTypeShape EntityType="ModelUnibook.CategoryNews" Width="1.5" PointX="6.25" PointY="7.375" />
+        <EntityTypeShape EntityType="ModelUnibook.CommentNews" Width="1.5" PointX="1" PointY="7.875" />
+        <EntityTypeShape EntityType="ModelUnibook.ImageNews" Width="1.5" PointX="6" PointY="9.375" />
+        <AssociationConnector Association="ModelUnibook.CategoryNewsNews" />
+        <AssociationConnector Association="ModelUnibook.NewsImageNews" />
+        <AssociationConnector Association="ModelUnibook.NewsCommentNews" />
         <AssociationConnector Association="ModelUnibook.UserNews" />
         <AssociationConnector Association="ModelUnibook.UserCommentNews" />
-        <AssociationConnector Association="ModelUnibook.NewsCommentNews" />
-        <AssociationConnector Association="ModelUnibook.NewsImageNews" />
-        <AssociationConnector Association="ModelUnibook.CategoryNewsNews" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

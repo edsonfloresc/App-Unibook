@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA96B47B-A685-4B3A-B317-5687BA0752DC}</ProjectGuid>
+    <ProjectGuid>{0B0FA1ED-EC11-4389-91DE-3AF2707831AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.Unibook.NewsBrl</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.Unibook.NewsBrl</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,10 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -43,6 +43,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -57,8 +58,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
-      <Project>{0d5130ab-5829-4b5d-9059-9ae28a94379b}</Project>
+    <ProjectReference Include="..\CommonRegister\CommonDto.csproj">
+      <Project>{10993fea-0f5b-4694-840f-3fcd3f9c9db2}</Project>
       <Name>CommonDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -66,16 +67,13 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\NewsDal\NewsDal.csproj">
-      <Project>{c6edade2-a887-43ea-ae60-52c867a98f34}</Project>
+      <Project>{b4aca81d-cab6-454a-b92d-112e7b6ef678}</Project>
       <Name>NewsDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
+      <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
+      <Name>UsersBrl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

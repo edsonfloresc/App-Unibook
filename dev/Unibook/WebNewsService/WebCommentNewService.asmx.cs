@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
-
-namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
+namespace Univalle.Fie.Sistemas.UniBook.WebNewsService
 {
     /// <summary>
     /// Descripción breve de WebCommentNewService
@@ -19,13 +18,19 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     // [System.Web.Script.Services.ScriptService]
     public class WebCommentNewService : System.Web.Services.WebService
     {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hola a todos";
+        }
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
-        public void InsertCommentNew(CategoryNewsDto categorynewdto)
+        public void InsertCommentNew(CommentNewsDto commentnewdto)
         {
             try
             {
-                CategoryNewBrl.Insertar(categorynewdto, dbcontext);
+                CommentNewBrl.Insertar(commentnewdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -34,11 +39,11 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public void UpdateCommentNew(CategoryNewsDto categorynewsdto)
+        public void UpdateCommentNew(CommentNewsDto commentnewsdto)
         {
             try
             {
-                CategoryNewBrl.Update(categorynewsdto, dbcontext);
+                CommentNewBrl.Update(commentnewsdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -51,7 +56,7 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         {
             try
             {
-                CategoryNewBrl.Delete(id, dbcontext);
+                CommentNewBrl.Delete(id, dbcontext);
             }
             catch (Exception ex)
             {
@@ -60,19 +65,19 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public CategoryNewsDto GetCommentNew(int id)
+        public CommentNewsDto GetCommentNew(int id)
         {
-            CategoryNewsDto categorynewsdto = null;
+            CommentNewsDto commentnewsdto = null;
             try
             {
-                categorynewsdto = CategoryNewBrl.GetDto(id, dbcontext);
+                commentnewsdto = CommentNewBrl.GetDto(id, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return categorynewsdto;
+            return commentnewsdto;
 
         }
     }

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.NewsDal;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.NewsDal;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
@@ -47,6 +47,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 imagenewsdto = new ImageNewsDto();
                 imagenewsdto.PathImage = imagenews.PathImage;
                 imagenewsdto.Deleted = imagenews.Deleted;
+                imagenewsdto.News = NewBrl.GetDto(imagenews.News.NewsId,objContex);
                 imagenews.News = NewBrl.Get(imagenewsdto.News.NewsId, objContex);
             }
             catch (Exception ex)
@@ -70,7 +71,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
             }
             catch (Exception)
             {
-                
+
             }
 
             return null;

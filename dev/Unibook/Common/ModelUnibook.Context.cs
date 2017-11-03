@@ -33,9 +33,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
-        public virtual DbSet<News> NewsSet { get; set; }
-        public virtual DbSet<ImageNews> ImageNewsSet { get; set; }
-        public virtual DbSet<CategoryNews> CategoryNewsSet { get; set; }
-        public virtual DbSet<CommentNews> CommentNewsSet { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<CategoryNews> CategoryNews { get; set; }
+        public virtual DbSet<CommentNews> CommentNews { get; set; }
+        public virtual DbSet<ImageNews> ImageNews { get; set; }
     }
 }

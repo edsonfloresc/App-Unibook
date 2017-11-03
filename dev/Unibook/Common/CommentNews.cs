@@ -19,7 +19,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public System.DateTime Date { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual User User { get; set; }
         public virtual News News { get; set; }
+        public virtual User User { get; set; }
     }
 }

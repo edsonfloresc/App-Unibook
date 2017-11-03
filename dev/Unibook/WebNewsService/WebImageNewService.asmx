@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="WebImageNewService.asmx.cs" Class="Univalle.Fie.Sistemas.Unibook.WebNewsService.WebImageNewService" %>
+﻿<%@ WebService Language="C#" CodeBehind="WebImageNewService.asmx.cs" Class="Univalle.Fie.Sistemas.UniBook.WebNewsService.WebImageNewService" %>

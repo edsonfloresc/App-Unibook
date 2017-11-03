@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-
-namespace Univalle.Fie.Sistemas.Unibook.NewsDal
+namespace Univalle.Fie.Sistemas.UniBook.NewsDal
 {
     public class ImageNewDal
     {
@@ -21,12 +20,13 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             ImageNews imagenewsReturn = null;
             try
             {
-                imagenewsReturn = (from imagenews in objContex.ImageNewsSet
+                imagenewsReturn = (from imagenews in objContex.ImageNews
                                    where imagenews.Deleted == false && imagenews.ImageId == id
                                    select imagenews).Single<ImageNews>();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -42,11 +42,12 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                objContex.ImageNewsSet.Add(imagenews);
+                objContex.ImageNews.Add(imagenews);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -64,6 +65,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -77,12 +79,13 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                ImageNews imagenews = objContex.ImageNewsSet.Find(id);
+                ImageNews imagenews = objContex.ImageNews.Find(id);
                 imagenews.Deleted = true;
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }

@@ -16,8 +16,8 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     {
         public News()
         {
-            this.CommentNews = new HashSet<CommentNews>();
             this.ImageNews = new HashSet<ImageNews>();
+            this.CommentNews = new HashSet<CommentNews>();
         }
     
         public int NewsId { get; set; }
@@ -28,9 +28,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public bool Discontinued { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual ICollection<CommentNews> CommentNews { get; set; }
-        public virtual ICollection<ImageNews> ImageNews { get; set; }
         public virtual CategoryNews CategoryNews { get; set; }
+        public virtual ICollection<ImageNews> ImageNews { get; set; }
+        public virtual ICollection<CommentNews> CommentNews { get; set; }
+        public virtual User User { get; set; }
     }
 }

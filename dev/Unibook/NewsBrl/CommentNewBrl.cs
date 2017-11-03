@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.NewsDal;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
-
+using Univalle.Fie.Sistemas.UniBook.NewsDal;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
     public class CommentNewBrl
@@ -24,6 +23,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 commentnews.Message = commentnewsdto.Message;
                 commentnews.Date = commentnewsdto.Date;
                 commentnews.Deleted = commentnewsdto.Deleted;
+                commentnews.News = NewBrl.Get(commentnewsdto.News.NewsId, objContex);
                 CommentNewDal.Insert(commentnews, objContex);
             }
             catch (Exception ex)
@@ -45,10 +45,12 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
             {
                 CommentNews commentnews = CommentNewDal.Get(id, objContex);
                 commentnewsdto = new CommentNewsDto();
-                
+
                 commentnewsdto.Message = commentnews.Message;
                 commentnewsdto.Date = commentnews.Date;
                 commentnewsdto.Deleted = commentnews.Deleted;
+                commentnews.News = NewBrl.Get(commentnewsdto.News.NewsId, objContex);
+                commentnewsdto.News = NewBrl.GetDto(commentnews.News.NewsId, objContex);
             }
             catch (Exception ex)
             {
@@ -69,9 +71,9 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
             {
                 return CommentNewDal.Get(id, objContex);
             }
-            catch (Exception )
+            catch (Exception)
             {
-                
+
             }
 
             return null;
@@ -90,6 +92,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 commentnews.Message = commentnewsdto.Message;
                 commentnews.Date = commentnewsdto.Date;
                 commentnews.Deleted = commentnewsdto.Deleted;
+                commentnews.News = NewBrl.Get(commentnewsdto.News.NewsId, objContex);
                 CommentNewDal.Update(commentnews, objContex);
             }
             catch (Exception ex)

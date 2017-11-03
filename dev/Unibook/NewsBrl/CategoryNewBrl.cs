@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.NewsDal;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.NewsDal;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
@@ -44,8 +44,10 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
             {
                 CategoryNews categorynews = CategoryNewDal.Get(id, objContex);
                 categorynewsdto = new CategoryNewsDto();
+                categorynewsdto.CategoryId = categorynews.CategoryId;
                 categorynewsdto.NameCategory = categorynews.NameCategory;
                 categorynewsdto.Deleted = categorynews.Deleted;
+
             }
             catch (Exception ex)
             {

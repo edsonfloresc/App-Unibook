@@ -14,8 +14,6 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class UserCareer
     {
-        public long UserId { get; set; }
-        public int CareerId { get; set; }
         public long UserCareerId { get; set; }
     
         public virtual User User { get; set; }

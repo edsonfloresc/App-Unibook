@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
-
-namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
+namespace Univalle.Fie.Sistemas.UniBook.WebNewsService
 {
     /// <summary>
     /// Descripción breve de WebCategoryNewService
@@ -19,6 +18,12 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     // [System.Web.Script.Services.ScriptService]
     public class WebCategoryNewService : System.Web.Services.WebService
     {
+
+        [WebMethod]
+        public string HelloWorld()
+        {
+            return "Hola a todos";
+        }
 
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]

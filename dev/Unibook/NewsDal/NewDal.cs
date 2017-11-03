@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-
-namespace Univalle.Fie.Sistemas.Unibook.NewsDal
+namespace Univalle.Fie.Sistemas.UniBook.NewsDal
 {
     public class NewDal
     {
@@ -21,12 +20,13 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             News newsReturn = null;
             try
             {
-                newsReturn = (from news in objContex.NewsSet
+                newsReturn = (from news in objContex.News
                               where news.Deleted == false && news.NewsId == id
                               select news).Single<News>();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -42,11 +42,12 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                objContex.NewsSet.Add(news);
+                objContex.News.Add(news);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -64,6 +65,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -77,12 +79,13 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                News news = objContex.NewsSet.Find(id);
+                News news = objContex.News.Find(id);
                 news.Deleted = true;
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }

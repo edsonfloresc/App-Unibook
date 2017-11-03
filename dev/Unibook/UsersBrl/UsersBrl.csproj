@@ -7,10 +7,11 @@
     <ProjectGuid>{D977D4A1-464C-4843-9BB7-15EC085825E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Univalle.Fie.Sistemas.Unibook.UsersBrl</RootNamespace>
-    <AssemblyName>Univalle.Fie.Sistemas.Unibook.UsersBrl</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UsersBrl</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UsersBrl</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,12 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -50,14 +49,16 @@
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
+    <Compile Include="GenderBrl.cs" />
+    <Compile Include="PersonBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
     <Compile Include="UserBrl.cs" />
     <Compile Include="UserCareerBrl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
-      <Project>{0d5130ab-5829-4b5d-9059-9ae28a94379b}</Project>
+    <ProjectReference Include="..\CommonRegister\CommonDto.csproj">
+      <Project>{10993fea-0f5b-4694-840f-3fcd3f9c9db2}</Project>
       <Name>CommonDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-
-namespace Univalle.Fie.Sistemas.Unibook.NewsDal
+namespace Univalle.Fie.Sistemas.UniBook.NewsDal
 {
     public class CategoryNewDal
     {
@@ -21,12 +20,13 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             CategoryNews categorynewsReturn = null;
             try
             {
-                categorynewsReturn = (from categorynews in objContex.CategoryNewsSet
+                categorynewsReturn = (from categorynews in objContex.CategoryNews
                                       where categorynews.Deleted == false && categorynews.CategoryId == id
                                       select categorynews).Single<CategoryNews>();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -42,11 +42,12 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                objContex.CategoryNewsSet.Add(categorynews);
+                objContex.CategoryNews.Add(categorynews);
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -64,6 +65,7 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -77,16 +79,18 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsDal
         {
             try
             {
-                CategoryNews categorynews = objContex.CategoryNewsSet.Find(id);
+                CategoryNews categorynews = objContex.CategoryNews.Find(id);
                 categorynews.Deleted = true;
                 objContex.SaveChanges();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
 
         #endregion metodos
+
     }
 }

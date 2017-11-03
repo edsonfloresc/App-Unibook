@@ -14,10 +14,26 @@
     <EntitySet Name="Gender" EntityType="ModelUnibook.Store.Gender" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contact" EntityType="ModelUnibook.Store.Contact" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="NewsSet" EntityType="ModelUnibook.Store.NewsSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ImageNewsSet" EntityType="ModelUnibook.Store.ImageNewsSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CategoryNewsSet" EntityType="ModelUnibook.Store.CategoryNewsSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CommentNewsSet" EntityType="ModelUnibook.Store.CommentNewsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="News" EntityType="ModelUnibook.Store.News" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoryNews" EntityType="ModelUnibook.Store.CategoryNews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CommentNews" EntityType="ModelUnibook.Store.CommentNews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImageNews" EntityType="ModelUnibook.Store.ImageNews" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="PersonContact" Association="ModelUnibook.Store.PersonContact">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="GenderPerson" Association="ModelUnibook.Store.GenderPerson">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FacultyCareer" Association="ModelUnibook.Store.FacultyCareer">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Career" EntitySet="Career" />
+    </AssociationSet>
     <AssociationSet Name="UserUserCareer" Association="ModelUnibook.Store.UserUserCareer">
       <End Role="User" EntitySet="User" />
       <End Role="UserCareer" EntitySet="UserCareer" />
@@ -26,45 +42,29 @@
       <End Role="Career" EntitySet="Career" />
       <End Role="UserCareer" EntitySet="UserCareer" />
     </AssociationSet>
-    <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
-    <AssociationSet Name="FacultyCareer" Association="ModelUnibook.Store.FacultyCareer">
-      <End Role="Faculty" EntitySet="Faculty" />
-      <End Role="Career" EntitySet="Career" />
-    </AssociationSet>
-    <AssociationSet Name="GenderPerson" Association="ModelUnibook.Store.GenderPerson">
-      <End Role="Gender" EntitySet="Gender" />
-      <End Role="Person" EntitySet="Person" />
-    </AssociationSet>
-    <AssociationSet Name="PersonContact" Association="ModelUnibook.Store.PersonContact">
-      <End Role="Person" EntitySet="Person" />
-      <End Role="Contact" EntitySet="Contact" />
-    </AssociationSet>
     <AssociationSet Name="PersonUser" Association="ModelUnibook.Store.PersonUser">
       <End Role="Person" EntitySet="Person" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <AssociationSet Name="CategoryNewsNews" Association="ModelUnibook.Store.CategoryNewsNews">
+      <End Role="CategoryNews" EntitySet="CategoryNews" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="NewsImageNews" Association="ModelUnibook.Store.NewsImageNews">
+      <End Role="News" EntitySet="News" />
+      <End Role="ImageNews" EntitySet="ImageNews" />
+    </AssociationSet>
+    <AssociationSet Name="NewsCommentNews" Association="ModelUnibook.Store.NewsCommentNews">
+      <End Role="News" EntitySet="News" />
+      <End Role="CommentNews" EntitySet="CommentNews" />
+    </AssociationSet>
     <AssociationSet Name="UserNews" Association="ModelUnibook.Store.UserNews">
       <End Role="User" EntitySet="User" />
-      <End Role="News" EntitySet="NewsSet" />
+      <End Role="News" EntitySet="News" />
     </AssociationSet>
     <AssociationSet Name="UserCommentNews" Association="ModelUnibook.Store.UserCommentNews">
       <End Role="User" EntitySet="User" />
-      <End Role="CommentNews" EntitySet="CommentNewsSet" />
-    </AssociationSet>
-    <AssociationSet Name="NewsCommentNews" Association="ModelUnibook.Store.NewsCommentNews">
-      <End Role="News" EntitySet="NewsSet" />
-      <End Role="CommentNews" EntitySet="CommentNewsSet" />
-    </AssociationSet>
-    <AssociationSet Name="NewsImageNews" Association="ModelUnibook.Store.NewsImageNews">
-      <End Role="News" EntitySet="NewsSet" />
-      <End Role="ImageNews" EntitySet="ImageNewsSet" />
-    </AssociationSet>
-    <AssociationSet Name="CategoryNewsNews" Association="ModelUnibook.Store.CategoryNewsNews">
-      <End Role="CategoryNews" EntitySet="CategoryNewsSet" />
-      <End Role="News" EntitySet="NewsSet" />
+      <End Role="CommentNews" EntitySet="CommentNews" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
@@ -74,8 +74,9 @@
     <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="RoleId" Type="smallint" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Role_RoleId" Type="smallint" Nullable="false" />
+    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Career">
     <Key>
@@ -83,8 +84,8 @@
     </Key>
     <Property Name="CareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="30" />
-    <Property Name="FacultyId" Type="smallint" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Faculty_FacultyId" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
@@ -106,9 +107,9 @@
     <Key>
       <PropertyRef Name="UserCareerId" />
     </Key>
-    <Property Name="UserId" Type="bigint" Nullable="false" />
-    <Property Name="CareerId" Type="int" Nullable="false" />
     <Property Name="UserCareerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
@@ -124,9 +125,8 @@
     <Property Name="PersonId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="25" />
-    <Property Name="GenderId" Type="smallint" Nullable="false" />
     <Property Name="Birthday" Type="datetime" Nullable="false" />
-    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Gender_GenderId" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
@@ -136,9 +136,9 @@
     <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
-    <Property Name="PersonId" Type="bigint" Nullable="false" />
+    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
-  <EntityType Name="NewsSet">
+  <EntityType Name="News">
     <Key>
       <PropertyRef Name="NewsId" />
     </Key>
@@ -149,10 +149,29 @@
     <Property Name="PublicationNews" Type="datetime" Nullable="false" />
     <Property Name="Discontinued" Type="bit" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
-    <Property Name="User_UserId" Type="bigint" Nullable="false" />
     <Property Name="CategoryNews_CategoryId" Type="int" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
-  <EntityType Name="ImageNewsSet">
+  <EntityType Name="CategoryNews">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentNews">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="News_NewsId" Type="int" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageNews">
     <Key>
       <PropertyRef Name="ImageId" />
     </Key>
@@ -161,49 +180,6 @@
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="News_NewsId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="CategoryNewsSet">
-    <Key>
-      <PropertyRef Name="CategoryId" />
-    </Key>
-    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NameCategory" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Deleted" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CommentNewsSet">
-    <Key>
-      <PropertyRef Name="CommentId" />
-    </Key>
-    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Deleted" Type="bit" Nullable="false" />
-    <Property Name="User_UserId" Type="bigint" Nullable="false" />
-    <Property Name="News_NewsId" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="UserUserCareer">
-    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
-    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="UserCareer">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CareerUserCareer">
-    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="1" />
-    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Career">
-        <PropertyRef Name="CareerId" />
-      </Principal>
-      <Dependent Role="UserCareer">
-        <PropertyRef Name="CareerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="RoleUser">
     <End Role="Role" Type="ModelUnibook.Store.Role" Multiplicity="1" />
     <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="*" />
@@ -212,31 +188,7 @@
         <PropertyRef Name="RoleId" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FacultyCareer">
-    <End Role="Faculty" Type="ModelUnibook.Store.Faculty" Multiplicity="1" />
-    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Faculty">
-        <PropertyRef Name="FacultyId" />
-      </Principal>
-      <Dependent Role="Career">
-        <PropertyRef Name="FacultyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="GenderPerson">
-    <End Role="Gender" Type="ModelUnibook.Store.Gender" Multiplicity="1" />
-    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Gender">
-        <PropertyRef Name="GenderId" />
-      </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="GenderId" />
+        <PropertyRef Name="Role_RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -248,25 +200,109 @@
         <PropertyRef Name="PersonId" />
       </Principal>
       <Dependent Role="Contact">
-        <PropertyRef Name="PersonId" />
+        <PropertyRef Name="Person_PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GenderPerson">
+    <End Role="Gender" Type="ModelUnibook.Store.Gender" Multiplicity="1" />
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Gender_GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FacultyCareer">
+    <End Role="Faculty" Type="ModelUnibook.Store.Faculty" Multiplicity="1" />
+    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Career">
+        <PropertyRef Name="Faculty_FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUserCareer">
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserCareer">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CareerUserCareer">
+    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Career">
+        <PropertyRef Name="CareerId" />
+      </Principal>
+      <Dependent Role="UserCareer">
+        <PropertyRef Name="Career_CareerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonUser">
     <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="1" />
-    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="0..1" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Person">
         <PropertyRef Name="PersonId" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="UserId" />
+        <PropertyRef Name="Person_PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryNewsNews">
+    <End Role="CategoryNews" Type="ModelUnibook.Store.CategoryNews" Multiplicity="1" />
+    <End Role="News" Type="ModelUnibook.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryNews">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="CategoryNews_CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NewsImageNews">
+    <End Role="News" Type="ModelUnibook.Store.News" Multiplicity="1" />
+    <End Role="ImageNews" Type="ModelUnibook.Store.ImageNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsId" />
+      </Principal>
+      <Dependent Role="ImageNews">
+        <PropertyRef Name="News_NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NewsCommentNews">
+    <End Role="News" Type="ModelUnibook.Store.News" Multiplicity="1" />
+    <End Role="CommentNews" Type="ModelUnibook.Store.CommentNews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="NewsId" />
+      </Principal>
+      <Dependent Role="CommentNews">
+        <PropertyRef Name="News_NewsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="UserNews">
     <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
-    <End Role="News" Type="ModelUnibook.Store.NewsSet" Multiplicity="*" />
+    <End Role="News" Type="ModelUnibook.Store.News" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
@@ -278,49 +314,13 @@
   </Association>
   <Association Name="UserCommentNews">
     <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
-    <End Role="CommentNews" Type="ModelUnibook.Store.CommentNewsSet" Multiplicity="*" />
+    <End Role="CommentNews" Type="ModelUnibook.Store.CommentNews" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="CommentNews">
         <PropertyRef Name="User_UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="NewsCommentNews">
-    <End Role="News" Type="ModelUnibook.Store.NewsSet" Multiplicity="1" />
-    <End Role="CommentNews" Type="ModelUnibook.Store.CommentNewsSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="NewsId" />
-      </Principal>
-      <Dependent Role="CommentNews">
-        <PropertyRef Name="News_NewsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="NewsImageNews">
-    <End Role="News" Type="ModelUnibook.Store.NewsSet" Multiplicity="1" />
-    <End Role="ImageNews" Type="ModelUnibook.Store.ImageNewsSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="NewsId" />
-      </Principal>
-      <Dependent Role="ImageNews">
-        <PropertyRef Name="News_NewsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CategoryNewsNews">
-    <End Role="CategoryNews" Type="ModelUnibook.Store.CategoryNewsSet" Multiplicity="1" />
-    <End Role="News" Type="ModelUnibook.Store.NewsSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CategoryNews">
-        <PropertyRef Name="CategoryId" />
-      </Principal>
-      <Dependent Role="News">
-        <PropertyRef Name="CategoryNews_CategoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -334,6 +334,25 @@
           <EntitySet Name="Faculty" EntityType="ModelUnibook.Faculty" />
           <EntitySet Name="Role" EntityType="ModelUnibook.Role" />
           <EntitySet Name="UserCareer" EntityType="ModelUnibook.UserCareer" />
+          <EntitySet Name="Gender" EntityType="ModelUnibook.Gender" />
+          <EntitySet Name="Person" EntityType="ModelUnibook.Person" />
+          <EntitySet Name="Contact" EntityType="ModelUnibook.Contact" />
+          <AssociationSet Name="RoleUser" Association="ModelUnibook.RoleUser">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="PersonContact" Association="ModelUnibook.PersonContact">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="GenderPerson" Association="ModelUnibook.GenderPerson">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FacultyCareer" Association="ModelUnibook.FacultyCareer">
+            <End Role="Faculty" EntitySet="Faculty" />
+            <End Role="Career" EntitySet="Career" />
+          </AssociationSet>
           <AssociationSet Name="UserUserCareer" Association="ModelUnibook.UserUserCareer">
             <End Role="User" EntitySet="User" />
             <End Role="UserCareer" EntitySet="UserCareer" />
@@ -342,52 +361,33 @@
             <End Role="Career" EntitySet="Career" />
             <End Role="UserCareer" EntitySet="UserCareer" />
           </AssociationSet>
-          <AssociationSet Name="RoleUser" Association="ModelUnibook.RoleUser">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FacultyCareer" Association="ModelUnibook.FacultyCareer">
-            <End Role="Faculty" EntitySet="Faculty" />
-            <End Role="Career" EntitySet="Career" />
-          </AssociationSet>
-          <EntitySet Name="Gender" EntityType="ModelUnibook.Gender" />
-          <EntitySet Name="Person" EntityType="ModelUnibook.Person" />
-          <EntitySet Name="Contact" EntityType="ModelUnibook.Contact" />
-          <AssociationSet Name="GenderPerson" Association="ModelUnibook.GenderPerson">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
-          <AssociationSet Name="PersonContact" Association="ModelUnibook.PersonContact">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="Contact" EntitySet="Contact" />
-          </AssociationSet>
           <AssociationSet Name="PersonUser" Association="ModelUnibook.PersonUser">
             <End Role="Person" EntitySet="Person" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <EntitySet Name="NewsSet" EntityType="ModelUnibook.News" />
-          <EntitySet Name="ImageNewsSet" EntityType="ModelUnibook.ImageNews" />
-          <EntitySet Name="CategoryNewsSet" EntityType="ModelUnibook.CategoryNews" />
-          <EntitySet Name="CommentNewsSet" EntityType="ModelUnibook.CommentNews" />
+          <EntitySet Name="News" EntityType="ModelUnibook.News" />
+          <EntitySet Name="CategoryNews" EntityType="ModelUnibook.CategoryNews" />
+          <EntitySet Name="CommentNews" EntityType="ModelUnibook.CommentNews" />
+          <EntitySet Name="ImageNews" EntityType="ModelUnibook.ImageNews" />
+          <AssociationSet Name="CategoryNewsNews" Association="ModelUnibook.CategoryNewsNews">
+            <End Role="CategoryNews" EntitySet="CategoryNews" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="NewsImageNews" Association="ModelUnibook.NewsImageNews">
+            <End Role="News" EntitySet="News" />
+            <End Role="ImageNews" EntitySet="ImageNews" />
+          </AssociationSet>
+          <AssociationSet Name="NewsCommentNews" Association="ModelUnibook.NewsCommentNews">
+            <End Role="News" EntitySet="News" />
+            <End Role="CommentNews" EntitySet="CommentNews" />
+          </AssociationSet>
           <AssociationSet Name="UserNews" Association="ModelUnibook.UserNews">
             <End Role="User" EntitySet="User" />
-            <End Role="News" EntitySet="NewsSet" />
+            <End Role="News" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="UserCommentNews" Association="ModelUnibook.UserCommentNews">
             <End Role="User" EntitySet="User" />
-            <End Role="CommentNews" EntitySet="CommentNewsSet" />
-          </AssociationSet>
-          <AssociationSet Name="NewsCommentNews" Association="ModelUnibook.NewsCommentNews">
-            <End Role="News" EntitySet="NewsSet" />
-            <End Role="CommentNews" EntitySet="CommentNewsSet" />
-          </AssociationSet>
-          <AssociationSet Name="NewsImageNews" Association="ModelUnibook.NewsImageNews">
-            <End Role="News" EntitySet="NewsSet" />
-            <End Role="ImageNews" EntitySet="ImageNewsSet" />
-          </AssociationSet>
-          <AssociationSet Name="CategoryNewsNews" Association="ModelUnibook.CategoryNewsNews">
-            <End Role="CategoryNews" EntitySet="CategoryNewsSet" />
-            <End Role="News" EntitySet="NewsSet" />
+            <End Role="CommentNews" EntitySet="CommentNews" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -397,10 +397,9 @@
           <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="RoleId" Type="Int16" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
           <NavigationProperty Name="Role" Relationship="ModelUnibook.RoleUser" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
           <NavigationProperty Name="Person" Relationship="ModelUnibook.PersonUser" FromRole="User" ToRole="Person" />
           <NavigationProperty Name="News" Relationship="ModelUnibook.UserNews" FromRole="User" ToRole="News" />
           <NavigationProperty Name="CommentNews" Relationship="ModelUnibook.UserCommentNews" FromRole="User" ToRole="CommentNews" />
@@ -411,10 +410,9 @@
           </Key>
           <Property Name="CareerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="FacultyId" Type="Int16" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.CareerUserCareer" FromRole="Career" ToRole="UserCareer" />
           <NavigationProperty Name="Faculty" Relationship="ModelUnibook.FacultyCareer" FromRole="Career" ToRole="Faculty" />
+          <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.CareerUserCareer" FromRole="Career" ToRole="UserCareer" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -438,60 +436,10 @@
           <Key>
             <PropertyRef Name="UserCareerId" />
           </Key>
-          <Property Name="UserId" Type="Int64" Nullable="false" />
-          <Property Name="CareerId" Type="Int32" Nullable="false" />
+          <Property Name="UserCareerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.UserUserCareer" FromRole="UserCareer" ToRole="User" />
           <NavigationProperty Name="Career" Relationship="ModelUnibook.CareerUserCareer" FromRole="UserCareer" ToRole="Career" />
-          <Property Name="UserCareerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <Association Name="UserUserCareer">
-          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
-          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserCareer">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CareerUserCareer">
-          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="1" />
-          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Career">
-              <PropertyRef Name="CareerId" />
-            </Principal>
-            <Dependent Role="UserCareer">
-              <PropertyRef Name="CareerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleUser">
-          <End Type="ModelUnibook.Role" Role="Role" Multiplicity="1" />
-          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FacultyCareer">
-          <End Type="ModelUnibook.Faculty" Role="Faculty" Multiplicity="1" />
-          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculty">
-              <PropertyRef Name="FacultyId" />
-            </Principal>
-            <Dependent Role="Career">
-              <PropertyRef Name="FacultyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="GenderId" />
@@ -507,59 +455,48 @@
           <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
-          <Property Name="GenderId" Type="Int16" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderPerson" FromRole="Person" ToRole="Gender" />
-          <Property Name="UserId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Contact" Relationship="ModelUnibook.PersonContact" FromRole="Person" ToRole="Contact" />
+          <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderPerson" FromRole="Person" ToRole="Gender" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.PersonUser" FromRole="Person" ToRole="User" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="ContactId" />
           </Key>
-          <Property Name="ContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
           <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <Property Name="PersonId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="ModelUnibook.PersonContact" FromRole="Contact" ToRole="Person" />
         </EntityType>
-        <Association Name="GenderPerson">
-          <End Type="ModelUnibook.Gender" Role="Gender" Multiplicity="1" />
-          <End Type="ModelUnibook.Person" Role="Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="GenderId" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="GenderId" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="RoleUser">
+          <End Type="ModelUnibook.Role" Role="Role" Multiplicity="1" />
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
         </Association>
         <Association Name="PersonContact">
           <End Type="ModelUnibook.Person" Role="Person" Multiplicity="1" />
           <End Type="ModelUnibook.Contact" Role="Contact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonId" />
-            </Principal>
-            <Dependent Role="Contact">
-              <PropertyRef Name="PersonId" />
-            </Dependent>
-          </ReferentialConstraint>
+        </Association>
+        <Association Name="GenderPerson">
+          <End Type="ModelUnibook.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="ModelUnibook.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="FacultyCareer">
+          <End Type="ModelUnibook.Faculty" Role="Faculty" Multiplicity="1" />
+          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="*" />
+        </Association>
+        <Association Name="UserUserCareer">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
+        </Association>
+        <Association Name="CareerUserCareer">
+          <End Type="ModelUnibook.Career" Role="Career" Multiplicity="1" />
+          <End Type="ModelUnibook.UserCareer" Role="UserCareer" Multiplicity="*" />
         </Association>
         <Association Name="PersonUser">
           <End Type="ModelUnibook.Person" Role="Person" Multiplicity="1" />
-          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
         </Association>
         <EntityType Name="News">
           <Key>
@@ -572,19 +509,10 @@
           <Property Name="PublicationNews" Type="DateTime" Nullable="false" />
           <Property Name="Discontinued" Type="Boolean" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="ModelUnibook.UserNews" FromRole="News" ToRole="User" />
-          <NavigationProperty Name="CommentNews" Relationship="ModelUnibook.NewsCommentNews" FromRole="News" ToRole="CommentNews" />
-          <NavigationProperty Name="ImageNews" Relationship="ModelUnibook.NewsImageNews" FromRole="News" ToRole="ImageNews" />
           <NavigationProperty Name="CategoryNews" Relationship="ModelUnibook.CategoryNewsNews" FromRole="News" ToRole="CategoryNews" />
-        </EntityType>
-        <EntityType Name="ImageNews">
-          <Key>
-            <PropertyRef Name="ImageId" />
-          </Key>
-          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PathImage" Type="String" Nullable="false" />
-          <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="News" Relationship="ModelUnibook.NewsImageNews" FromRole="ImageNews" ToRole="News" />
+          <NavigationProperty Name="ImageNews" Relationship="ModelUnibook.NewsImageNews" FromRole="News" ToRole="ImageNews" />
+          <NavigationProperty Name="CommentNews" Relationship="ModelUnibook.NewsCommentNews" FromRole="News" ToRole="CommentNews" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserNews" FromRole="News" ToRole="User" />
         </EntityType>
         <EntityType Name="CategoryNews">
           <Key>
@@ -603,9 +531,30 @@
           <Property Name="Message" Type="String" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="ModelUnibook.UserCommentNews" FromRole="CommentNews" ToRole="User" />
           <NavigationProperty Name="News" Relationship="ModelUnibook.NewsCommentNews" FromRole="CommentNews" ToRole="News" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserCommentNews" FromRole="CommentNews" ToRole="User" />
         </EntityType>
+        <EntityType Name="ImageNews">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PathImage" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="ModelUnibook.NewsImageNews" FromRole="ImageNews" ToRole="News" />
+        </EntityType>
+        <Association Name="CategoryNewsNews">
+          <End Type="ModelUnibook.CategoryNews" Role="CategoryNews" Multiplicity="1" />
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="*" />
+        </Association>
+        <Association Name="NewsImageNews">
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
+          <End Type="ModelUnibook.ImageNews" Role="ImageNews" Multiplicity="*" />
+        </Association>
+        <Association Name="NewsCommentNews">
+          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
+          <End Type="ModelUnibook.CommentNews" Role="CommentNews" Multiplicity="*" />
+        </Association>
         <Association Name="UserNews">
           <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
           <End Type="ModelUnibook.News" Role="News" Multiplicity="*" />
@@ -613,18 +562,6 @@
         <Association Name="UserCommentNews">
           <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
           <End Type="ModelUnibook.CommentNews" Role="CommentNews" Multiplicity="*" />
-        </Association>
-        <Association Name="NewsCommentNews">
-          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
-          <End Type="ModelUnibook.CommentNews" Role="CommentNews" Multiplicity="*" />
-        </Association>
-        <Association Name="NewsImageNews">
-          <End Type="ModelUnibook.News" Role="News" Multiplicity="1" />
-          <End Type="ModelUnibook.ImageNews" Role="ImageNews" Multiplicity="*" />
-        </Association>
-        <Association Name="CategoryNewsNews">
-          <End Type="ModelUnibook.CategoryNews" Role="CategoryNews" Multiplicity="1" />
-          <End Type="ModelUnibook.News" Role="News" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -638,7 +575,6 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -648,7 +584,6 @@
         <MappingFragment StoreEntitySet="Career">
           <ScalarProperty Name="CareerId" ColumnName="CareerId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -675,8 +610,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.UserCareer)">
         <MappingFragment StoreEntitySet="UserCareer">
           <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="CareerId" ColumnName="CareerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -694,9 +627,7 @@
           <ScalarProperty Name="PersonId" ColumnName="PersonId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
           <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -707,13 +638,12 @@
           <ScalarProperty Name="Data" ColumnName="Data" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="NewsSet">
+    <EntitySetMapping Name="News">
       <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.News)">
-        <MappingFragment StoreEntitySet="NewsSet">
+        <MappingFragment StoreEntitySet="News">
           <ScalarProperty Name="NewsId" ColumnName="NewsId" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Detail" ColumnName="Detail" />
@@ -724,27 +654,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ImageNewsSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.ImageNews)">
-        <MappingFragment StoreEntitySet="ImageNewsSet">
-          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-          <ScalarProperty Name="PathImage" ColumnName="PathImage" />
-          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CategoryNewsSet">
+    <EntitySetMapping Name="CategoryNews">
       <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.CategoryNews)">
-        <MappingFragment StoreEntitySet="CategoryNewsSet">
+        <MappingFragment StoreEntitySet="CategoryNews">
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CommentNewsSet">
+    <EntitySetMapping Name="CommentNews">
       <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.CommentNews)">
-        <MappingFragment StoreEntitySet="CommentNewsSet">
+        <MappingFragment StoreEntitySet="CommentNews">
           <ScalarProperty Name="CommentId" ColumnName="CommentId" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -752,31 +673,80 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="UserNews" TypeName="ModelUnibook.UserNews" StoreEntitySet="NewsSet">
+    <EntitySetMapping Name="ImageNews">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.ImageNews)">
+        <MappingFragment StoreEntitySet="ImageNews">
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+          <ScalarProperty Name="PathImage" ColumnName="PathImage" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RoleUser" TypeName="ModelUnibook.RoleUser" StoreEntitySet="User">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="RoleId" ColumnName="Role_RoleId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonContact" TypeName="ModelUnibook.PersonContact" StoreEntitySet="Contact">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonId" ColumnName="Person_PersonId" />
+      </EndProperty>
+      <EndProperty Name="Contact">
+        <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GenderPerson" TypeName="ModelUnibook.GenderPerson" StoreEntitySet="Person">
+      <EndProperty Name="Gender">
+        <ScalarProperty Name="GenderId" ColumnName="Gender_GenderId" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FacultyCareer" TypeName="ModelUnibook.FacultyCareer" StoreEntitySet="Career">
+      <EndProperty Name="Faculty">
+        <ScalarProperty Name="FacultyId" ColumnName="Faculty_FacultyId" />
+      </EndProperty>
+      <EndProperty Name="Career">
+        <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserUserCareer" TypeName="ModelUnibook.UserUserCareer" StoreEntitySet="UserCareer">
       <EndProperty Name="User">
         <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="UserCareer">
+        <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CareerUserCareer" TypeName="ModelUnibook.CareerUserCareer" StoreEntitySet="UserCareer">
+      <EndProperty Name="Career">
+        <ScalarProperty Name="CareerId" ColumnName="Career_CareerId" />
+      </EndProperty>
+      <EndProperty Name="UserCareer">
+        <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonUser" TypeName="ModelUnibook.PersonUser" StoreEntitySet="User">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonId" ColumnName="Person_PersonId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoryNewsNews" TypeName="ModelUnibook.CategoryNewsNews" StoreEntitySet="News">
+      <EndProperty Name="CategoryNews">
+        <ScalarProperty Name="CategoryId" ColumnName="CategoryNews_CategoryId" />
       </EndProperty>
       <EndProperty Name="News">
         <ScalarProperty Name="NewsId" ColumnName="NewsId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="UserCommentNews" TypeName="ModelUnibook.UserCommentNews" StoreEntitySet="CommentNewsSet">
-      <EndProperty Name="User">
-        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
-      </EndProperty>
-      <EndProperty Name="CommentNews">
-        <ScalarProperty Name="CommentId" ColumnName="CommentId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="NewsCommentNews" TypeName="ModelUnibook.NewsCommentNews" StoreEntitySet="CommentNewsSet">
-      <EndProperty Name="News">
-        <ScalarProperty Name="NewsId" ColumnName="News_NewsId" />
-      </EndProperty>
-      <EndProperty Name="CommentNews">
-        <ScalarProperty Name="CommentId" ColumnName="CommentId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="NewsImageNews" TypeName="ModelUnibook.NewsImageNews" StoreEntitySet="ImageNewsSet">
+    <AssociationSetMapping Name="NewsImageNews" TypeName="ModelUnibook.NewsImageNews" StoreEntitySet="ImageNews">
       <EndProperty Name="News">
         <ScalarProperty Name="NewsId" ColumnName="News_NewsId" />
       </EndProperty>
@@ -784,12 +754,28 @@
         <ScalarProperty Name="ImageId" ColumnName="ImageId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CategoryNewsNews" TypeName="ModelUnibook.CategoryNewsNews" StoreEntitySet="NewsSet">
-      <EndProperty Name="CategoryNews">
-        <ScalarProperty Name="CategoryId" ColumnName="CategoryNews_CategoryId" />
+    <AssociationSetMapping Name="NewsCommentNews" TypeName="ModelUnibook.NewsCommentNews" StoreEntitySet="CommentNews">
+      <EndProperty Name="News">
+        <ScalarProperty Name="NewsId" ColumnName="News_NewsId" />
+      </EndProperty>
+      <EndProperty Name="CommentNews">
+        <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserNews" TypeName="ModelUnibook.UserNews" StoreEntitySet="News">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
       </EndProperty>
       <EndProperty Name="News">
         <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCommentNews" TypeName="ModelUnibook.UserCommentNews" StoreEntitySet="CommentNews">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="CommentNews">
+        <ScalarProperty Name="CommentId" ColumnName="CommentId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

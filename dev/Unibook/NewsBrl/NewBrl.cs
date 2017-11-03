@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.Unibook.NewsDal;
-using Univalle.Fie.Sistemas.Unibook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.NewsDal;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
     public class NewBrl
@@ -26,6 +27,8 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 news.DateNews = newsdto.DateNews;
                 news.Discontinued = newsdto.Discontinued;
                 news.Deleted = newsdto.Deleted;
+                news.CategoryNews = CategoryNewBrl.Get(newsdto.CategoryNews.CategoryId, objContex);
+                news.User = UserBrl.Get(newsdto.User.UserId, objContex);
                 NewDal.Insert(news, objContex);
             }
             catch (Exception ex)
@@ -53,7 +56,10 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 newsdto.PublicationNews = news.PublicationNews;
                 newsdto.Discontinued = news.Discontinued;
                 newsdto.Deleted = news.Deleted;
-                
+                newsdto.CategoryNews = CategoryNewBrl.GetDto(news.CategoryNews.CategoryId, objContex);
+                newsdto.User = UserBrl.GetDto(news.User.UserId, objContex);
+
+
             }
             catch (Exception ex)
             {
@@ -99,7 +105,10 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
                 news.PublicationNews = newsdto.PublicationNews;
                 news.Discontinued = newsdto.Discontinued;
                 news.Deleted = newsdto.Deleted;
+                news.CategoryNews = CategoryNewBrl.Get(newsdto.CategoryNews.CategoryId, objContex);
+                news.User = UserBrl.Get(newsdto.User.UserId, objContex);
                 NewDal.Update(news, objContex);
+
             }
             catch (Exception ex)
             {
