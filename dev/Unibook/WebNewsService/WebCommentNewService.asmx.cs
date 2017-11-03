@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
 
 namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
@@ -18,14 +19,13 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     // [System.Web.Script.Services.ScriptService]
     public class WebCommentNewService : System.Web.Services.WebService
     {
-
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
-        public void InsertCommentNew(CommentNews commentnew)
+        public void InsertCommentNew(CategoryNewsDto categorynewdto)
         {
             try
             {
-                CommentNewBrl.Insertar(commentnew, dbcontext);
+                CategoryNewBrl.Insertar(categorynewdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -34,11 +34,11 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public void UpdateCommentNew(CommentNews commentnew)
+        public void UpdateCommentNew(CategoryNewsDto categorynewsdto)
         {
             try
             {
-                CommentNewBrl.Update(commentnew, dbcontext);
+                CategoryNewBrl.Update(categorynewsdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         {
             try
             {
-                CommentNewBrl.Delete(id, dbcontext);
+                CategoryNewBrl.Delete(id, dbcontext);
             }
             catch (Exception ex)
             {
@@ -60,19 +60,19 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public CommentNews GetCommentNew(int id)
+        public CategoryNewsDto GetCommentNew(int id)
         {
-            CommentNews commentnew = null;
+            CategoryNewsDto categorynewsdto = null;
             try
             {
-                commentnew = CommentNewBrl.Get(id, dbcontext);
+                categorynewsdto = CategoryNewBrl.GetDto(id, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return commentnew;
+            return categorynewsdto;
 
         }
     }

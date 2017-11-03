@@ -14,6 +14,12 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class News
     {
+        public News()
+        {
+            this.CommentNews = new HashSet<CommentNews>();
+            this.ImageNews = new HashSet<ImageNews>();
+        }
+    
         public int NewsId { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
@@ -22,7 +28,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public bool Discontinued { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual CategoryNews CategoryNewsId { get; set; }
-        public virtual User UserId { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<CommentNews> CommentNews { get; set; }
+        public virtual ICollection<ImageNews> ImageNews { get; set; }
+        public virtual CategoryNews CategoryNews { get; set; }
     }
 }

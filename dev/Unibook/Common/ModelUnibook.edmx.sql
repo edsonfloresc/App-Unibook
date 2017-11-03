@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/18/2017 00:50:46
+-- Date Created: 10/30/2017 13:11:01
 -- Generated from EDMX file: C:\Users\Marco\Documents\GitHub\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -17,14 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_UserUserCareer];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FacultyCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Career] DROP CONSTRAINT [FK_FacultyCareer];
@@ -38,25 +32,25 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_RoleUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_RoleUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserUserCareer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_UserUserCareer];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[User];
-GO
 IF OBJECT_ID(N'[dbo].[Career]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Career];
 GO
+IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contact];
+GO
 IF OBJECT_ID(N'[dbo].[Faculty]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Faculty];
-GO
-IF OBJECT_ID(N'[dbo].[Role]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Role];
-GO
-IF OBJECT_ID(N'[dbo].[UserCareer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserCareer];
 GO
 IF OBJECT_ID(N'[dbo].[Gender]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Gender];
@@ -64,8 +58,14 @@ GO
 IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Person];
 GO
-IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Contact];
+IF OBJECT_ID(N'[dbo].[Role]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Role];
+GO
+IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[User];
+GO
+IF OBJECT_ID(N'[dbo].[UserCareer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserCareer];
 GO
 
 -- --------------------------------------------------
@@ -143,8 +143,8 @@ CREATE TABLE [dbo].[Contact] (
 );
 GO
 
--- Creating table 'NewsSet'
-CREATE TABLE [dbo].[NewsSet] (
+-- Creating table 'News'
+CREATE TABLE [dbo].[News] (
     [NewsId] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [Detail] nvarchar(max)  NOT NULL,
@@ -152,35 +152,36 @@ CREATE TABLE [dbo].[NewsSet] (
     [PublicationNews] datetime  NOT NULL,
     [Discontinued] bit  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [CategoryNewsId_CategoryId] int  NOT NULL,
-    [UserId_UserId] bigint  NOT NULL
+    [User] bigint  NOT NULL,
+    [CategoryNews] int  NOT NULL
 );
 GO
 
--- Creating table 'ImageNewsSet'
-CREATE TABLE [dbo].[ImageNewsSet] (
+-- Creating table 'ImageNews'
+CREATE TABLE [dbo].[ImageNews] (
     [ImageId] int IDENTITY(1,1) NOT NULL,
     [PathImage] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [NewsId_NewsId] int  NOT NULL
+    [News] int  NOT NULL
 );
 GO
 
--- Creating table 'CategoryNewsSet'
-CREATE TABLE [dbo].[CategoryNewsSet] (
+-- Creating table 'CategoryNews'
+CREATE TABLE [dbo].[CategoryNews] (
     [CategoryId] int IDENTITY(1,1) NOT NULL,
     [NameCategory] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL
 );
 GO
 
--- Creating table 'CommentNewsSet'
-CREATE TABLE [dbo].[CommentNewsSet] (
+-- Creating table 'CommentNews'
+CREATE TABLE [dbo].[CommentNews] (
     [CommentId] int IDENTITY(1,1) NOT NULL,
     [Message] nvarchar(max)  NOT NULL,
     [Date] datetime  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [NewsId_NewsId] int  NOT NULL
+    [User] bigint  NOT NULL,
+    [News] int  NOT NULL
 );
 GO
 
@@ -236,27 +237,27 @@ ADD CONSTRAINT [PK_Contact]
     PRIMARY KEY CLUSTERED ([ContactId] ASC);
 GO
 
--- Creating primary key on [NewsId] in table 'NewsSet'
-ALTER TABLE [dbo].[NewsSet]
-ADD CONSTRAINT [PK_NewsSet]
+-- Creating primary key on [NewsId] in table 'News'
+ALTER TABLE [dbo].[News]
+ADD CONSTRAINT [PK_News]
     PRIMARY KEY CLUSTERED ([NewsId] ASC);
 GO
 
--- Creating primary key on [ImageId] in table 'ImageNewsSet'
-ALTER TABLE [dbo].[ImageNewsSet]
-ADD CONSTRAINT [PK_ImageNewsSet]
+-- Creating primary key on [ImageId] in table 'ImageNews'
+ALTER TABLE [dbo].[ImageNews]
+ADD CONSTRAINT [PK_ImageNews]
     PRIMARY KEY CLUSTERED ([ImageId] ASC);
 GO
 
--- Creating primary key on [CategoryId] in table 'CategoryNewsSet'
-ALTER TABLE [dbo].[CategoryNewsSet]
-ADD CONSTRAINT [PK_CategoryNewsSet]
+-- Creating primary key on [CategoryId] in table 'CategoryNews'
+ALTER TABLE [dbo].[CategoryNews]
+ADD CONSTRAINT [PK_CategoryNews]
     PRIMARY KEY CLUSTERED ([CategoryId] ASC);
 GO
 
--- Creating primary key on [CommentId] in table 'CommentNewsSet'
-ALTER TABLE [dbo].[CommentNewsSet]
-ADD CONSTRAINT [PK_CommentNewsSet]
+-- Creating primary key on [CommentId] in table 'CommentNews'
+ALTER TABLE [dbo].[CommentNews]
+ADD CONSTRAINT [PK_CommentNews]
     PRIMARY KEY CLUSTERED ([CommentId] ASC);
 GO
 
@@ -271,6 +272,7 @@ ADD CONSTRAINT [FK_UserUserCareer]
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserUserCareer'
 CREATE INDEX [IX_FK_UserUserCareer]
@@ -285,6 +287,7 @@ ADD CONSTRAINT [FK_CareerUserCareer]
     REFERENCES [dbo].[Career]
         ([CareerId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CareerUserCareer'
 CREATE INDEX [IX_FK_CareerUserCareer]
@@ -299,6 +302,7 @@ ADD CONSTRAINT [FK_RoleUser]
     REFERENCES [dbo].[Role]
         ([RoleId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RoleUser'
 CREATE INDEX [IX_FK_RoleUser]
@@ -313,6 +317,7 @@ ADD CONSTRAINT [FK_FacultyCareer]
     REFERENCES [dbo].[Faculty]
         ([FacultyId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_FacultyCareer'
 CREATE INDEX [IX_FK_FacultyCareer]
@@ -327,6 +332,7 @@ ADD CONSTRAINT [FK_GenderPerson]
     REFERENCES [dbo].[Gender]
         ([GenderId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_GenderPerson'
 CREATE INDEX [IX_FK_GenderPerson]
@@ -341,6 +347,7 @@ ADD CONSTRAINT [FK_PersonContact]
     REFERENCES [dbo].[Person]
         ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonContact'
 CREATE INDEX [IX_FK_PersonContact]
@@ -357,60 +364,79 @@ ADD CONSTRAINT [FK_PersonUser]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [CategoryNewsId_CategoryId] in table 'NewsSet'
-ALTER TABLE [dbo].[NewsSet]
-ADD CONSTRAINT [FK_CategoryNewsNews]
-    FOREIGN KEY ([CategoryNewsId_CategoryId])
-    REFERENCES [dbo].[CategoryNewsSet]
-        ([CategoryId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CategoryNewsNews'
-CREATE INDEX [IX_FK_CategoryNewsNews]
-ON [dbo].[NewsSet]
-    ([CategoryNewsId_CategoryId]);
-GO
-
--- Creating foreign key on [NewsId_NewsId] in table 'ImageNewsSet'
-ALTER TABLE [dbo].[ImageNewsSet]
-ADD CONSTRAINT [FK_NewsImageNews]
-    FOREIGN KEY ([NewsId_NewsId])
-    REFERENCES [dbo].[NewsSet]
-        ([NewsId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_NewsImageNews'
-CREATE INDEX [IX_FK_NewsImageNews]
-ON [dbo].[ImageNewsSet]
-    ([NewsId_NewsId]);
-GO
-
--- Creating foreign key on [NewsId_NewsId] in table 'CommentNewsSet'
-ALTER TABLE [dbo].[CommentNewsSet]
-ADD CONSTRAINT [FK_NewsCommentNews]
-    FOREIGN KEY ([NewsId_NewsId])
-    REFERENCES [dbo].[NewsSet]
-        ([NewsId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_NewsCommentNews'
-CREATE INDEX [IX_FK_NewsCommentNews]
-ON [dbo].[CommentNewsSet]
-    ([NewsId_NewsId]);
-GO
-
--- Creating foreign key on [UserId_UserId] in table 'NewsSet'
-ALTER TABLE [dbo].[NewsSet]
+-- Creating foreign key on [User] in table 'News'
+ALTER TABLE [dbo].[News]
 ADD CONSTRAINT [FK_UserNews]
-    FOREIGN KEY ([UserId_UserId])
+    FOREIGN KEY ([User])
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserNews'
 CREATE INDEX [IX_FK_UserNews]
-ON [dbo].[NewsSet]
-    ([UserId_UserId]);
+ON [dbo].[News]
+    ([User]);
+GO
+
+-- Creating foreign key on [User] in table 'CommentNews'
+ALTER TABLE [dbo].[CommentNews]
+ADD CONSTRAINT [FK_UserCommentNews]
+    FOREIGN KEY ([User])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCommentNews'
+CREATE INDEX [IX_FK_UserCommentNews]
+ON [dbo].[CommentNews]
+    ([User]);
+GO
+
+-- Creating foreign key on [News] in table 'CommentNews'
+ALTER TABLE [dbo].[CommentNews]
+ADD CONSTRAINT [FK_NewsCommentNews]
+    FOREIGN KEY ([News])
+    REFERENCES [dbo].[News]
+        ([NewsId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NewsCommentNews'
+CREATE INDEX [IX_FK_NewsCommentNews]
+ON [dbo].[CommentNews]
+    ([News]);
+GO
+
+-- Creating foreign key on [News] in table 'ImageNews'
+ALTER TABLE [dbo].[ImageNews]
+ADD CONSTRAINT [FK_NewsImageNews]
+    FOREIGN KEY ([News])
+    REFERENCES [dbo].[News]
+        ([NewsId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_NewsImageNews'
+CREATE INDEX [IX_FK_NewsImageNews]
+ON [dbo].[ImageNews]
+    ([News]);
+GO
+
+-- Creating foreign key on [CategoryNews] in table 'News'
+ALTER TABLE [dbo].[News]
+ADD CONSTRAINT [FK_CategoryNewsNews]
+    FOREIGN KEY ([CategoryNews])
+    REFERENCES [dbo].[CategoryNews]
+        ([CategoryId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryNewsNews'
+CREATE INDEX [IX_FK_CategoryNewsNews]
+ON [dbo].[News]
+    ([CategoryNews]);
 GO
 
 -- --------------------------------------------------

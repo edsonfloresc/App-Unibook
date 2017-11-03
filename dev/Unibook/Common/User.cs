@@ -16,8 +16,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     {
         public User()
         {
-            this.UserCareer = new HashSet<UserCareer>();
+           // this.UserCareer = new HashSet<UserCareer>();
             this.News = new HashSet<News>();
+            this.CommentNews = new HashSet<CommentNews>();
         }
     
         public long UserId { get; set; }
@@ -26,9 +27,10 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public short RoleId { get; set; }
         public bool Deleted { get; set; }
     
-        public virtual ICollection<UserCareer> UserCareer { get; set; }
+     //   public virtual ICollection<UserCareer> UserCareer { get; set; }
         public virtual Role Role { get; set; }
         public virtual Person Person { get; set; }
         public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<CommentNews> CommentNews { get; set; }
     }
 }

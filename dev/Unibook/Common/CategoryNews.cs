@@ -14,8 +14,15 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class CategoryNews
     {
+        public CategoryNews()
+        {
+            this.News = new HashSet<News>();
+        }
+    
         public int CategoryId { get; set; }
         public string NameCategory { get; set; }
         public bool Deleted { get; set; }
+    
+        public virtual ICollection<News> News { get; set; }
     }
 }

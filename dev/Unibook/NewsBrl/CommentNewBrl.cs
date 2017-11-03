@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.NewsDal;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
@@ -15,19 +16,48 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
         /// </summary>
         /// <param name="CommentNews"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(CommentNews commentnews, ModelUnibookContainer objContex)
+        public static void Insertar(CommentNewsDto commentnewsdto, ModelUnibookContainer objContex)
         {
             try
             {
+                CommentNews commentnews = new CommentNews();
+                commentnews.Message = commentnewsdto.Message;
+                commentnews.Date = commentnewsdto.Date;
+                commentnews.Deleted = commentnewsdto.Deleted;
                 CommentNewDal.Insert(commentnews, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 
         /// <summary>
+        /// Get a CommentNews with identifier
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
+        public static CommentNewsDto GetDto(int id, ModelUnibookContainer objContex)
+        {
+            CommentNewsDto commentnewsdto = null;
+            try
+            {
+                CommentNews commentnews = CommentNewDal.Get(id, objContex);
+                commentnewsdto = new CommentNewsDto();
+                
+                commentnewsdto.Message = commentnews.Message;
+                commentnewsdto.Date = commentnews.Date;
+                commentnewsdto.Deleted = commentnews.Deleted;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return commentnewsdto;
+        }
+
         /// Get a CommentNews with identifier
         /// </summary>
         /// <param name="id"></param>
@@ -39,9 +69,9 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
             {
                 return CommentNewDal.Get(id, objContex);
             }
-            catch (Exception)
+            catch (Exception )
             {
-
+                
             }
 
             return null;
@@ -52,17 +82,23 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
         /// </summary>
         /// <param name="CommentNews"></param>
         /// <param name="objContex"></param>
-        public static void Update(CommentNews commentnews, ModelUnibookContainer objContex)
+        public static void Update(CommentNewsDto commentnewsdto, ModelUnibookContainer objContex)
         {
             try
             {
+                CommentNews commentnews = CommentNewDal.Get(commentnewsdto.CommentId, objContex);
+                commentnews.Message = commentnewsdto.Message;
+                commentnews.Date = commentnewsdto.Date;
+                commentnews.Deleted = commentnewsdto.Deleted;
                 CommentNewDal.Update(commentnews, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                throw ex;
 
             }
         }
+
 
         /// <summary>
         /// Deleted a CommentNews

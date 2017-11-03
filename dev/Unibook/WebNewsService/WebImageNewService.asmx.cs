@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
 
 namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
@@ -18,14 +19,13 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     // [System.Web.Script.Services.ScriptService]
     public class WebImageNewService : System.Web.Services.WebService
     {
-
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
-        public void InsertImageNew(ImageNews imagenew)
+        public void InsertImageNew(ImageNewsDto imagenewdto)
         {
             try
             {
-                ImageNewBrl.Insertar(imagenew, dbcontext);
+                ImageNewBrl.Insertar(imagenewdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -34,18 +34,18 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public void UpdateImageNew(ImageNews imagenew)
+        public void UpdateImageNew(ImageNewsDto imagenewsdto)
         {
             try
             {
-                ImageNewBrl.Update(imagenew, dbcontext);
+                ImageNewBrl.Update(imagenewsdto, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        
+
         [WebMethod]
         public void DeleteImageNew(int id)
         {
@@ -60,19 +60,19 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public ImageNews GetImageNew(int id)
+        public ImageNewsDto GetImageNew(int id)
         {
-            ImageNews imagenew = null;
+            ImageNewsDto imagenewsdto = null;
             try
             {
-                imagenew = ImageNewBrl.Get(id, dbcontext);
+                imagenewsdto = ImageNewBrl.GetDto(id, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return imagenew;
+            return imagenewsdto;
 
         }
     }

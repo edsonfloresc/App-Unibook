@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.NewsDal;
-
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
 {
     public class NewBrl
@@ -15,16 +15,52 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
         /// </summary>
         /// <param name="News"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(News news, ModelUnibookContainer objContex)
+        public static void Insertar(NewsDto newsdto, ModelUnibookContainer objContex)
         {
             try
             {
+                News news = new News();
+                news.Title = newsdto.Title;
+                news.Detail = newsdto.Detail;
+                news.PublicationNews = newsdto.PublicationNews;
+                news.DateNews = newsdto.DateNews;
+                news.Discontinued = newsdto.Discontinued;
+                news.Deleted = newsdto.Deleted;
                 NewDal.Insert(news, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
+        }
+
+        /// <summary>
+        /// Get a News with identifier
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
+        public static NewsDto GetDto(int id, ModelUnibookContainer objContex)
+        {
+            NewsDto newsdto = null;
+            try
+            {
+                News news = NewDal.Get(id, objContex);
+                newsdto = new NewsDto();
+                newsdto.Title = news.Title;
+                newsdto.Detail = news.Detail;
+                newsdto.DateNews = news.DateNews;
+                newsdto.PublicationNews = news.PublicationNews;
+                newsdto.Discontinued = news.Discontinued;
+                newsdto.Deleted = news.Deleted;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return newsdto;
         }
 
         /// <summary>
@@ -52,15 +88,22 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsBrl
         /// </summary>
         /// <param name="News"></param>
         /// <param name="objContex"></param>
-        public static void Update(News news, ModelUnibookContainer objContex)
+        public static void Update(NewsDto newsdto, ModelUnibookContainer objContex)
         {
             try
             {
+                News news = NewDal.Get(newsdto.NewsId, objContex);
+                news.Title = newsdto.Title;
+                news.Detail = newsdto.Detail;
+                news.DateNews = newsdto.DateNews;
+                news.PublicationNews = newsdto.PublicationNews;
+                news.Discontinued = newsdto.Discontinued;
+                news.Deleted = newsdto.Deleted;
                 NewDal.Update(news, objContex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 

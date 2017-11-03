@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
 {
@@ -21,11 +22,11 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
 
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
-        public void InsertCategoryNew(CategoryNews categorynew)
+        public void InsertCategoryNew(CategoryNewsDto categorynewdto)
         {
             try
             {
-                CategoryNewBrl.Insertar(categorynew, dbcontext);
+                CategoryNewBrl.Insertar(categorynewdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -34,11 +35,11 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public void UpdateCategoryNew(CategoryNews categorynews)
+        public void UpdateCategoryNew(CategoryNewsDto categorynewsdto)
         {
             try
             {
-                CategoryNewBrl.Update(categorynews, dbcontext);
+                CategoryNewBrl.Update(categorynewsdto, dbcontext);
             }
             catch (Exception ex)
             {
@@ -60,19 +61,19 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
         }
 
         [WebMethod]
-        public CategoryNews GetCategoryNew(int id)
+        public CategoryNewsDto GetCategoryNew(int id)
         {
-            CategoryNews categorynews = null;
+            CategoryNewsDto categorynewsdto = null;
             try
             {
-                categorynews = CategoryNewBrl.Get(id, dbcontext);
+                categorynewsdto = CategoryNewBrl.GetDto(id, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return categorynews;
+            return categorynewsdto;
 
         }
     }

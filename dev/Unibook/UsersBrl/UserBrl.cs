@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
+
 using UsersDal;
 
 namespace UsersBrl
@@ -45,6 +47,33 @@ namespace UsersBrl
             }
 
             return null;
+        }
+        /// <summary>
+        /// GetDto a User with identifier
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
+        public static UserDto GetDto(int id, ModelUnibookContainer objContex)
+        {
+            UserDto userdto = null;
+            try
+            {
+                User user = UserDal.Get(id, objContex);
+                userdto = new UserDto();
+                
+                userdto.Email = user.Email;
+                userdto.Password = user.Password;
+                userdto.RoleId = user.RoleId;
+                userdto.Deleted = user.Deleted;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return userdto;
         }
 
         /// <summary>

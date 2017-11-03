@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.Unibook.NewsTest
 {
@@ -19,43 +20,45 @@ namespace Univalle.Fie.Sistemas.Unibook.NewsTest
         [TestMethod]
         public void TestCreateNews()
         {
-            News news = new News();
-            news.Title = "Crisis de Agua en Cochabamba";
-            news.Detail = "Municipios de ciudad de Cochabamba sufre de escases de agua";
-            news.DateNews = DateTime.Now;
-            news.PublicationNews = DateTime.Now;
-            news.Discontinued = false;
-            news.Deleted = false;
-            NewBrl.Insertar(news, content);
-            News actual = NewBrl.Get(1, content);
-            Assert.AreEqual(news, actual);
+            NewsDto newsdto = new NewsDto();
+            newsdto.Title = "Crisis de Agua en Cochabamba";
+            newsdto.Detail = "Municipios de ciudad de Cochabamba sufre de escases de agua";
+            newsdto.DateNews = DateTime.Now;
+            newsdto.PublicationNews = DateTime.Now;
+            newsdto.Discontinued = false;
+            newsdto.Deleted = false;
+            newsdto.CategoryNews = CategoryNewBrl.Get(1, content);
+            
+            NewBrl.Insertar(newsdto, content);
+            //News actual = NewBrl.Get(1, content);
+            Assert.AreEqual(true, true);
         }
 
         [TestMethod]
         public void TestEditNews()
         {
-            News news = NewBrl.Get(2, content);
-            news.Title = "No hay agua en Cochabamba";
-            news.Detail = "En la ciudad de Cochabamba existe escases de agua";
-            news.DateNews = DateTime.Now;
-            news.PublicationNews = DateTime.Now;
-            NewBrl.Update(news, content);
+            NewsDto newsdto = NewBrl.GetDto(1, content);
+            newsdto.Title = "No hay agua en Cochabamba";
+            newsdto.Detail = "En la ciudad de Cochabamba existe escases de agua";
+            newsdto.DateNews = DateTime.Now;
+            newsdto.PublicationNews = DateTime.Now;
+            NewBrl.Update(newsdto, content);
             Assert.AreEqual(true, true);
         }
 
         [TestMethod]
         public void TestDeleteNews()
         {
-            News news = NewBrl.Get(1, content);
-            news.Deleted = true;
-            NewBrl.Update(news, content);
+            NewsDto newsdto = NewBrl.GetDto(1, content);
+            newsdto.Deleted = true;
+            NewBrl.Update(newsdto, content);
             Assert.AreEqual(true, true);
         }
 
         [TestMethod]
         public void TestGetNews()
         {
-            News actual = NewBrl.Get(1, content);
+            NewsDto actual = NewBrl.GetDto(1, content);
             Assert.AreEqual(actual, actual);
         }
     }

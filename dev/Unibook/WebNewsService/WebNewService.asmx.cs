@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.Unibook.CommonDto;
 using Univalle.Fie.Sistemas.Unibook.NewsBrl;
 
 namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
@@ -20,31 +21,30 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
     {
         ModelUnibookContainer dbcontext = new ModelUnibookContainer();
         [WebMethod]
-        public void InsertNew(News news)
+        public void InsertNew(NewsDto newsdto)
         {
             try 
             {
-                NewBrl.Insertar(news, dbcontext);
+               NewBrl.Insertar(newsdto, dbcontext);
             }
             catch(Exception ex)
             {
                 throw ex;
             }
         }
+
         [WebMethod]
-        public void UpdateNew(News news)
+        public void UpdateNew(NewsDto newsdto)
         {
             try
             {
-                NewBrl.Update(news, dbcontext);
+                NewBrl.Update(newsdto, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
 
         [WebMethod]
         public void DeleteNew(int id)
@@ -59,22 +59,20 @@ namespace Univalle.Fie.Sistemas.Unibook.WebNewsService
             }
         }
 
-
-
         [WebMethod]
-        public News GetNew(int id)
+        public NewsDto GetNew(int id)
         {
-            News news = null;
+            NewsDto newsdto = null;
             try
             {
-                news = NewBrl.Get(id, dbcontext);
+                newsdto = NewBrl.GetDto(id, dbcontext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return news;
+            return newsdto;
 
         }
     }
