@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE46F7D5-471D-4C6F-B314-70CB437AADA9}</ProjectGuid>
+    <ProjectGuid>{3658E361-5374-4D0F-A334-464289C3F3BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.UniBook.Common</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.UniBook.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,61 +45,59 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="People.Context.cs">
+    <Compile Include="ModelPeopleApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>People.Context.tt</DependentUpon>
+      <DependentUpon>ModelPeopleApp.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="People.cs">
+    <Compile Include="ModelPeopleApp.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>People.tt</DependentUpon>
+      <DependentUpon>ModelPeopleApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="People.Designer.cs">
+    <Compile Include="ModelPeopleApp.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>People.edmx</DependentUpon>
+      <DependentUpon>ModelPeopleApp.edmx</DependentUpon>
     </Compile>
     <Compile Include="Person.cs">
-      <DependentUpon>People.tt</DependentUpon>
+      <DependentUpon>ModelPeopleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonType.cs">
+      <DependentUpon>ModelPeopleApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="People.edmx">
+    <EntityDeploy Include="ModelPeopleApp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>People.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelPeopleApp.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="People.edmx.diagram">
-      <DependentUpon>People.edmx</DependentUpon>
+    <None Include="ModelPeopleApp.edmx.diagram">
+      <DependentUpon>ModelPeopleApp.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="People.Context.tt">
+    <Content Include="ModelPeopleApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>People.Context.cs</LastGenOutput>
-      <DependentUpon>People.edmx</DependentUpon>
+      <LastGenOutput>ModelPeopleApp.Context.cs</LastGenOutput>
+      <DependentUpon>ModelPeopleApp.edmx</DependentUpon>
     </Content>
-    <Content Include="People.edmx.sql" />
-    <Content Include="People.tt">
+    <Content Include="ModelPeopleApp.edmx.sql" />
+    <Content Include="ModelPeopleApp.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>People.cs</LastGenOutput>
-      <DependentUpon>People.edmx</DependentUpon>
+      <LastGenOutput>ModelPeopleApp.cs</LastGenOutput>
+      <DependentUpon>ModelPeopleApp.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

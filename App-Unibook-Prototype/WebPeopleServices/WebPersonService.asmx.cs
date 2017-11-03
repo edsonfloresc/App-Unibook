@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.UniBook.Common;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.UniBook.PeopleBrl;
 
 namespace Univalle.Fie.Sistemas.UniBook.WebPeopleServices
@@ -15,14 +19,22 @@ namespace Univalle.Fie.Sistemas.UniBook.WebPeopleServices
     // [System.Web.Script.Services.ScriptService]
     public class WebPersonService : System.Web.Services.WebService
     {
-        PeopleContainer dbcontex = new PeopleContainer();
+
+        ModelPeopleAppContainer dbcontex = new ModelPeopleAppContainer();
 
 
         [WebMethod]
-        public void Insert(Person person)
+        public void Insert(PersonDto personDto)
         {
             try
             {
+                Person person = new Person();
+                person.Id = personDto.Id;
+                person.FirstName = personDto.FirstName;
+                person.LastName = personDto.LastName;
+                person.Deleted = personDto.Deleted;
+                person.PersonType = PersonTypeBrl.Get(personDto.PersonType.Id, dbcontex);
+
                 PersonBrl.Insertar(person, dbcontex);
             }
             catch (Exception ex)
@@ -34,13 +46,14 @@ namespace Univalle.Fie.Sistemas.UniBook.WebPeopleServices
 
 
         [WebMethod]
-        public void Update(Person person)
+        public void Update(PersonDto personDto)
         {
             try
             {
-                Person person1 = PersonBrl.Get(person.Id, dbcontex);
-                person1.FirstName = person.FirstName;
-                person1.LastName = person.LastName;
+                Person person = PersonBrl.Get(personDto.Id, dbcontex);
+                person.FirstName = personDto.FirstName;
+                person.LastName = personDto.LastName;
+                person.PersonType = PersonTypeBrl.Get(personDto.PersonType.Id, dbcontex);
                 PersonBrl.Update(dbcontex);
             }
             catch (Exception ex)
@@ -50,9 +63,9 @@ namespace Univalle.Fie.Sistemas.UniBook.WebPeopleServices
         }
 
 
-        
+
         [WebMethod]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             try
             {
@@ -64,22 +77,30 @@ namespace Univalle.Fie.Sistemas.UniBook.WebPeopleServices
             }
         }
 
-        
+
 
         [WebMethod]
-        public Person Get(int id)
+        public PersonDto Get(Guid id)
         {
-            Person person = null;
+            PersonDto personDto = null;
             try
             {
-                person= PersonBrl.Get(id, dbcontex);
+                Person person = PersonBrl.Get(id, dbcontex);
+                personDto = new PersonDto();
+                personDto.Id = person.Id;
+                personDto.FirstName = person.FirstName;
+                personDto.LastName = person.LastName;
+                personDto.Deleted = person.Deleted;
+                personDto.PersonType = new CommonDto.PersonTypeDto();
+                personDto.PersonType.Id = person.PersonType.Id;
+                personDto.PersonType.Name = person.PersonType.Name;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return person;
+            return personDto;
 
         }
     }
