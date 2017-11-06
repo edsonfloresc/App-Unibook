@@ -8,7 +8,7 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
 {
     public class RoleDto
     {
-        public long RoleId { get; set; }
+        public short RoleId { get; set; }
         public string Name { get; set; }
         public bool Deleted { get; set; }
     }
