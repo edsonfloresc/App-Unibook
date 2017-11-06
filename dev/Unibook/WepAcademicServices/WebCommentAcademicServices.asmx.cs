@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
+using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebCommentAcademicServices
@@ -21,11 +23,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(CommentAcademic commentAcademic)
+        public void Insert(CommentAcademicDto commentAcademicDto)
         {
             try
             {
-                CommentAcademicBrl.Insert(commentAcademic, objContex);
+                CommentAcademicBrl.Insert(commentAcademicDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,17 +36,17 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(CommentAcademic commentAcademic)
+        public void Update(CommentAcademicDto commentAcademicDto)
         {
             try
             {
-                CommentAcademic commentAcademicUpdate = CommentAcademicBrl.Get(commentAcademic.CommentAcademicId, objContex);
-                commentAcademicUpdate.Description = commentAcademic.Description;
-                commentAcademicUpdate.DateComment = commentAcademic.DateComment;
-                commentAcademicUpdate.Deleted = commentAcademic.Deleted;
-                commentAcademicUpdate.User = commentAcademic.User;
-                commentAcademic.PublicationAcademic = commentAcademic.PublicationAcademic;
-                CommentAcademicBrl.Update(objContex);
+                CommentAcademic commentAcademicUpdate = CommentAcademicBrl.Get(commentAcademicDto.CommentAcademicId, objContex);
+                commentAcademicUpdate.Description = commentAcademicDto.Description;
+                commentAcademicUpdate.DateComment = commentAcademicDto.DateComment;
+                commentAcademicUpdate.Deleted = commentAcademicDto.Deleted;
+                commentAcademicUpdate.User = UserBrl.Get((commentAcademicDto.User.UserId),objContex);
+                commentAcademicUpdate.PublicationAcademic = PublicationAcademicBrl.Get(commentAcademicDto.PublicationAcademic.PublicationAcademicId,objContex);
+                CommentAcademicBrl.Update(commentAcademicDto,objContex);
             }
             catch (Exception ex)
             {
@@ -66,20 +68,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public CommentAcademic Get(long id)
+        public CommentAcademicDto Get(long id)
         {
-            CommentAcademic commentAcademic = null;
+            CommentAcademicDto commentAcademicDto = null;
 
             try
             {
-                commentAcademic = CommentAcademicBrl.Get(id, objContex);
+                commentAcademicDto = CommentAcademicBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return commentAcademic;
+            return commentAcademicDto;
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{522788E6-8782-4E34-9F9F-D1D02249E46F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Univalle.Fie.Sistemas.Unibook.Common</RootNamespace>
-    <AssemblyName>Univalle.Fie.Sistemas.Unibook.Common</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.Common</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

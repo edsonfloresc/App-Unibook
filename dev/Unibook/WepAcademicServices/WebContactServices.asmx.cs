@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebContactServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(Contact contact)
+        public void Insert(ContactDto contactDto)
         {
             try
             {
-                ContactBrl.Insert(contact, objContex);
+                ContactBrl.Insert(contactDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,16 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(Contact contact)
+        public void Update(ContactDto contactDto)
         {
             try
-            {
-                Contact contactUpdate = ContactBrl.Get(contact.ContactId, objContex);
-                contactUpdate.Data = contact.Data;
-                contactUpdate.Description = contact.Description;
-                contactUpdate.Deleted = contact.Deleted;
-                contactUpdate.Person = contact.Person;
-                ContactBrl.Update(objContex);
+            {              
+                ContactBrl.Update(contactDto,objContex);
             }
             catch (Exception ex)
             {
@@ -65,20 +61,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public Contact Get(int id)
+        public ContactDto Get(int id)
         {
-            Contact contact = null;
+            ContactDto contactDto = null;
 
             try
             {
-                contact = ContactBrl.Get(id, objContex);
+                contactDto = ContactBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return contact;
+            return contactDto;      
         }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebSubjectCareerServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(SubjectCareer subjectCareer)
+        public void Insert(SubjectCareerDto subjectCareerDto)
         {
             try
             {
-                SubjectCareerBrl.Insert(subjectCareer, objContex);
+                SubjectCareerBrl.Insert(subjectCareerDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,14 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(SubjectCareer subjectCareer)
+        public void Update(SubjectCareerDto subjectCareerDto)
         {
             try
-            {
-                SubjectCareer subjectCareerUpdate = SubjectCareerBrl.Get(subjectCareer.SubjectCareerId, objContex);
-                subjectCareerUpdate.Career = subjectCareer.Career;
-                subjectCareerUpdate.Subject = subjectCareer.Subject;
-                SubjectCareerBrl.Update(objContex);
+            {              
+                SubjectCareerBrl.Update(subjectCareerDto,objContex);
             }
             catch (Exception ex)
             {
@@ -50,20 +48,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public SubjectCareer Get(int id)
+        public SubjectCareerDto Get(int id)
         {
-            SubjectCareer subjectCareer = null;
+            SubjectCareerDto subjectCareerDto = null;
 
             try
             {
-                subjectCareer = SubjectCareerBrl.Get(id, objContex);
+                subjectCareerDto = SubjectCareerBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return subjectCareer;
+            return subjectCareerDto;
         }
     }
 }

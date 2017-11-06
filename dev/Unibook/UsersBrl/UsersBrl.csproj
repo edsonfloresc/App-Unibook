@@ -7,10 +7,11 @@
     <ProjectGuid>{D977D4A1-464C-4843-9BB7-15EC085825E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UsersBrl</RootNamespace>
-    <AssemblyName>UsersBrl</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UsersBrl</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UsersBrl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,12 +49,17 @@
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
+    <Compile Include="GenderBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
     <Compile Include="UserBrl.cs" />
     <Compile Include="UserCareerBrl.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
+      <Project>{17165d06-e183-4622-8d0c-b1f4dc6aaf5c}</Project>
+      <Name>CommonDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
       <Name>Common</Name>

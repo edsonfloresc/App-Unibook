@@ -4,7 +4,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 
 namespace Univalle.Fie.Sistemas.UniBook.AcademicDal
 {
@@ -16,6 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.AcademicDal
         /// Get category by id
         /// </summary>
         /// <param name="id">Id category to search</param>
+        /// <param name="objContex">Get table to object</param>
         /// <returns>Return object category</returns>
         public static CategoryAcademic Get(int id, ModelUnibookContainer objContex)
         {

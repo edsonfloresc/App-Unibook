@@ -4,8 +4,9 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicDal;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.UniBook.AcademicBrl
 {
@@ -18,10 +19,15 @@ namespace Univalle.Fie.Sistemas.UniBook.AcademicBrl
         /// </summary>
         /// <param name="categoryAcademic">Object subject to insert</param>
         /// <param name="objContex">Get table to object</param>
-        public static void Insert(Subject subject, ModelUnibookContainer objContex)
+        public static void Insert(SubjectDto subjectDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Subject subject = new Subject();
+                subject.SubjectId = subjectDto.SubjectId;
+                subject.Name = subjectDto.Name;
+                subject.Description = subjectDto.Description;
+                subject.Deleted = subjectDto.Deleted;
                 SubjectDal.Insert(subject, objContex);
             }
             catch (DbEntityValidationException ex)
@@ -61,13 +67,48 @@ namespace Univalle.Fie.Sistemas.UniBook.AcademicBrl
         }
 
         /// <summary>
+        /// Get subject by id dto
+        /// </summary>
+        /// <param name="id">Id subject to search</param>
+        /// <param name="objContex">Get table to object</param>
+        /// <returns>Return object subject</returns>
+        public static SubjectDto GetDto(int id, ModelUnibookContainer objContex)
+        {
+            SubjectDto subjectDto = null;
+
+            try
+            {
+                Subject subject = SubjectDal.Get(id, objContex);
+                subjectDto = new SubjectDto();
+                subjectDto.SubjectId = subject.SubjectId;
+                subjectDto.Name = subject.Name;
+                subjectDto.Description = subject.Description;
+                subjectDto.Deleted = subject.Deleted;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return subjectDto;
+        }
+
+        /// <summary>
         /// Update a subject
         /// </summary>
         /// <param name="objContex">Get table to object</param> 
-        public static void Update(ModelUnibookContainer objContex)
+        public static void Update(SubjectDto subjectDto, ModelUnibookContainer objContex)
         {
             try
             {
+                Subject subject = SubjectBrl.Get(subjectDto.SubjectId, objContex);
+                subject.Name = subjectDto.Name;
+                subject.Description = subjectDto.Description;
+                subject.Deleted = subjectDto.Deleted;
                 SubjectDal.Update(objContex);
             }
             catch (DbEntityValidationException ex)

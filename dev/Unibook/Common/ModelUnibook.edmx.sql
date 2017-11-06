@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/15/2017 17:56:44
+-- Date Created: 11/02/2017 20:37:47
 -- Generated from EDMX file: E:\Proyectos\UniBook-Asp.Net\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -132,7 +132,7 @@ GO
 
 -- Creating table 'CareerSet'
 CREATE TABLE [dbo].[CareerSet] (
-    [CareerId] smallint IDENTITY(1,1) NOT NULL,
+    [CareerId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Faculty_FacultyId] smallint  NOT NULL
@@ -159,7 +159,7 @@ GO
 CREATE TABLE [dbo].[UserCareerSet] (
     [UserCareerId] bigint IDENTITY(1,1) NOT NULL,
     [User_UserId] bigint  NOT NULL,
-    [Career_CareerId] smallint  NOT NULL
+    [Career_CareerId] int  NOT NULL
 );
 GO
 
@@ -229,7 +229,7 @@ CREATE TABLE [dbo].[PublicationMatterCareerFacultySet] (
     [PublicationMatterCareerFacultyId] int IDENTITY(1,1) NOT NULL,
     [PublicationAcademic_PublicationAcademicId] bigint  NOT NULL,
     [Subject_SubjectId] smallint  NOT NULL,
-    [Career_CareerId] smallint  NOT NULL,
+    [Career_CareerId] int  NOT NULL,
     [Faculty_FacultyId] smallint  NOT NULL
 );
 GO
@@ -246,7 +246,7 @@ GO
 -- Creating table 'SubjectCareerSet'
 CREATE TABLE [dbo].[SubjectCareerSet] (
     [SubjectCareerId] int IDENTITY(1,1) NOT NULL,
-    [Career_CareerId] smallint  NOT NULL,
+    [Career_CareerId] int  NOT NULL,
     [Subject_SubjectId] smallint  NOT NULL
 );
 GO

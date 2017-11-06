@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebPublicationAcademicServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(PublicationAcademic publicationAcademic)
+        public void Insert(PublicationAcademicDto publicationAcademicDto)
         {
             try
             {
-                PublicationAcademicBrl.Insert(publicationAcademic, objContex);
+                PublicationAcademicBrl.Insert(publicationAcademicDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,18 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(PublicationAcademic publicationAcademic)
+        public void Update(PublicationAcademicDto publicationAcademicDto)
         {
             try
-            {
-                PublicationAcademic publicationAcademicUpdate = PublicationAcademicBrl.Get(publicationAcademic.PublicationAcademicId, objContex);
-                publicationAcademicUpdate.Description = publicationAcademic.Description;
-                publicationAcademicUpdate.Image = publicationAcademic.Image;
-                publicationAcademicUpdate.DatePublication = publicationAcademic.DatePublication;
-                publicationAcademicUpdate.Deleted = publicationAcademic.Deleted;
-                publicationAcademicUpdate.CategoryAcademic = publicationAcademic.CategoryAcademic;
-                publicationAcademicUpdate.User = publicationAcademic.User;
-                PublicationAcademicBrl.Update(objContex);
+            {              
+                PublicationAcademicBrl.Update(publicationAcademicDto,objContex);
             }
             catch (Exception ex)
             {
@@ -67,20 +61,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public PublicationAcademic Get(long id)
+        public PublicationAcademicDto Get(long id)
         {
-            PublicationAcademic publicationAcademic = null;
+            PublicationAcademicDto publicationAcademicDto = null;
 
             try
             {
-                publicationAcademic = PublicationAcademicBrl.Get(id, objContex);
+                publicationAcademicDto = PublicationAcademicBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return publicationAcademic;
+            return publicationAcademicDto;
         }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Univalle.Fie.Sistemas.Unibook.Common
+namespace Univalle.Fie.Sistemas.UniBook.Common
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
             this.PublicationMatterCareerFaculty = new HashSet<PublicationMatterCareerFaculty>();
         }
     
-        public short CareerId { get; set; }
+        public int CareerId { get; set; }
         public string Name { get; set; }
         public bool Deleted { get; set; }
     

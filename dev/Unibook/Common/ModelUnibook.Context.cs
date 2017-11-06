@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Univalle.Fie.Sistemas.Unibook.Common
+namespace Univalle.Fie.Sistemas.UniBook.Common
 {
     using System;
     using System.Data.Entity;

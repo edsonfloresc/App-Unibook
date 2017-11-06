@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebPublicationMatterCareerFacultyServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(PublicationMatterCareerFaculty publicationMatterCareerFaculty)
+        public void Insert(PublicationMatterCareerFacultyDto publicationMatterCareerFacultyDto)
         {
             try
             {
-                PublicationMatterCareerFacultyBrl.Insert(publicationMatterCareerFaculty, objContex);
+                PublicationMatterCareerFacultyBrl.Insert(publicationMatterCareerFacultyDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,16 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(PublicationMatterCareerFaculty publicationMatterCareerFaculty)
+        public void Update(PublicationMatterCareerFacultyDto publicationMatterCareerFacultyDto)
         {
             try
-            {
-                PublicationMatterCareerFaculty publicationMatterCareerFacultyUpdate = PublicationMatterCareerFacultyBrl.Get(publicationMatterCareerFaculty.PublicationMatterCareerFacultyId, objContex);
-                publicationMatterCareerFacultyUpdate.PublicationAcademic = publicationMatterCareerFaculty.PublicationAcademic;
-                publicationMatterCareerFacultyUpdate.Subject = publicationMatterCareerFaculty.Subject;
-                publicationMatterCareerFacultyUpdate.Career = publicationMatterCareerFaculty.Career;
-                publicationMatterCareerFacultyUpdate.Faculty = publicationMatterCareerFaculty.Faculty;
-                PublicationMatterCareerFacultyBrl.Update(objContex);
+            {              
+                PublicationMatterCareerFacultyBrl.Update(publicationMatterCareerFacultyDto,objContex);
             }
             catch (Exception ex)
             {
@@ -52,20 +48,20 @@ namespace WepAcademicServices
         }
       
         [WebMethod]
-        public PublicationMatterCareerFaculty Get(int id)
+        public PublicationMatterCareerFacultyDto Get(int id)
         {
-            PublicationMatterCareerFaculty publicationMatterCareerFaculty = null;
+            PublicationMatterCareerFacultyDto publicationMatterCareerFacultyDto = null;
 
             try
             {
-                publicationMatterCareerFaculty = PublicationMatterCareerFacultyBrl.Get(id, objContex);
+                publicationMatterCareerFacultyDto = PublicationMatterCareerFacultyBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return publicationMatterCareerFaculty;
+            return publicationMatterCareerFacultyDto;
         }
     }
 }

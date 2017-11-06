@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 
-namespace UsersDal
+namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
     public class UserCareerDal
     {
-        #region metodos
-
+        #region Methods
         /// <summary>
         /// Get user career by id
         /// </summary>
         /// <param name="id">Id user career to search</param>
         /// <returns></returns>
-        public static UserCareer Get(int id, ModelUnibookContainer objContex)
+        public static UserCareer Get(long id, ModelUnibookContainer objContex)
         {
             UserCareer userCareerReturn = null;
 
@@ -29,6 +28,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
 
@@ -49,6 +49,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }
@@ -66,6 +67,7 @@ namespace UsersDal
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
         }

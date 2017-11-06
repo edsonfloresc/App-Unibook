@@ -48,23 +48,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryAcademicBrl.cs" />
+    <Compile Include="CategoryAcademicListBrl.cs" />
     <Compile Include="CommentAcademicBrl.cs" />
+    <Compile Include="CommentAcademicListBrl.cs" />
     <Compile Include="ContactBrl.cs" />
+    <Compile Include="ContactListBrl.cs" />
     <Compile Include="PersonBrl.cs" />
+    <Compile Include="PersonListBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationAcademicBrl.cs" />
+    <Compile Include="PublicationAcademicListBrl.cs" />
     <Compile Include="PublicationMatterCareerFacultyBrl.cs" />
     <Compile Include="SubjectBrl.cs" />
     <Compile Include="SubjectCareerBrl.cs" />
+    <Compile Include="SubjectListBrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AcademicDal\AcademicDal.csproj">
       <Project>{17554c04-e2b9-45ca-8e48-ddb849b57012}</Project>
       <Name>AcademicDal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
+      <Project>{17165d06-e183-4622-8d0c-b1f4dc6aaf5c}</Project>
+      <Name>CommonDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
+      <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
+      <Name>UsersBrl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

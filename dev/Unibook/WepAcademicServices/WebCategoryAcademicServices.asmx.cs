@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using System.Xml.Serialization;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
-    /// Descripción breve de WebCategoryAcademicService
+    /// Descripción breve de WebCategoryAcademicServices
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -21,11 +23,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(CategoryAcademic categoryAcademic)
+        public void Insert(CategoryAcademicDto categoryAcademicDto)
         {
             try
             {
-                CategoryAcademicBrl.Insert(categoryAcademic, objContex);
+                CategoryAcademicBrl.Insert(categoryAcademicDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,15 +36,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(CategoryAcademic categoryAcademic)
+        public void Update(CategoryAcademicDto categoryAcademicDto)
         {
             try
             {
-                CategoryAcademic categoryAcademicUpdate = CategoryAcademicBrl.Get(categoryAcademic.CategoryAcademicId, objContex);
-                categoryAcademicUpdate.Name = categoryAcademic.Name;
-                categoryAcademicUpdate.Description = categoryAcademic.Description;
-                categoryAcademicUpdate.Deleted = categoryAcademic.Deleted;
-                CategoryAcademicBrl.Update(objContex);
+                CategoryAcademicBrl.Update(categoryAcademicDto,objContex);
             }
             catch (Exception ex)
             {
@@ -55,7 +53,7 @@ namespace WepAcademicServices
         {
             try
             {
-                CategoryAcademicBrl.Delete(id,objContex);
+                CategoryAcademicBrl.Delete(id, objContex);
             }
             catch (Exception ex)
             {
@@ -64,20 +62,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public CategoryAcademic Get(int id)
+        public CategoryAcademicDto Get(int id)
         {
-            CategoryAcademic categoryAcademic = null;
+            CategoryAcademicDto categoryAcademicDto = null;
 
             try
             {
-                categoryAcademic = CategoryAcademicBrl.Get(id, objContex);
+                categoryAcademicDto = CategoryAcademicBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return categoryAcademic;
+            return categoryAcademicDto;
         }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebPersonServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(Person person)
+        public void Insert(PersonDto personDto)
         {
             try
             {
-                PersonBrl.Insert(person, objContex);
+                PersonBrl.Insert(personDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,17 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(Person person)
+        public void Update(PersonDto personDto)
         {
             try
-            {
-                Person personUpdate = PersonBrl.Get(person.PersonId, objContex);
-                personUpdate.Name = person.Name;
-                personUpdate.LastName = person.LastName;
-                personUpdate.BirthDay = person.BirthDay;
-                personUpdate.Deleted = person.Deleted;
-                personUpdate.Gender = person.Gender;
-                PersonBrl.Update(objContex);
+            {             
+                PersonBrl.Update(personDto,objContex);
             }
             catch (Exception ex)
             {
@@ -66,20 +61,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public Person Get(long id)
+        public PersonDto Get(long id)
         {
-            Person person = null;
+            PersonDto personDto = null;
 
             try
             {
-                person = PersonBrl.Get(id, objContex);
+                personDto = PersonBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return person;
+            return personDto;
         }
     }
 }

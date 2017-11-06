@@ -2,11 +2,12 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
-using UsersBrl;
+using Univalle.Fie.Sistemas.UniBook.UsersBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace UniTestAcademic
+namespace Univalle.Fie.Sistemas.UniBook.UniTestAcademic
 {
     /// <summary>
     /// Descripción resumida de UnitTestSubjectCareer
@@ -17,15 +18,17 @@ namespace UniTestAcademic
         [TestMethod]
         public void TestMethodBrl()
         {
-            SubjectCareer subjectCareer = new SubjectCareer() { };
+            SubjectCareerDto subjectCareerDto = new SubjectCareerDto();
             ModelUnibookContainer objContex = new ModelUnibookContainer();
-            subjectCareer.Subject = SubjectBrl.Get(1, objContex);
-            subjectCareer.Career = CareerBrl.Get(1, objContex);
-            SubjectCareerBrl.Insert(subjectCareer, objContex);
+            subjectCareerDto.Subject = SubjectBrl.GetDto(1, objContex);
+            subjectCareerDto.Career = CareerBrl.GetDto(1, objContex);
+            SubjectCareerBrl.Insert(subjectCareerDto, objContex);
 
-            SubjectCareer subjectCareerGet = SubjectCareerBrl.Get(1, objContex);
+            SubjectCareerDto subjectCareerGetDto = SubjectCareerBrl.GetDto(1, objContex);
+            subjectCareerGetDto.Subject = SubjectBrl.GetDto(2, objContex);
+            subjectCareerGetDto.Career = CareerBrl.GetDto(2, objContex);
 
-            SubjectCareerBrl.Update(objContex);
+            SubjectCareerBrl.Update(subjectCareerGetDto,objContex);
         }
     }
 }

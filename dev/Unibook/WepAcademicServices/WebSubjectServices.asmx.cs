@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.Common;
 using Univalle.Fie.Sistemas.UniBook.AcademicBrl;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
-namespace WepAcademicServices
+namespace Univalle.Fie.Sistemas.UniBook.WepAcademicServices
 {
     /// <summary>
     /// Descripción breve de WebSubjectServices
@@ -21,11 +22,11 @@ namespace WepAcademicServices
         ModelUnibookContainer objContex = new ModelUnibookContainer();
 
         [WebMethod]
-        public void Insert(Subject subject)
+        public void Insert(SubjectDto subjectDto)
         {
             try
             {
-                SubjectBrl.Insert(subject, objContex);
+                SubjectBrl.Insert(subjectDto, objContex);
             }
             catch (Exception ex)
             {
@@ -34,15 +35,11 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public void Update(Subject subject)
+        public void Update(SubjectDto subjectDto)
         {
             try
-            {
-                Subject subjectUpdate = SubjectBrl.Get(subject.SubjectId, objContex);
-                subjectUpdate.Name = subject.Name;
-                subjectUpdate.Description = subject.Description;
-                subjectUpdate.Deleted = subject.Deleted;
-                SubjectBrl.Update(objContex);
+            {                
+                SubjectBrl.Update(subjectDto,objContex);
             }
             catch (Exception ex)
             {
@@ -64,20 +61,20 @@ namespace WepAcademicServices
         }
 
         [WebMethod]
-        public Subject Get(int id)
+        public SubjectDto Get(int id)
         {
-            Subject subject = null;
+            SubjectDto subjectDto = null;
 
             try
             {
-                subject = SubjectBrl.Get(id, objContex);
+                subjectDto = SubjectBrl.GetDto(id, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return subject;
+            return subjectDto;
         }
     }
 }

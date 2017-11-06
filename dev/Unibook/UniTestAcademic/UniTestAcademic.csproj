@@ -7,8 +7,8 @@
     <ProjectGuid>{03B2FADE-1E51-4684-A1B2-AE04096A54DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniTestAcademic</RootNamespace>
-    <AssemblyName>UniTestAcademic</AssemblyName>
+    <RootNamespace>Univalle.Fie.Sistemas.UniBook.UniTestAcademic</RootNamespace>
+    <AssemblyName>Univalle.Fie.Sistemas.UniBook.UniTestAcademic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,8 +53,81 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServiceReferenceCategoryAcademicList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceCategoryAcademic\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceCommentAcademicList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceCommentAcademic\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceContactList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceContact\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferencePersonList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferencePerson\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferencePublicationAcademicList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferencePublicationAcademic\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceSubjectCareer\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceSubjectList\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReferenceSubject\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestCategoryAcademic.cs" />
     <Compile Include="UnitTestCommentAcademic.cs" />
@@ -66,13 +139,162 @@
     <Compile Include="UnitTestSubjectCareer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademicList.CategoryAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademicList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\WebCategoryAcademicListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademic.CategoryAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademic.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademic.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCategoryAcademic.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\WebCategoryAcademicServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademicList.CommentAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademicList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\WebCommentAcademicListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademic.CommentAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademic.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademic.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceCommentAcademic.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\WebCommentAcademicServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceContactList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContactList.ContactDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContactList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContactList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContactList\WebContactListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceContact\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContact.ContactDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContact\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContact.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContact\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContact.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContact\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferenceContact.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceContact\WebContactServices.wsdl" />
+    <None Include="Connected Services\ServiceReferencePersonList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePersonList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePersonList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePersonList.PersonDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePersonList\WebPersonListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferencePerson\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePerson.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePerson\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePerson.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePerson\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePerson.PersonDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePerson\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePerson.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePerson\WebPersonServices.wsdl" />
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademicList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademicList.PublicationAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\WebPublicationAcademicListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademic.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademic.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademic.PublicationAcademicDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationAcademic.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\WebPublicationAcademicServices.wsdl" />
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationMatterCareerFaculty.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationMatterCareerFaculty.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\Univalle.Fie.Sistemas.UniBook.UniTestAcademic.ServiceReferencePublicationMatterCareerFaculty.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\WebPublicationMatterCareerFacultyServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\UniTestAcademic.ServiceReferenceSubjectCareer.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\UniTestAcademic.ServiceReferenceSubjectCareer.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\UniTestAcademic.ServiceReferenceSubjectCareer.SubjectCareerDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\UniTestAcademic.ServiceReferenceSubjectCareer.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\WebSubjectCareerServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceSubjectList\UniTestAcademic.ServiceReferenceSubjectList.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectList\UniTestAcademic.ServiceReferenceSubjectList.SubjectDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubjectList\WebSubjectListServices.wsdl" />
+    <None Include="Connected Services\ServiceReferenceSubject\UniTestAcademic.ServiceReferenceSubject.GetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubject\UniTestAcademic.ServiceReferenceSubject.InsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubject\UniTestAcademic.ServiceReferenceSubject.SubjectDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubject\UniTestAcademic.ServiceReferenceSubject.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceSubject\WebSubjectServices.wsdl" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AcademicBrl\AcademicBrl.csproj">
       <Project>{fc48e92a-bffb-4e50-b147-e5e4f377e71c}</Project>
       <Name>AcademicBrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDto\CommonDto.csproj">
+      <Project>{17165d06-e183-4622-8d0c-b1f4dc6aaf5c}</Project>
+      <Name>CommonDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
@@ -82,6 +304,235 @@
       <Project>{d977d4a1-464c-4843-9bb7-15ec085825e8}</Project>
       <Name>UsersBrl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceCategoryAcademicList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceCategoryAcademic\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceCommentAcademicList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceCommentAcademic\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceContactList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceContact\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferencePersonList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferencePerson\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferencePublicationAcademicList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferencePublicationAcademic\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceSubjectCareer\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceSubjectList\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceSubject\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\WebCategoryAcademicServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademic\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\WebCategoryAcademicListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCategoryAcademicList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\WebCommentAcademicServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademic\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\WebCommentAcademicListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceCommentAcademicList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContactList\WebContactListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContactList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContactList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContactList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContact\WebContactServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContact\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContact\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceContact\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePerson\WebPersonServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePerson\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePerson\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePerson\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePersonList\WebPersonListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePersonList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePersonList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePersonList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\WebPublicationAcademicServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademic\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\WebPublicationAcademicListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationAcademicList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubject\WebSubjectServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubject\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubject\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubject\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectList\WebSubjectListServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectList\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectList\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectList\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\WebPublicationMatterCareerFacultyServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferencePublicationMatterCareerFaculty\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\WebSubjectCareerServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceSubjectCareer\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

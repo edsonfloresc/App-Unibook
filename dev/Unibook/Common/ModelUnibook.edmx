@@ -103,7 +103,7 @@
     <Key>
       <PropertyRef Name="CareerId" />
     </Key>
-    <Property Name="CareerId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="Faculty_FacultyId" Type="smallint" Nullable="false" />
@@ -130,7 +130,7 @@
     </Key>
     <Property Name="UserCareerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User_UserId" Type="bigint" Nullable="false" />
-    <Property Name="Career_CareerId" Type="smallint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="GenderSet">
     <Key>
@@ -200,7 +200,7 @@
     <Property Name="PublicationMatterCareerFacultyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PublicationAcademic_PublicationAcademicId" Type="bigint" Nullable="false" />
     <Property Name="Subject_SubjectId" Type="smallint" Nullable="false" />
-    <Property Name="Career_CareerId" Type="smallint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
     <Property Name="Faculty_FacultyId" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="SubjectSet">
@@ -217,7 +217,7 @@
       <PropertyRef Name="SubjectCareerId" />
     </Key>
     <Property Name="SubjectCareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Career_CareerId" Type="smallint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
     <Property Name="Subject_SubjectId" Type="smallint" Nullable="false" />
   </EntityType>
   <Association Name="UserUserCareer">
@@ -530,7 +530,7 @@
           <Key>
             <PropertyRef Name="CareerId" />
           </Key>
-          <Property Name="CareerId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CareerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.CareerUserCareer" FromRole="Career" ToRole="UserCareer" />
