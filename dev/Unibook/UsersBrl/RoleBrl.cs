@@ -38,7 +38,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
-        public static Role Get(long id, ModelUnibookContainer objContex)
+        public static Role Get(short id, ModelUnibookContainer objContex)
         {
             Role role = null;
             try
@@ -59,7 +59,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
-        public static RoleDto GetDto(long id, ModelUnibookContainer objContex)
+        public static RoleDto GetDto(short id, ModelUnibookContainer objContex)
         {
             RoleDto roleDto = null;
             try
@@ -103,7 +103,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Delete(long id, ModelUnibookContainer objContex)
+        public static void Delete(short id, ModelUnibookContainer objContex)
         {
             try
             {

@@ -54,7 +54,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
 
 
         [WebMethod]
-        public void Delete(long id)
+        public void Delete(short id)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
 
 
         [WebMethod]
-        public RoleDto Get(long id)
+        public RoleDto Get(short id)
         {
             RoleDto roleDto = null;
             try
