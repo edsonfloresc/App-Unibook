@@ -78,8 +78,8 @@ namespace Univalle.Fie.Sistemas.UniBook.NewsTest
             //newsdto.CategoryNews = CategoryNewBrl.Get(1, content);
 
             NewBrl.Insertar(newsdto, content);
-            //News actual = NewBrl.Get(1, content);
-            Assert.AreEqual(true, true);
+            News actual = NewBrl.Get(1, content);
+            Assert.AreEqual(content, actual);
         }
 
         [TestMethod]

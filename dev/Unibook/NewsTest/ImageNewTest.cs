@@ -69,8 +69,8 @@ namespace Univalle.Fie.Sistemas.UniBook.NewsTest
                 imagenewdto.PathImage = "";
                 imagenewdto.Deleted = false;
                 ImageNewBrl.Insertar(imagenewdto, content);
-                //ImageNews actual = ImageNewBrl.Get(1, content);
-                Assert.AreEqual(content, content);
+                ImageNews actual = ImageNewBrl.Get(1, content);
+                Assert.AreEqual(content, actual);
 
             }
 

@@ -70,8 +70,8 @@ namespace Univalle.Fie.Sistemas.UniBook.NewsTest
             commentnewdto.Date = DateTime.Now;
             commentnewdto.Deleted = false;
             CommentNewBrl.Insertar(commentnewdto, content);
-            //CommentNews actual = CommentNewBrl.Get(1, content);
-            Assert.AreEqual(content, content);
+            CommentNews actual = CommentNewBrl.Get(1, content);
+            Assert.AreEqual(content, actual);
 
         }
 

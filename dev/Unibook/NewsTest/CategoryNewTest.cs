@@ -70,8 +70,8 @@ namespace Univalle.Fie.Sistemas.UniBook.NewsTest
             categorynewdto.NameCategory = "Deporte";
             categorynewdto.Deleted = false;
             CategoryNewBrl.Insertar(categorynewdto, content);
-            //CategoryNews actual = CategoryNewBrl.Get(3, content);
-            Assert.AreEqual(true, true);
+            CategoryNews actual = CategoryNewBrl.Get(3, content);
+            Assert.AreEqual(content, actual);
         }
         [TestMethod]
         public void TestEditCategoryNew()
