@@ -52,7 +52,6 @@
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="Role_RoleId" Type="smallint" Nullable="false" />
-    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Career">
     <Key>
@@ -101,14 +100,16 @@
     <Property Name="PersonId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="25" />
-    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="true" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="Gender_GenderId" Type="smallint" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
       <PropertyRef Name="ContactId" />
     </Key>
-    <Property Name="ContactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
@@ -187,14 +188,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonUser">
-    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="1" />
-    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="*" />
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="*" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Person">
-        <PropertyRef Name="PersonId" />
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
       </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="Person_PersonId" />
+      <Dependent Role="Person">
+        <PropertyRef Name="User_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -303,16 +304,17 @@
           <Property Name="PersonId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="25" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Contact" Relationship="ModelUnibook.PersonContact" FromRole="Person" ToRole="Contact" />
           <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderPerson" FromRole="Person" ToRole="Gender" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.PersonUser" FromRole="Person" ToRole="User" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="ContactId" />
           </Key>
-          <Property Name="ContactId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="ContactId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
@@ -344,7 +346,7 @@
         </Association>
         <Association Name="PersonUser">
           <End Type="ModelUnibook.Person" Role="Person" Multiplicity="1" />
-          <End Type="ModelUnibook.User" Role="User" Multiplicity="*" />
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -411,6 +413,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -472,12 +475,12 @@
         <ScalarProperty Name="UserCareerId" ColumnName="UserCareerId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonUser" TypeName="ModelUnibook.PersonUser" StoreEntitySet="User">
-      <EndProperty Name="Person">
-        <ScalarProperty Name="PersonId" ColumnName="Person_PersonId" />
-      </EndProperty>
+    <AssociationSetMapping Name="PersonUser" TypeName="ModelUnibook.PersonUser" StoreEntitySet="Person">
       <EndProperty Name="User">
-        <ScalarProperty Name="UserId" ColumnName="UserId" />
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonId" ColumnName="PersonId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
