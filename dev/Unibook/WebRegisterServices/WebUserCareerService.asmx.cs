@@ -28,7 +28,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
-                UserCareerBrl.Insertar(userCareerDto, dbcontex);
+                UserCareerBrl.Insert(userCareerDto, dbcontex);
             }
             catch (Exception ex)
             {

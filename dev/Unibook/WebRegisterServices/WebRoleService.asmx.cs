@@ -28,7 +28,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
-                RoleBrl.Insertar(roleDto, dbcontex);
+                RoleBrl.Insert(roleDto, dbcontex);
             }
             catch (Exception ex)
             {
@@ -84,6 +84,19 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
 
             return roleDto;
 
+        }
+
+        [WebMethod]
+        public List<RoleDto> GetAll()
+        {
+            try
+            {
+                return RoleListBrl.Get(dbcontex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

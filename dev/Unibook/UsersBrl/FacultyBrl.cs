@@ -16,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="faculty"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(FacultyDto facultyDto, ModelUnibookContainer objContex)
+        public static void Insert(FacultyDto facultyDto, ModelUnibookContainer objContex)
         {
             try
             {
