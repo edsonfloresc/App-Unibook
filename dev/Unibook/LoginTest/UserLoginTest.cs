@@ -44,7 +44,7 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginTest
             };
             UserBrl.Insertar(currentUser, container);
 
-            ChangePasswordModel user = new ChangePasswordModel()
+            PasswordDto user = new PasswordDto()
             {
                 Id = 50,
                 NewPassword = "12345",

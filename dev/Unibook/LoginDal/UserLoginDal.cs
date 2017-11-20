@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.UniBook.CommonDto.Models;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.UniBook.LoginDal
 {
@@ -18,13 +18,14 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginDal
         /// <param name="user">User</param>
         /// <param name="objContext"></param>
         /// <returns>Boolean value that represents if data it's correct or not.</returns>
-        public static bool Login(LoginModel user, ModelUnibookContainer objContext)
+        public static bool Login(UserDto user, ModelUnibookContainer objContext)
         {
             try
             {
                 User result = (from currentUser in objContext.User
                                where currentUser.Email == user.Email &&
-                               currentUser.Password == user.Password
+                               currentUser.Password == user.Password &&
+                               !currentUser.Deleted
                                select currentUser).Single();
                 return result != null ? true : false;
             }
@@ -39,7 +40,7 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginDal
         /// </summary>
         /// <param name="user">User</param>
         /// <param name="objContext"></param>
-        public static bool ChangePassword(ChangePasswordModel user, ModelUnibookContainer objContext)
+        public static bool ChangePassword(PasswordDto user, ModelUnibookContainer objContext)
         {
             try
             {

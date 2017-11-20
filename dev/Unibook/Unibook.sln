@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginBrl", "LoginBrl\LoginB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLoginServices", "WebLoginServices\WebLoginServices.csproj", "{8FF1D613-8EBB-4C25-A96C-B0D62FE07871}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppLogin", "WebAppLogin\WebAppLogin.csproj", "{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{8FF1D613-8EBB-4C25-A96C-B0D62FE07871}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF1D613-8EBB-4C25-A96C-B0D62FE07871}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF1D613-8EBB-4C25-A96C-B0D62FE07871}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{093D4B17-3BC8-4513-A540-0EDB61F20F83} = {3E3A78F9-B8FC-42F6-9434-639B21E0AA8E}
 		{267471F4-B3C7-45B0-B9D0-36AB3039C559} = {914D4E90-3C0F-40C9-BC48-D0CAC08EF788}
 		{8FF1D613-8EBB-4C25-A96C-B0D62FE07871} = {4C3E196C-A362-4F3A-9725-3EDCBD426360}
+		{705A1DA3-42DB-4CE1-873B-EDDC49D9E6D6} = {4C3E196C-A362-4F3A-9725-3EDCBD426360}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB61ACF2-A344-4BFA-A89D-C07FC752A929}

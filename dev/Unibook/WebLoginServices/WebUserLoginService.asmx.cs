@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.UniBook.CommonDto.Models;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.UniBook.LoginBrl;
 
 namespace Univalle.Fie.Sistemas.UniBook.WebLoginServices
@@ -15,14 +12,14 @@ namespace Univalle.Fie.Sistemas.UniBook.WebLoginServices
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
+    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente.
     // [System.Web.Script.Services.ScriptService]
     public class WebUserLoginService : System.Web.Services.WebService
     {
         private ModelUnibookContainer dbContext = new ModelUnibookContainer();
 
         [WebMethod]
-        public bool Login(LoginModel user)
+        public bool Login(UserDto user)
         {
             try
             {
@@ -35,7 +32,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebLoginServices
         }
 
         [WebMethod]
-        public bool ChangePassword(ChangePasswordModel user)
+        public bool ChangePassword(PasswordDto user)
         {
             try
             {
@@ -43,7 +40,6 @@ namespace Univalle.Fie.Sistemas.UniBook.WebLoginServices
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
