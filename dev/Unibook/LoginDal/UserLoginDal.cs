@@ -38,9 +38,9 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginDal
         /// <summary>
         /// Change password from user.
         /// </summary>
-        /// <param name="user">User</param>
+        /// <param name="userPassword">User password</param>
         /// <param name="objContext"></param>
-        public static bool ChangePassword(PasswordDto user, ModelUnibookContainer objContext)
+        public static bool ChangePassword(PasswordDto userPassword, ModelUnibookContainer objContext)
         {
             try
             {
