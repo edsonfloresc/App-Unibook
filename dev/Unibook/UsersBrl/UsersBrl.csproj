@@ -48,11 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
+    <Compile Include="ConctactBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
     <Compile Include="GenderBrl.cs" />
     <Compile Include="PersonBrl.cs" />
+    <Compile Include="PersonListBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
+    <Compile Include="RoleListBrl.cs" />
     <Compile Include="UserBrl.cs" />
     <Compile Include="UserCareerBrl.cs" />
   </ItemGroup>

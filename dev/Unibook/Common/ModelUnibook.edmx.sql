@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/05/2017 23:19:13
+-- Date Created: 11/17/2017 13:45:56
 -- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -36,7 +36,7 @@ IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
+    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_PersonUser];
 GO
 
 -- --------------------------------------------------
@@ -78,8 +78,7 @@ CREATE TABLE [dbo].[User] (
     [Email] nvarchar(50)  NOT NULL,
     [Password] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [Role_RoleId] smallint  NOT NULL,
-    [Person_PersonId] bigint  NOT NULL
+    [Role_RoleId] smallint  NOT NULL
 );
 GO
 
@@ -128,14 +127,16 @@ CREATE TABLE [dbo].[Person] (
     [PersonId] bigint IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(25)  NOT NULL,
     [LastName] nvarchar(25)  NOT NULL,
-    [Birthday] datetime  NOT NULL,
-    [Gender_GenderId] smallint  NOT NULL
+    [Birthday] datetime  NULL,
+    [Deleted] bit  NOT NULL,
+    [Gender_GenderId] smallint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
 );
 GO
 
 -- Creating table 'Contact'
 CREATE TABLE [dbo].[Contact] (
-    [ContactId] bigint IDENTITY(1,1) NOT NULL,
+    [ContactId] int IDENTITY(1,1) NOT NULL,
     [Data] nvarchar(max)  NOT NULL,
     [Description] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
@@ -289,19 +290,19 @@ ON [dbo].[UserCareer]
     ([Career_CareerId]);
 GO
 
--- Creating foreign key on [Person_PersonId] in table 'User'
-ALTER TABLE [dbo].[User]
+-- Creating foreign key on [User_UserId] in table 'Person'
+ALTER TABLE [dbo].[Person]
 ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([Person_PersonId])
-    REFERENCES [dbo].[Person]
-        ([PersonId])
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
 CREATE INDEX [IX_FK_PersonUser]
-ON [dbo].[User]
-    ([Person_PersonId]);
+ON [dbo].[Person]
+    ([User_UserId]);
 GO
 
 -- --------------------------------------------------

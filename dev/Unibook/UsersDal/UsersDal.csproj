@@ -50,11 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerDal.cs" />
+    <Compile Include="ContactDal.cs" />
     <Compile Include="FacultyDal.cs" />
     <Compile Include="GenderDal.cs" />
     <Compile Include="PersonDal.cs" />
+    <Compile Include="PersonListDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDal.cs" />
+    <Compile Include="RoleListDal.cs" />
     <Compile Include="UserCareerDal.cs" />
     <Compile Include="UserDal.cs" />
   </ItemGroup>
