@@ -8,21 +8,21 @@ using Univalle.Fie.Sistemas.Unibook.Common;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
-    public class RoleListDal
+    public class UserListDal
     {
         /// <summary>
         /// Get list person
         /// </summary>
         /// <param name="objContex">Get table to object</param>
         /// <returns></returns>
-        public static List<Role> Get(ModelUnibookContainer objContex)
+        public static List<User> Get(ModelUnibookContainer objContex)
         {
-            List<Role> rolesReturn = null;
+            List<User> personsReturn = null;
 
             try
             {
-                rolesReturn = (from role in objContex.Role
-                                 select role).ToList<Role>();
+                personsReturn = (from user in objContex.User
+                                 select user).ToList<User>();
             }
             catch (DbEntityValidationException ex)
             {
@@ -35,7 +35,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                 throw ex;
             }
 
-            return rolesReturn;
+            return personsReturn;
         }
     }
 }

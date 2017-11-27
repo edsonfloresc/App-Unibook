@@ -1,5 +1,6 @@
 -- Insert Role --
-
+BEGIN TRANSACTION
+BEGIN TRY
 INSERT INTO Role (Name, Deleted) VALUES ('Administrador', 0);
 INSERT INTO Role (Name, Deleted) VALUES ('Estudiante', 0);
 
@@ -29,8 +30,8 @@ INSERT INTO [dbo].[User] (Email, Password, Deleted, Role_RoleId) VALUES ('fernan
 
 INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Juanito', 'Perez', '1/01/2000', 1, 0, 1);
 INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Maria', 'Tapia', '1/05/2003', 2, 0, 2);
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Pablo', 'Rodriguez', '1/10/2005', 1, 0);
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Fernanda', 'Soliz', '1/12/2011', 2, 0);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Pablo', 'Rodriguez', '1/10/2005', 1, 0, 3);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Fernanda', 'Soliz', '1/12/2011', 2, 0, 4);
 
 -- Insert UserCareer --
 
@@ -43,3 +44,9 @@ INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('44444
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('Calle 7', 'Casa', 0, 3);
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('444444', 'Telefono', 0, 3);
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('777777', 'Celular', 0, 4);
+
+END TRY
+
+BEGIN CATCH
+	ROLLBACK TRANSACTION
+END CATCH

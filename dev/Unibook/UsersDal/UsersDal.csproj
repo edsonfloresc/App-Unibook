@@ -57,9 +57,9 @@
     <Compile Include="PersonListDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDal.cs" />
-    <Compile Include="RoleListDal.cs" />
     <Compile Include="UserCareerDal.cs" />
     <Compile Include="UserDal.cs" />
+    <Compile Include="UserListDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

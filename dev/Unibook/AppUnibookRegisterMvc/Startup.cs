@@ -43,7 +43,7 @@ namespace Univalle.Fie.Sistemas.UniBook.AppUnibookRegisterMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Faculty}/{action=Index}/{id?}");
             });
         }
     }
