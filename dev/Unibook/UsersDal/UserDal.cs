@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
+using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
@@ -41,17 +42,26 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="user"></param>
         /// <param name="objContex"></param>
-        public static void Insert(User user, ModelUnibookContainer objContex)
+        public static void Insert(User user, PasswordDto password,
+            ModelUnibookContainer objContex)
         {
-            try
+            using (var transaction = objContex.Database.BeginTransaction())
             {
-                objContex.User.Add(user);
-                objContex.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
+                try
+                {
+                    objContex.User.Add(user);
+                    objContex.SaveChanges();
+
+                    PasswordBrl.PasswordBrl.AddNewPassword(password, objContex);
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
+                    throw ex;
+                }
             }
         }
 

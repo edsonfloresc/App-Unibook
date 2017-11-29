@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/24/2017 12:11:53
+-- Date Created: 11/27/2017 11:21:57
 -- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
@@ -38,6 +38,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_PersonUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserPassword]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Passwords] DROP CONSTRAINT [FK_UserPassword];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -67,6 +70,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Contact];
 GO
+IF OBJECT_ID(N'[dbo].[Passwords]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Passwords];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -76,7 +82,6 @@ GO
 CREATE TABLE [dbo].[User] (
     [UserId] bigint IDENTITY(1,1) NOT NULL,
     [Email] nvarchar(50)  NOT NULL,
-    [Password] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Role_RoleId] smallint  NOT NULL
 );
@@ -144,6 +149,16 @@ CREATE TABLE [dbo].[Contact] (
 );
 GO
 
+-- Creating table 'Passwords'
+CREATE TABLE [dbo].[Passwords] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Psw] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [State] tinyint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -194,6 +209,12 @@ GO
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [PK_Contact]
     PRIMARY KEY CLUSTERED ([ContactId] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Passwords'
+ALTER TABLE [dbo].[Passwords]
+ADD CONSTRAINT [PK_Passwords]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -302,6 +323,21 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
 CREATE INDEX [IX_FK_PersonUser]
 ON [dbo].[Person]
+    ([User_UserId]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'Passwords'
+ALTER TABLE [dbo].[Passwords]
+ADD CONSTRAINT [FK_UserPassword]
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPassword'
+CREATE INDEX [IX_FK_UserPassword]
+ON [dbo].[Passwords]
     ([User_UserId]);
 GO
 

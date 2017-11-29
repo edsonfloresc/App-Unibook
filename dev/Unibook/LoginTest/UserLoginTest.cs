@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.UniBook.CommonDto;
-using Univalle.Fie.Sistemas.UniBook.CommonDto.Models;
 using Univalle.Fie.Sistemas.UniBook.LoginBrl;
 using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
@@ -18,17 +17,17 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginTest
         [TestMethod]
         public void TestLogin()
         {
-            LoginModel user = new LoginModel()
+            UserDto user = new UserDto()
             {
                 Email = "prueba@gmail.com",
-                Password = "Hola"
+                Password = new PasswordDto() { Psw = "hola"}
             };
             UserDto currentUser = new UserDto()
             {
                 Email = "prueba@gmail.com",
-                Password = "Hola",
+                Password = new PasswordDto() { Psw = "hola" }
             };
-            UserBrl.Insertar(currentUser, container);
+            UserBrl.Insert(currentUser, container);
 
             Assert.Equals(true, UserLoginBrl.Login(user, container));
         }
@@ -39,16 +38,16 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginTest
             UserDto currentUser = new UserDto()
             {
                 Email = "prueba@gmail.com",
-                Password = "Hola",
+                Password = new PasswordDto() { Psw = "hola" },
                 UserId = 50
             };
-            UserBrl.Insertar(currentUser, container);
+            UserBrl.Insert(currentUser, container);
 
             PasswordDto user = new PasswordDto()
             {
                 Id = 50,
                 NewPassword = "12345",
-                OldPassword = "Hola"
+                Psw = "hola" 
             };
             Assert.Equals(true, UserLoginBrl.ChangePassword(user, container));
         }

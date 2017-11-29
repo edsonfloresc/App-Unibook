@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using Univalle.Fie.Sistemas.UniBook.CommonDto;
 using Univalle.Fie.Sistemas.UniBook.UsersDal;
@@ -22,11 +19,12 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
             {
                 User user = new User();
                 user.Email = userDto.Email;
-                user.Password = userDto.Password;
-                user.Deleted = userDto.Deleted;
-                user.Role = RoleBrl.Get(userDto.Role.RoleId,objContex);
+                user.Role = RoleBrl.Get(userDto.Role.RoleId, objContex);
                 //user.Person = PersonBrl.Get(userDto.Person.PersonId, objContex);
-                UserDal.Insert(user, objContex);
+                user.Deleted = userDto.Deleted;
+
+                PasswordDto password = userDto.Password;
+                UserDal.Insert(user, password, objContex);
             }
             catch (Exception ex)
             {
@@ -70,7 +68,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 User user = UserDal.Get(id, objContex);
                 userDto = new UserDto();
                 userDto.Email = user.Email;
-                userDto.Password = user.Password;
                 userDto.Deleted = user.Deleted;
             }
             catch (Exception ex)
@@ -93,7 +90,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 User user = UserBrl.Get(userDto.UserId, objContex); ;
                 user.Email = userDto.Email;
                 user.Deleted = userDto.Deleted;
-                user.Password = userDto.Password;
                 UserDal.Update(user, objContex);
             }
             catch (Exception ex)

@@ -14,6 +14,7 @@
     <EntitySet Name="Gender" EntityType="ModelUnibook.Store.Gender" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contact" EntityType="ModelUnibook.Store.Contact" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Passwords" EntityType="ModelUnibook.Store.Passwords" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
@@ -42,6 +43,10 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <AssociationSet Name="UserPassword" Association="ModelUnibook.Store.UserPassword">
+      <End Role="User" EntitySet="User" />
+      <End Role="Password" EntitySet="Passwords" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -49,7 +54,6 @@
     </Key>
     <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="Role_RoleId" Type="smallint" Nullable="false" />
   </EntityType>
@@ -114,6 +118,16 @@
     <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Passwords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Psw" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="RoleUser">
     <End Role="Role" Type="ModelUnibook.Store.Role" Multiplicity="1" />
@@ -199,6 +213,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserPassword">
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="Password" Type="ModelUnibook.Store.Passwords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Password">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -240,6 +266,11 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Passwords" EntityType="ModelUnibook.Password" />
+          <AssociationSet Name="UserPassword" Association="ModelUnibook.UserPassword">
+            <End Role="User" EntitySet="User" />
+            <End Role="Password" EntitySet="Passwords" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -247,11 +278,11 @@
           </Key>
           <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="ModelUnibook.RoleUser" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="UserCareer" Relationship="ModelUnibook.UserUserCareer" FromRole="User" ToRole="UserCareer" />
           <NavigationProperty Name="Person" Relationship="ModelUnibook.PersonUser" FromRole="User" ToRole="Person" />
+          <NavigationProperty Name="Password" Relationship="ModelUnibook.UserPassword" FromRole="User" ToRole="Password" />
         </EntityType>
         <EntityType Name="Career">
           <Key>
@@ -348,6 +379,20 @@
           <End Type="ModelUnibook.Person" Role="Person" Multiplicity="1" />
           <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
         </Association>
+        <EntityType Name="Password">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Psw" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserPassword" FromRole="Password" ToRole="User" />
+        </EntityType>
+        <Association Name="UserPassword">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.Password" Role="Password" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -359,7 +404,6 @@
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -427,6 +471,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Passwords">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Password)">
+        <MappingFragment StoreEntitySet="Passwords">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Psw" ColumnName="Psw" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="RoleUser" TypeName="ModelUnibook.RoleUser" StoreEntitySet="User">
       <EndProperty Name="Role">
         <ScalarProperty Name="RoleId" ColumnName="Role_RoleId" />
@@ -481,6 +535,14 @@
       </EndProperty>
       <EndProperty Name="Person">
         <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPassword" TypeName="ModelUnibook.UserPassword" StoreEntitySet="Passwords">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Password">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

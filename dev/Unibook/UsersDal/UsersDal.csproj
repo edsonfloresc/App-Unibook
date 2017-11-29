@@ -62,9 +62,17 @@
     <Compile Include="UserDal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonRegister\CommonDto.csproj">
+      <Project>{10993FEA-0F5B-4694-840F-3FCD3F9C9DB2}</Project>
+      <Name>CommonDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{522788e6-8782-4e34-9f9f-d1d02249e46f}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PasswordBrl\PasswordBrl.csproj">
+      <Project>{3d4af992-a7b4-4a98-b9d6-e1ec1d8cf43d}</Project>
+      <Name>PasswordBrl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
