@@ -10,7 +10,7 @@ using Univalle.Fie.Sistemas.UniBook.UsersDal;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 {
-    public class ConctactBrl
+    public class ContactBrl
     {
         #region Methods
 

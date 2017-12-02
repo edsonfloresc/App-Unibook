@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Univalle.Fie.Sistemas.UniBook.AppUnibookRegisterMvc.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deleted)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.UserId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.UserId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

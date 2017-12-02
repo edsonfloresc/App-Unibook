@@ -48,9 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
-    <Compile Include="ConctactBrl.cs" />
+    <Compile Include="CareerListBrl.cs" />
+    <Compile Include="ContactBrl.cs" />
+    <Compile Include="ContactListBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
+    <Compile Include="FacultyListBrl.cs" />
     <Compile Include="GenderBrl.cs" />
+    <Compile Include="GenderListBrl.cs" />
+    <Compile Include="PasswordBrl.cs" />
     <Compile Include="PersonBrl.cs" />
     <Compile Include="PersonListBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +63,8 @@
     <Compile Include="RoleListBrl.cs" />
     <Compile Include="UserBrl.cs" />
     <Compile Include="UserCareerBrl.cs" />
+    <Compile Include="UserCareerListBrl.cs" />
+    <Compile Include="UserListBrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonRegister\CommonDto.csproj">

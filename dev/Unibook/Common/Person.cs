@@ -17,6 +17,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public Person()
         {
             this.Contact = new HashSet<Contact>();
+            this.User = new HashSet<User>();
         }
     
         public long PersonId { get; set; }
@@ -27,6 +28,6 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }
