@@ -76,6 +76,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Password.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>

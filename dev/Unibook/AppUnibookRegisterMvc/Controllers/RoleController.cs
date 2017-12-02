@@ -32,12 +32,12 @@ namespace AppUnibookRegisterMvc.Controllers
         {
             get
             {
-                WebRoleService.RoleDto roles = null;
+                WebRoleListService.RoleDto[] roles = null;
                 try
                 {
-                    var url = _iconfiguration.GetValue<string>("WebServices:Role:WebRoleService");
+                    var url = _iconfiguration.GetValue<string>("WebServices:RoleList:WebRoleListService");
                     //Create instance of SOAP client
-                    WebRoleService.WebRoleServiceSoapClient soapClient = new WebRoleService.WebRoleServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
+                    WebRoleListService.WebRoleListServiceSoapClient soapClient = new WebRoleListService.WebRoleListServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
                     roles = soapClient.Get();
                 }
                 catch (System.Net.Http.HttpRequestException ex)
@@ -51,15 +51,17 @@ namespace AppUnibookRegisterMvc.Controllers
                     _logger.LogCritical(ex.StackTrace);
                 }
 
-                RoleModel role = new RoleModel
+                List<RoleModel> roleModel = new List<RoleModel>();
+                foreach (var role in roles)
                 {
-                    RoleId = roles.RoleId,
-                    Deleted = roles.Deleted,
-                    Name = roles.Name,
-                };
-                List<RoleModel> list = new List<RoleModel>();
-                list.Add(role);
-                return list;
+                    roleModel.Add(new RoleModel
+                    {
+                        RoleId = role.RoleId,
+                        Deleted = role.Deleted,
+                        Name = role.Name,
+                    });
+                }
+                return roleModel;
             }
         }
 

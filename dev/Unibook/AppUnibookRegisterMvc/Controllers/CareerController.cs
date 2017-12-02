@@ -29,12 +29,12 @@ namespace AppUnibookRegisterMvc.Controllers
         {
             get
             {
-                WebCareerService.CareerDto careers = null;
+                WebCareerListService.CareerDto[] careers = null;
                 try
                 {
-                    var url = _iconfiguration.GetValue<string>("WebServices:Career:WebCareerService");
+                    var url = _iconfiguration.GetValue<string>("WebServices:CareerList:WebCareerListService");
                     //Create instance of SOAP client
-                    WebCareerService.WebCareerServiceSoapClient soapClient = new WebCareerService.WebCareerServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
+                    WebCareerListService.WebCareerListServiceSoapClient soapClient = new WebCareerListService.WebCareerListServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
                     careers = soapClient.Get();
                 }
                 catch (System.Net.Http.HttpRequestException ex)
@@ -48,16 +48,18 @@ namespace AppUnibookRegisterMvc.Controllers
                     _logger.LogCritical(ex.StackTrace);
                 }
 
-                CareerModel career = new CareerModel
+                List<CareerModel> careerModel = new List<CareerModel>();
+                foreach (var career in careers)
                 {
-                    CareerId = careers.CareerId,
-                    Deleted = careers.Deleted,
-                    Name = careers.Name,
-                    Faculty = new FacultyModel() { FacultyId = careers.Faculty.FacultyId, Name = careers.Faculty.Name, Deleted = careers.Faculty.Deleted }
-                };
-                List<CareerModel> list = new List<CareerModel>();
-                list.Add(career);
-                return list;
+                    careerModel.Add(new CareerModel
+                    {
+                        CareerId = career.CareerId,
+                        Deleted = career.Deleted,
+                        Name = career.Name,
+                        Faculty = new FacultyModel() { FacultyId = career.Faculty.FacultyId, Name = career.Faculty.Name, Deleted = career.Faculty.Deleted }
+                    });
+                }
+                return careerModel;
             }
         }
         // GET: Career

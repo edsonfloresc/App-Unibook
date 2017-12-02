@@ -22,7 +22,7 @@ namespace WebUserService
         
         private string EmailField;
         
-        private string PasswordField;
+        private WebUserService.PasswordDto PasswordField;
         
         private bool DeletedField;
         
@@ -59,7 +59,7 @@ namespace WebUserService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public string Password
+        public WebUserService.PasswordDto Password
         {
             get
             {
@@ -120,6 +120,103 @@ namespace WebUserService
             set
             {
                 this.PersonField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PasswordDto", Namespace="http://tempuri.org/")]
+    public partial class PasswordDto : object
+    {
+        
+        private long PasswordIdField;
+        
+        private string PswField;
+        
+        private System.DateTime DateField;
+        
+        private byte StateField;
+        
+        private string NewPasswordField;
+        
+        private long UserIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public long PasswordId
+        {
+            get
+            {
+                return this.PasswordIdField;
+            }
+            set
+            {
+                this.PasswordIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Psw
+        {
+            get
+            {
+                return this.PswField;
+            }
+            set
+            {
+                this.PswField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public System.DateTime Date
+        {
+            get
+            {
+                return this.DateField;
+            }
+            set
+            {
+                this.DateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public byte State
+        {
+            get
+            {
+                return this.StateField;
+            }
+            set
+            {
+                this.StateField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string NewPassword
+        {
+            get
+            {
+                return this.NewPasswordField;
+            }
+            set
+            {
+                this.NewPasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public long UserId
+        {
+            get
+            {
+                return this.UserIdField;
+            }
+            set
+            {
+                this.UserIdField = value;
             }
         }
     }
@@ -674,15 +771,15 @@ namespace WebUserService
     {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public WebUserService.UserDto personDto;
+        public WebUserService.UserDto userDto;
         
         public UpdateRequestBody()
         {
         }
         
-        public UpdateRequestBody(WebUserService.UserDto personDto)
+        public UpdateRequestBody(WebUserService.UserDto userDto)
         {
-            this.personDto = personDto;
+            this.userDto = userDto;
         }
     }
     
@@ -933,11 +1030,11 @@ namespace WebUserService
             return base.Channel.UpdateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<WebUserService.UpdateResponse> UpdateAsync(WebUserService.UserDto personDto)
+        public System.Threading.Tasks.Task<WebUserService.UpdateResponse> UpdateAsync(WebUserService.UserDto userDto)
         {
             WebUserService.UpdateRequest inValue = new WebUserService.UpdateRequest();
             inValue.Body = new WebUserService.UpdateRequestBody();
-            inValue.Body.personDto = personDto;
+            inValue.Body.userDto = userDto;
             return ((WebUserService.WebUserServiceSoap)(this)).UpdateAsync(inValue);
         }
         
@@ -999,7 +1096,7 @@ namespace WebUserService
         {
             WebUserService.UpdateRequest inValue = new WebUserService.UpdateRequest();
             inValue.Body = new WebUserService.UpdateRequestBody();
-            inValue.Body.personDto = userDto;
+            inValue.Body.userDto = userDto;
             WebUserService.UpdateResponse retVal = ((WebUserService.WebUserServiceSoap)(this)).Update(inValue);
         }
 

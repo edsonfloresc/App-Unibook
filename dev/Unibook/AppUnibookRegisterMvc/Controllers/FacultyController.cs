@@ -31,12 +31,12 @@ namespace AppUnibookRegisterMvc.Controllers
         {
             get
             {
-                WebFacultyService.FacultyDto facultys = null;
+                WebFacultyListService.FacultyDto[] facultys = null;
                 try
                 {
-                    var url = _iconfiguration.GetValue<string>("WebServices:Faculty:WebFacultyService");
+                    var url = _iconfiguration.GetValue<string>("WebServices:FacultyList:WebFacultyListService");
                     //Create instance of SOAP client
-                    WebFacultyService.WebFacultyServiceSoapClient soapClient = new WebFacultyService.WebFacultyServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
+                    WebFacultyListService.WebFacultyListServiceSoapClient soapClient = new WebFacultyListService.WebFacultyListServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
                     facultys = soapClient.Get();
                 }
                 catch (System.Net.Http.HttpRequestException ex)
@@ -50,15 +50,17 @@ namespace AppUnibookRegisterMvc.Controllers
                     _logger.LogCritical(ex.StackTrace);
                 }
 
-                FacultyModel faculty = new FacultyModel
+                List<FacultyModel> facultyModel = new List<FacultyModel>();
+                foreach (var faculty in facultys)
                 {
-                    FacultyId = facultys.FacultyId,
-                    Deleted = facultys.Deleted,
-                    Name = facultys.Name,
-                };
-                List<FacultyModel> list = new List<FacultyModel>();
-                list.Add(faculty);
-                return list;
+                    facultyModel.Add(new FacultyModel
+                    {
+                        FacultyId = faculty.FacultyId,
+                        Deleted = faculty.Deleted,
+                        Name = faculty.Name
+                    });
+                }
+                return facultyModel;
             }
         }
         // GET: Faculty

@@ -17,15 +17,16 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public User()
         {
             this.UserCareer = new HashSet<UserCareer>();
+            this.Password = new HashSet<Password>();
         }
     
         public long UserId { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public bool Deleted { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual ICollection<UserCareer> UserCareer { get; set; }
         public virtual Person Person { get; set; }
+        public virtual ICollection<Password> Password { get; set; }
     }
 }

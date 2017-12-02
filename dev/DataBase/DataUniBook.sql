@@ -19,19 +19,26 @@ INSERT INTO Faculty (Name, Deleted) VALUES ('Sociales', 0);
 INSERT INTO Career (Name, Deleted, Faculty_FacultyId) VALUES ('Sistemas', 0, 1);
 INSERT INTO Career (Name, Deleted, Faculty_FacultyId) VALUES ('Derecho', 0, 2);
 
--- Insert User --
-
-INSERT INTO [dbo].[User] (Email, Password, Deleted, Role_RoleId) VALUES ('juanito@gmail.com', '1234', 0, 1);
-INSERT INTO [dbo].[User] (Email, Password, Deleted, Role_RoleId) VALUES ('maria@gmail.com', '1234', 0, 2);
-INSERT INTO [dbo].[User] (Email, Password, Deleted, Role_RoleId) VALUES ('pablo@gmail.com', '1234', 0, 2);
-INSERT INTO [dbo].[User] (Email, Password, Deleted, Role_RoleId) VALUES ('fernanda@gmail.com', '1234', 1, 2);
-
 -- Insert Person --
 
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Juanito', 'Perez', '1/01/2000', 1, 0, 1);
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Maria', 'Tapia', '1/05/2003', 2, 0, 2);
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Pablo', 'Rodriguez', '1/10/2005', 1, 0, 3);
-INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted, User_UserId) VALUES ('Fernanda', 'Soliz', '1/12/2011', 2, 0, 4);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted) VALUES ('Juanito', 'Perez', '1/01/2000', 1, 0);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted) VALUES ('Maria', 'Tapia', '1/05/2003', 2, 0);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted) VALUES ('Pablo', 'Rodriguez', '1/10/2005', 1, 0);
+INSERT INTO Person (Name, LastName, Birthday, Gender_GenderId, Deleted) VALUES ('Fernanda', 'Soliz', '1/12/2011', 2, 0);
+
+-- Insert User --
+
+INSERT INTO [dbo].[User] (Email, Deleted, Role_RoleId, Person_PersonId) VALUES ('juanito@gmail.com', 0, 1, 1);
+INSERT INTO [dbo].[User] (Email, Deleted, Role_RoleId, Person_PersonId) VALUES ('maria@gmail.com', 0, 2, 2);
+INSERT INTO [dbo].[User] (Email, Deleted, Role_RoleId, Person_PersonId) VALUES ('pablo@gmail.com', 0, 2, 3);
+INSERT INTO [dbo].[User] (Email, Deleted, Role_RoleId, Person_PersonId) VALUES ('fernanda@gmail.com', 1, 2, 4);
+
+-- Paswword --
+
+INSERT INTO Password (Psw, State, Date, User_UserId) VALUES ('1234', 1, '1/01/2000', 1);
+INSERT INTO Password (Psw, State, Date, User_UserId) VALUES ('1234', 1, '1/05/2003', 2);
+INSERT INTO Password (Psw, State, Date, User_UserId) VALUES ('1234', 1, '1/10/2005', 3);
+INSERT INTO Password (Psw, State, Date, User_UserId) VALUES ('1234', 1, '1/12/2011', 4);
 
 -- Insert UserCareer --
 

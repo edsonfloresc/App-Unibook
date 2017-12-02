@@ -30,12 +30,12 @@ namespace AppUnibookRegisterMvc.Controllers
         {
             get
             {
-                WebGenderService.GenderDto genders = null;
+                WebGenderListService.GenderDto[] genders = null;
                 try
                 {
-                    var url = _iconfiguration.GetValue<string>("WebServices:Gender:WebGenderService");
+                    var url = _iconfiguration.GetValue<string>("WebServices:GenderList:WebGenderListService");
                     //Create instance of SOAP client
-                    WebGenderService.WebGenderServiceSoapClient soapClient = new WebGenderService.WebGenderServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
+                    WebGenderListService.WebGenderListServiceSoapClient soapClient = new WebGenderListService.WebGenderListServiceSoapClient(new BasicHttpBinding(BasicHttpSecurityMode.None), new EndpointAddress(url));
                     genders = soapClient.Get();
                 }
                 catch (System.Net.Http.HttpRequestException ex)
@@ -48,14 +48,17 @@ namespace AppUnibookRegisterMvc.Controllers
                     _logger.LogCritical(ex.Message);
                     _logger.LogCritical(ex.StackTrace);
                 }
-                GenderModel gender = new GenderModel
+
+                List<GenderModel> genderModel = new List<GenderModel>();
+                foreach (var gender in genders)
                 {
-                    GenderId = genders.GenderId,
-                    Name = genders.Name,
-                };
-                List<GenderModel> list = new List<GenderModel>();
-                list.Add(gender);
-                return list;
+                    genderModel.Add(new GenderModel
+                    {
+                        GenderId = gender.GenderId,
+                        Name = gender.Name,
+                    });
+                }
+                return genderModel;
             }
         }
         // GET: Gender

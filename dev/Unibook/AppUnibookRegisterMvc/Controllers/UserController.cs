@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AppUnibookRegisterMvc.Controllers
 {
-    
+
     public class UserController : Controller
     {
         private readonly ILogger _logger;
@@ -60,9 +60,9 @@ namespace AppUnibookRegisterMvc.Controllers
                         UserId = user.UserId,
                         Deleted = user.Deleted,
                         Email = user.Email,
-                        Password = user.Password,
+                        Password = new PasswordModel() { PasswordId = 1, Date = DateTime.Now, Psw = "1234", State = 1, UserId = user.UserId },
                         Role = new RoleModel() { RoleId = user.Role.RoleId, Name = user.Role.Name, Deleted = user.Role.Deleted },
-                        Person = new PersonModel() { PersonId = user.Person.PersonId+1, Name = user.Person.Name, LastName = user.Person.LastName, BirthDay = user.Person.BirthDay, Deleted = user.Person.Deleted, Gender = new GenderModel() { GenderId = user.Person.Gender.GenderId, Name = user.Person.Gender.Name }, User = new UserModel() }
+                        Person = new PersonModel() { PersonId = user.Person.PersonId + 1, Name = user.Person.Name, LastName = user.Person.LastName, BirthDay = user.Person.BirthDay, Deleted = user.Person.Deleted, Gender = new GenderModel() { GenderId = user.Person.Gender.GenderId, Name = user.Person.Gender.Name }, User = new UserModel() }
                     });
                 }
                 return userModel;
@@ -117,7 +117,7 @@ namespace AppUnibookRegisterMvc.Controllers
                 UserId = userDto.UserId,
                 Deleted = userDto.Deleted,
                 Email = userDto.Email,
-                Password = userDto.Password,
+                Password = new PasswordModel() { PasswordId = 1, Date = DateTime.Now, Psw = "1234", State = 1, UserId = userDto.UserId },
                 Role = new RoleModel() { RoleId = userDto.Role.RoleId, Name = userDto.Role.Name, Deleted = userDto.Role.Deleted },
                 Person = new PersonModel() { PersonId = userDto.Person.PersonId + 1, Name = userDto.Person.Name, LastName = userDto.Person.LastName, BirthDay = userDto.Person.BirthDay, Deleted = userDto.Person.Deleted, Gender = new GenderModel() { GenderId = userDto.Person.Gender.GenderId, Name = userDto.Person.Gender.Name }, User = new UserModel() }
             };
@@ -131,7 +131,7 @@ namespace AppUnibookRegisterMvc.Controllers
             {
 
                 UserController userController = new UserController(logger, _iconfiguration);
-                ViewBag.ListUser= new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
+                ViewBag.ListUser = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(
                             (
                                 from user in userController.UserListModel
                                 select new SelectListItem
@@ -176,8 +176,8 @@ namespace AppUnibookRegisterMvc.Controllers
                     UserId = userModel.UserId,
                     Deleted = false,
                     Email = userModel.Email,
-                    Password = userModel.Password,
-                    Role = new WebUserService.RoleDto() { RoleId = role.RoleId, Name = role.Name, Deleted = role.Deleted},
+                    Password = new WebUserService.PasswordDto() { PasswordId = 1, Date = DateTime.Now, Psw = "1234", State = 1, UserId = userModel.UserId },
+                    Role = new WebUserService.RoleDto() { RoleId = role.RoleId, Name = role.Name, Deleted = role.Deleted },
                     //Person = new WebUserService.PersonDto() { PersonId = 5 }
                 };
                 soapClient.Insert(user);
@@ -235,7 +235,7 @@ namespace AppUnibookRegisterMvc.Controllers
                 UserId = userDto.UserId,
                 Deleted = userDto.Deleted,
                 Email = userDto.Email,
-                Password = userDto.Password,
+                Password = new PasswordModel() { PasswordId = 1, Date = DateTime.Now, Psw = "1234", State = 1, UserId = userDto.UserId },
                 Role = new RoleModel() { RoleId = userDto.Role.RoleId, Name = userDto.Role.Name, Deleted = userDto.Role.Deleted },
                 Person = new PersonModel() { PersonId = userDto.Person.PersonId + 1, Name = userDto.Person.Name, LastName = userDto.Person.LastName, BirthDay = userDto.Person.BirthDay, Deleted = userDto.Person.Deleted, Gender = new GenderModel() { GenderId = userDto.Person.Gender.GenderId, Name = userDto.Person.Gender.Name }, User = new UserModel() }
             };
@@ -259,7 +259,7 @@ namespace AppUnibookRegisterMvc.Controllers
                     UserId = userModel.UserId,
                     Deleted = userModel.Deleted,
                     Email = userModel.Email,
-                    Password = userModel.Password,
+                    Password = new WebUserService.PasswordDto() { PasswordId = 1, Date = DateTime.Now, Psw = "1234", State = 1, UserId = userModel.UserId },
                     Role = new WebUserService.RoleDto() { RoleId = userModel.Role.RoleId, Name = userModel.Role.Name, Deleted = userModel.Role.Deleted },
                     Person = new WebUserService.PersonDto() { PersonId = userModel.Person.PersonId + 1, Name = userModel.Person.Name, LastName = userModel.Person.LastName, BirthDay = userModel.Person.BirthDay, Deleted = userModel.Person.Deleted, Gender = new WebUserService.GenderDto() { GenderId = userModel.Person.Gender.GenderId, Name = userModel.Person.Gender.Name }, User = new WebUserService.UserDto() }
                 };
