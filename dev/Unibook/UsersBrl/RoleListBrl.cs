@@ -13,7 +13,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
     public class RoleListBrl
     {
         /// <summary>
-        /// Get list role
+        /// Get list gender 
         /// </summary>
         /// <param name="objContex">Get table to object</param>
         /// <returns></returns>
@@ -24,7 +24,13 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 List<RoleDto> roleList = new List<RoleDto>();
                 foreach (var item in RoleListDal.Get(objContex))
                 {
-                    roleList.Add(RoleBrl.GetDto(item.RoleId, objContex));
+                    RoleDto role = new RoleDto()
+                    {
+                        Name = item.Name,
+                        RoleId = item.RoleId,
+                    };
+
+                    roleList.Add(role);
                 }
 
                 return roleList;

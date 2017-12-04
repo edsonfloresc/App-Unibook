@@ -50,16 +50,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerDal.cs" />
+    <Compile Include="CareerListDal.cs" />
     <Compile Include="ContactDal.cs" />
+    <Compile Include="ContactListDal.cs" />
     <Compile Include="FacultyDal.cs" />
+    <Compile Include="FacultyListDal.cs" />
     <Compile Include="GenderDal.cs" />
+    <Compile Include="GenderListDal.cs" />
+    <Compile Include="PasswordDal.cs" />
     <Compile Include="PersonDal.cs" />
     <Compile Include="PersonListDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDal.cs" />
     <Compile Include="RoleListDal.cs" />
     <Compile Include="UserCareerDal.cs" />
+    <Compile Include="UserCareerListDal.cs" />
     <Compile Include="UserDal.cs" />
+    <Compile Include="UserListDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonRegister\CommonDto.csproj">

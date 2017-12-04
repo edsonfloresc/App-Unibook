@@ -30,7 +30,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 person.Birthday = personDto.BirthDay;
                 person.Deleted = personDto.Deleted;
                 //person.Gender = GenderBrl.Get(personDto.Gender.GenderId);
-                person.User = UserBrl.Get(person.User.UserId, objContex);
                 PersonDal.Insert(person, objContex);
             }
             catch (DbEntityValidationException ex)
@@ -87,7 +86,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 personDto.BirthDay = person.Birthday;
                 personDto.Deleted = person.Deleted;
                 personDto.Gender = GenderBrl.GetDto(person.Gender.GenderId, objContex);
-                personDto.User = UserBrl.GetDto(person.User.UserId, objContex);
             }
             catch (DbEntityValidationException ex)
             {
@@ -115,7 +113,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 person.Birthday = personDto.BirthDay;
                 person.Deleted = personDto.Deleted;
                 //person.Gender = GenderBrl.Get(personDto.Gender.GenderId, objContex);
-                person.User = UserBrl.Get(personDto.PersonId, objContex);
                 PersonDal.Update(objContex);
             }
             catch (DbEntityValidationException ex)

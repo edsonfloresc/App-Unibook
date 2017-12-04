@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,6 +109,33 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
             try
             {
                 RoleDal.Delete(id, objContex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get list role
+        /// </summary>
+        /// <param name="objContex">Get table to object</param>
+        /// <returns></returns>
+        public static List<RoleDto> GetAll(ModelUnibookContainer objContex)
+        {
+            try
+            {
+                List<RoleDto> roleList = new List<RoleDto>();
+                foreach (var item in RoleDal.GetAll(objContex))
+                {
+                    roleList.Add(RoleBrl.GetDto(item.RoleId, objContex));
+                }
+
+                return roleList;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

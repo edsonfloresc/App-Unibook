@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/27/2017 11:21:57
--- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 12/02/2017 14:01:45
+-- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -36,19 +36,13 @@ IF OBJECT_ID(N'[dbo].[FK_CareerUserCareer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserCareer] DROP CONSTRAINT [FK_CareerUserCareer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_PersonUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserPassword]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Passwords] DROP CONSTRAINT [FK_UserPassword];
+    ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[User];
-GO
 IF OBJECT_ID(N'[dbo].[Career]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Career];
 GO
@@ -64,28 +58,19 @@ GO
 IF OBJECT_ID(N'[dbo].[Gender]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Gender];
 GO
-IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Person];
-GO
 IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Contact];
 GO
-IF OBJECT_ID(N'[dbo].[Passwords]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Passwords];
+IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Person];
+GO
+IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[User];
 GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
-
--- Creating table 'User'
-CREATE TABLE [dbo].[User] (
-    [UserId] bigint IDENTITY(1,1) NOT NULL,
-    [Email] nvarchar(50)  NOT NULL,
-    [Deleted] bit  NOT NULL,
-    [Role_RoleId] smallint  NOT NULL
-);
-GO
 
 -- Creating table 'Career'
 CREATE TABLE [dbo].[Career] (
@@ -127,18 +112,6 @@ CREATE TABLE [dbo].[Gender] (
 );
 GO
 
--- Creating table 'Person'
-CREATE TABLE [dbo].[Person] (
-    [PersonId] bigint IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(25)  NOT NULL,
-    [LastName] nvarchar(25)  NOT NULL,
-    [Birthday] datetime  NULL,
-    [Deleted] bit  NOT NULL,
-    [Gender_GenderId] smallint  NOT NULL,
-    [User_UserId] bigint  NOT NULL
-);
-GO
-
 -- Creating table 'Contact'
 CREATE TABLE [dbo].[Contact] (
     [ContactId] int IDENTITY(1,1) NOT NULL,
@@ -149,12 +122,33 @@ CREATE TABLE [dbo].[Contact] (
 );
 GO
 
--- Creating table 'Passwords'
-CREATE TABLE [dbo].[Passwords] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+-- Creating table 'Person'
+CREATE TABLE [dbo].[Person] (
+    [PersonId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(25)  NOT NULL,
+    [LastName] nvarchar(25)  NOT NULL,
+    [Birthday] datetime  NULL,
+    [Deleted] bit  NOT NULL,
+    [Gender_GenderId] smallint  NOT NULL
+);
+GO
+
+-- Creating table 'User'
+CREATE TABLE [dbo].[User] (
+    [UserId] bigint IDENTITY(1,1) NOT NULL,
+    [Email] nvarchar(50)  NOT NULL,
+    [Deleted] bit  NOT NULL,
+    [Role_RoleId] smallint  NOT NULL,
+    [Person_PersonId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Password'
+CREATE TABLE [dbo].[Password] (
+    [PasswordId] bigint IDENTITY(1,1) NOT NULL,
     [Psw] nvarchar(max)  NOT NULL,
     [Date] datetime  NOT NULL,
-    [State] tinyint  NOT NULL,
+    [State] smallint  NOT NULL,
     [User_UserId] bigint  NOT NULL
 );
 GO
@@ -162,12 +156,6 @@ GO
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on [UserId] in table 'User'
-ALTER TABLE [dbo].[User]
-ADD CONSTRAINT [PK_User]
-    PRIMARY KEY CLUSTERED ([UserId] ASC);
-GO
 
 -- Creating primary key on [CareerId] in table 'Career'
 ALTER TABLE [dbo].[Career]
@@ -199,22 +187,28 @@ ADD CONSTRAINT [PK_Gender]
     PRIMARY KEY CLUSTERED ([GenderId] ASC);
 GO
 
--- Creating primary key on [PersonId] in table 'Person'
-ALTER TABLE [dbo].[Person]
-ADD CONSTRAINT [PK_Person]
-    PRIMARY KEY CLUSTERED ([PersonId] ASC);
-GO
-
 -- Creating primary key on [ContactId] in table 'Contact'
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [PK_Contact]
     PRIMARY KEY CLUSTERED ([ContactId] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Passwords'
-ALTER TABLE [dbo].[Passwords]
-ADD CONSTRAINT [PK_Passwords]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+-- Creating primary key on [PersonId] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [PK_Person]
+    PRIMARY KEY CLUSTERED ([PersonId] ASC);
+GO
+
+-- Creating primary key on [UserId] in table 'User'
+ALTER TABLE [dbo].[User]
+ADD CONSTRAINT [PK_User]
+    PRIMARY KEY CLUSTERED ([UserId] ASC);
+GO
+
+-- Creating primary key on [PasswordId] in table 'Password'
+ALTER TABLE [dbo].[Password]
+ADD CONSTRAINT [PK_Password]
+    PRIMARY KEY CLUSTERED ([PasswordId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -311,23 +305,23 @@ ON [dbo].[UserCareer]
     ([Career_CareerId]);
 GO
 
--- Creating foreign key on [User_UserId] in table 'Person'
-ALTER TABLE [dbo].[Person]
+-- Creating foreign key on [Person_PersonId] in table 'User'
+ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([User_UserId])
-    REFERENCES [dbo].[User]
-        ([UserId])
+    FOREIGN KEY ([Person_PersonId])
+    REFERENCES [dbo].[Person]
+        ([PersonId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
 CREATE INDEX [IX_FK_PersonUser]
-ON [dbo].[Person]
-    ([User_UserId]);
+ON [dbo].[User]
+    ([Person_PersonId]);
 GO
 
--- Creating foreign key on [User_UserId] in table 'Passwords'
-ALTER TABLE [dbo].[Passwords]
+-- Creating foreign key on [User_UserId] in table 'Password'
+ALTER TABLE [dbo].[Password]
 ADD CONSTRAINT [FK_UserPassword]
     FOREIGN KEY ([User_UserId])
     REFERENCES [dbo].[User]
@@ -337,7 +331,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserPassword'
 CREATE INDEX [IX_FK_UserPassword]
-ON [dbo].[Passwords]
+ON [dbo].[Password]
     ([User_UserId]);
 GO
 
