@@ -45,7 +45,7 @@ namespace Univalle.Fie.Sistemas.UniBook.LoginTest
 
             PasswordDto user = new PasswordDto()
             {
-                Id = 50,
+                PasswordId = 50,
                 NewPassword = "12345",
                 Psw = "hola" 
             };

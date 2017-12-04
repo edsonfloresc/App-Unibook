@@ -13,13 +13,13 @@ namespace Univalle.Fie.Sistemas.UniBook.PasswordDal
         /// </summary>
         /// <param name="userId">Id passwordId to search</param>
         /// <returns></returns>
-        public static Password Get(int userId, ModelUnibookContainer objContex)
+        public static Password Get(long userId, ModelUnibookContainer objContex)
         {
             Password actual = null;
 
             try
             {
-                actual = (from pass in objContex.Passwords
+                actual = (from pass in objContex.Password
                           where pass.State == 1 && pass.User.UserId == userId
                           select pass).Single<Password>();
             }
@@ -41,7 +41,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PasswordDal
         {
             try
             {
-                Password old = (from pass in objContex.Passwords
+                Password old = (from pass in objContex.Password
                                 where pass.User.UserId == password.User.UserId
                                 && pass.State == 1
                                 select pass)
@@ -51,11 +51,11 @@ namespace Univalle.Fie.Sistemas.UniBook.PasswordDal
                 if (old != null)
                 {
                     old.State = 0;
-                    objContex.Passwords.Add(password);
+                    objContex.Password.Add(password);
                 }
                 else
                 {
-                    objContex.Passwords.Add(password);
+                    objContex.Password.Add(password);
                 }
                 objContex.SaveChanges();
                 return true;

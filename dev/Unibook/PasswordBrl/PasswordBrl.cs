@@ -21,7 +21,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PasswordBrl
             try
             {
                 Password actual = PasswordDal.PasswordDal.Get(1, objContex);
-                pass.Id = actual.Id;
+                pass.PasswordId = actual.PasswordId;
                 pass.Psw = actual.Psw;
                 pass.State = actual.State;
                 pass.Date = actual.Date;
@@ -44,7 +44,7 @@ namespace Univalle.Fie.Sistemas.UniBook.PasswordBrl
             Password actual = PasswordDal.PasswordDal.Get(password.UserId, objContex);
             if (actual.Psw == password.Psw)
             {
-                Password exists = (from psw in objContex.Passwords
+                Password exists = (from psw in objContex.Password
                                    where psw.User.UserId == password.UserId &&
                                     psw.Psw == password.NewPassword
                                    select psw).SingleOrDefault();

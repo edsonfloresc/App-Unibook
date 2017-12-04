@@ -126,7 +126,7 @@
     <Property Name="PasswordId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Psw" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="State" Type="smallint" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
     <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="RoleUser">

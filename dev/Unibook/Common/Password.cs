@@ -14,7 +14,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class Password
     {
-        public int Id { get; set; }
+        public long PasswordId { get; set; }
         public string Psw { get; set; }
         public System.DateTime Date { get; set; }
         public byte State { get; set; }

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/02/2017 14:01:45
--- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 12/04/2017 13:10:01
+-- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -38,6 +38,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserPassword]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Password] DROP CONSTRAINT [FK_UserPassword];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -66,6 +69,9 @@ IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User];
+GO
+IF OBJECT_ID(N'[dbo].[Password]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Password];
 GO
 
 -- --------------------------------------------------
@@ -148,7 +154,7 @@ CREATE TABLE [dbo].[Password] (
     [PasswordId] bigint IDENTITY(1,1) NOT NULL,
     [Psw] nvarchar(max)  NOT NULL,
     [Date] datetime  NOT NULL,
-    [State] smallint  NOT NULL,
+    [State] tinyint  NOT NULL,
     [User_UserId] bigint  NOT NULL
 );
 GO
