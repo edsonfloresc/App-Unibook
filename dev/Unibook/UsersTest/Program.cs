@@ -17,6 +17,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersTest
             roleDto.Name = "Estudiante";
             //roleDto.RoleId = 1;
             roleClient.Insert(roleDto);
+            //roleClient.GetAsync();
 
             //Faculty
             ServiceFacultyReference.WebFacultyServiceSoapClient facultyClient = new ServiceFacultyReference.WebFacultyServiceSoapClient();

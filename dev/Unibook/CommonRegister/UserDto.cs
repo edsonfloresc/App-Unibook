@@ -11,7 +11,7 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
     {
         public long UserId { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public PasswordDto Password { get; set; }
         public bool Deleted { get; set; }
         public RoleDto Role { get; set; }
         public UserCareerDto UserCareer { get; set; }

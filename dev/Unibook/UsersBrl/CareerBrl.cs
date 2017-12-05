@@ -62,7 +62,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <returns></returns>
         public static CareerDto GetDto(int id, ModelUnibookContainer objContex)
         {
-            CareerDto careerDto = null;
+            CareerDto careerDto = new CareerDto();
             try
             {
                 Career career = CareerDal.Get(id, objContex);

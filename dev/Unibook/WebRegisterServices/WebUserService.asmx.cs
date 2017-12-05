@@ -85,5 +85,18 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             return personDto;
 
         }
+
+        [WebMethod]
+        public List<UserDto> GetAll()
+        {
+            try
+            {
+                return UserBrl.GetAll(dbcontex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

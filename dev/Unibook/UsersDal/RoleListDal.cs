@@ -11,7 +11,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
     public class RoleListDal
     {
         /// <summary>
-        /// Get list person
+        /// Get list roles
         /// </summary>
         /// <param name="objContex">Get table to object</param>
         /// <returns></returns>
@@ -21,8 +21,8 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 
             try
             {
-                rolesReturn = (from role in objContex.Role
-                                 select role).ToList<Role>();
+                rolesReturn = (from user in objContex.Role
+                                 select user).ToList<Role>();
             }
             catch (DbEntityValidationException ex)
             {
