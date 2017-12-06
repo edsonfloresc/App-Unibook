@@ -86,5 +86,22 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
             return category;
 
         }
+
+        //[WebMethod]
+        //public List<CategoryEnterDto> Get()
+        //{
+        //    List<CategoryEnterDto> personTypeList = new List<CategoryEnterDto>();
+
+        //    try
+        //    {
+        //        personTypeList = CategoryListBrl.Get(content);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //    return personTypeList;
+        //}
     }
 }

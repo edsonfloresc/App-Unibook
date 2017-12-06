@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="ModelUnibook.Role" Width="1.5" PointX="1.75" PointY="5.125" />
         <EntityTypeShape EntityType="ModelUnibook.UserCareer" Width="1.5" PointX="7.625" PointY="4" />
         <EntityTypeShape EntityType="ModelUnibook.Gender" Width="1.5" PointX="7.375" PointY="6.625" />
-        <EntityTypeShape EntityType="ModelUnibook.Person" Width="1.5" PointX="4.625" PointY="7.125" />
+        <EntityTypeShape EntityType="ModelUnibook.Person" Width="1.5" PointX="4.625" PointY="7.625" />
         <EntityTypeShape EntityType="ModelUnibook.Contact" Width="1.5" PointX="1.625" PointY="7.125" />
         <AssociationConnector Association="ModelUnibook.RoleUser" />
         <AssociationConnector Association="ModelUnibook.PersonContact" />

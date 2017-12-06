@@ -24,7 +24,7 @@ namespace WebEntertainmentService
         
         private string PlaceAddressField;
         
-        private System.DateTime DateHourField;
+        private System.DateTime? DateHourField;
         
         private string DetailsField;
         
@@ -76,7 +76,7 @@ namespace WebEntertainmentService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public System.DateTime DateHour
+        public System.DateTime? DateHour
         {
             get
             {
@@ -833,6 +833,9 @@ namespace WebEntertainmentService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Get", ReplyAction="*")]
         System.Threading.Tasks.Task<WebEntertainmentService.GetResponse> GetAsync(WebEntertainmentService.GetRequest request);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/Get", ReplyAction = "*")]
+        WebEntertainmentService.GetResponse Get(WebEntertainmentService.GetRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1136,11 +1139,28 @@ namespace WebEntertainmentService
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WebEntertainmentService.GetResponse WebEntertainmentService.WebEntertainmentServiceSoap.Get(WebEntertainmentService.GetRequest request)
+        {
+            return base.Channel.Get(request);
+        }
+
+        public WebEntertainmentService.EntertainmentDto Get(int id)
+        {
+            WebEntertainmentService.GetRequest inValue = new WebEntertainmentService.GetRequest();
+            inValue.Body = new WebEntertainmentService.GetRequestBody();
+            inValue.Body.id = id;
+            WebEntertainmentService.GetResponse retVal = ((WebEntertainmentService.WebEntertainmentServiceSoap)(this)).Get(inValue);
+            return retVal.Body.GetResult;
+
+        }
+
+
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<WebEntertainmentService.GetResponse> WebEntertainmentService.WebEntertainmentServiceSoap.GetAsync(WebEntertainmentService.GetRequest request)
         {
             return base.Channel.GetAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<WebEntertainmentService.GetResponse> GetAsync(int id)
         {
             WebEntertainmentService.GetRequest inValue = new WebEntertainmentService.GetRequest();
@@ -1148,7 +1168,17 @@ namespace WebEntertainmentService
             inValue.Body.id = id;
             return ((WebEntertainmentService.WebEntertainmentServiceSoap)(this)).GetAsync(inValue);
         }
-        
+        //    WebCategoryService.GetDtoRequest inValue = new WebCategoryService.GetDtoRequest();
+        //    inValue.Body = new WebCategoryService.GetDtoRequestBody();
+        //    inValue.Body.id = id;
+        //    WebCategoryService.GetDtoResponse retVal = ((WebCategoryService.WebCategoryServiceSoap)(this)).Get(inValue);
+        //    return retVal.Body.GetDtoResult;
+        //}
+
+
+
+
+
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));

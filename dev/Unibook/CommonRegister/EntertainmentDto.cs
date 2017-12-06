@@ -17,6 +17,6 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
         public bool Discontinued { get; set; }
 
         public virtual CategoryEnterDto CategoryEnter { get; set; }
-        public virtual UserDto User { get; set; }
+        public virtual UserDto Users { get; set; }
     }
 }

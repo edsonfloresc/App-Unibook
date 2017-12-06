@@ -72,7 +72,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Category}/{action=Index}/{id?}");
+                    template: "{controller=Entertainment}/{action=Index}/{id?}");
             });
         }
     }

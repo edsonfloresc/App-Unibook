@@ -25,7 +25,7 @@ namespace Univalle.Fie.Sistemas.UniBook.EntertainmentsTest
             entertainment.Discontinued = false;
             entertainment.Deleted = false;
             entertainment.CategoryEnter = CategoryBrl.GetDto(1, content);
-            entertainment.User = UserBrl.GetDto(1, content);
+            entertainment.Users = UserBrl.GetDto(1, content);
             EntertainmentBrl.Insert(entertainment, content);
            // Entertainment actual = EntertainmentBrl.Get(1, content);
             Assert.AreEqual(entertainment, entertainment);

@@ -82,19 +82,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
+    <Content Include="WebCategoryListService.asmx" />
     <Content Include="WebCategoryService.asmx" />
     <Content Include="WebCommentService.asmx" />
+    <Content Include="WebEntertainmentListService.asmx" />
     <Content Include="WebEntertainmentService.asmx" />
     <Content Include="WebImageService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebCategoryListService.asmx.cs">
+      <DependentUpon>WebCategoryListService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebCategoryService.asmx.cs">
       <DependentUpon>WebCategoryService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebCommentService.asmx.cs">
       <DependentUpon>WebCommentService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebEntertainmentListService.asmx.cs">
+      <DependentUpon>WebEntertainmentListService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebEntertainmentService.asmx.cs">

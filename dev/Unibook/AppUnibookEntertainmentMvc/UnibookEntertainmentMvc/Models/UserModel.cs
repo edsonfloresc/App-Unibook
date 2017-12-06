@@ -17,7 +17,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Models
 
         [Required(ErrorMessage = "RequiredPassword")]
         [Display(Name = "Password")]
-        public PasswordModel Password { get; set; }
+        public string Password { get; set; }
 
         public bool Deleted { get; set; }
 

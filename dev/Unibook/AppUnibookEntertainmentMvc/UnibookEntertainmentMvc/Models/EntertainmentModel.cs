@@ -23,6 +23,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Models
         public string PlaceAddress { get; set; }
 
 
+       // [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         
         public DateTime DateHour { get; set; }
 

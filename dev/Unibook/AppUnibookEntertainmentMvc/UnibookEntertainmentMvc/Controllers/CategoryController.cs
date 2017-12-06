@@ -66,6 +66,9 @@ namespace Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Controllers
                 return _categoryListModel;
             }
         }
+
+        public object CategoryModel { get; internal set; }
+
         // GET: Category
         public ActionResult Index()
         {

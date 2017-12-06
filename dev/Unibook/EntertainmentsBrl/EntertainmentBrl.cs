@@ -97,10 +97,11 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 entertainment.PlaceAddress = entertainmentDto.PlaceAddress;
                 entertainment.DateHour = entertainmentDto.DateHour;
                 entertainment.Details = entertainmentDto.Details;
+
                 entertainment.Deleted = entertainmentDto.Deleted;
                 entertainment.Discontinued = entertainmentDto.Discontinued;
                 entertainment.CategoryEnter = CategoryBrl.Get(entertainmentDto.CategoryEnter.CategoryId, objContex);
-                entertainment.Users = UserBrl.Get(entertainmentDto.User.UserId, objContex);
+                entertainment.Users = UserBrl.Get(entertainmentDto.Users.UserId, objContex);
 
                 EntertainmentDal.Insert(entertainment, objContex);
             }

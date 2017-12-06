@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/01/2017 03:05:20
--- Generated from EDMX file: C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 12/05/2017 16:46:25
+-- Generated from EDMX file: C:\Users\andii\Desktop\backupUnibook\con web services\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -49,6 +49,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserCommentEnter]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_EntertainmentImageEnter]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ImageEnter] DROP CONSTRAINT [FK_EntertainmentImageEnter];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserEntertainment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Entertainment] DROP CONSTRAINT [FK_UserEntertainment];
 GO
 
 -- --------------------------------------------------
@@ -184,8 +187,8 @@ CREATE TABLE [dbo].[Entertainment] (
     [Details] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Discontinued] bit  NOT NULL,
-    [CategoryEnter] smallint  NOT NULL,
-    [User] bigint  NOT NULL
+    [CategoryEnter_CategoryId] smallint  NOT NULL,
+    [Users_UserId] bigint  NOT NULL
 );
 GO
 
@@ -195,8 +198,8 @@ CREATE TABLE [dbo].[CommentEnter] (
     [CommentText] nvarchar(max)  NOT NULL,
     [DateHour] datetime  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [Entertainment] bigint  NOT NULL,
-    [User] bigint  NOT NULL
+    [Entertainment_EntertainmentId] bigint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
 );
 GO
 
@@ -205,7 +208,7 @@ CREATE TABLE [dbo].[ImageEnter] (
     [ImageId] bigint IDENTITY(1,1) NOT NULL,
     [PathImage] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
-    [Entertainment] bigint  NOT NULL
+    [Entertainment_EntertainmentId] bigint  NOT NULL
 );
 GO
 
@@ -397,7 +400,7 @@ GO
 -- Creating foreign key on [CategoryEnter_CategoryId] in table 'Entertainment'
 ALTER TABLE [dbo].[Entertainment]
 ADD CONSTRAINT [FK_CategoryEnterEntertainment]
-    FOREIGN KEY ([CategoryEnter])
+    FOREIGN KEY ([CategoryEnter_CategoryId])
     REFERENCES [dbo].[CategoryEnter]
         ([CategoryId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -406,13 +409,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_CategoryEnterEntertainment'
 CREATE INDEX [IX_FK_CategoryEnterEntertainment]
 ON [dbo].[Entertainment]
-    ([CategoryEnter]);
+    ([CategoryEnter_CategoryId]);
 GO
 
 -- Creating foreign key on [Entertainment_EntertainmentId] in table 'CommentEnter'
 ALTER TABLE [dbo].[CommentEnter]
 ADD CONSTRAINT [FK_EntertainmentCommentEnter]
-    FOREIGN KEY ([Entertainment])
+    FOREIGN KEY ([Entertainment_EntertainmentId])
     REFERENCES [dbo].[Entertainment]
         ([EntertainmentId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -421,13 +424,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentCommentEnter'
 CREATE INDEX [IX_FK_EntertainmentCommentEnter]
 ON [dbo].[CommentEnter]
-    ([Entertainment]);
+    ([Entertainment_EntertainmentId]);
 GO
 
 -- Creating foreign key on [User_UserId] in table 'CommentEnter'
 ALTER TABLE [dbo].[CommentEnter]
 ADD CONSTRAINT [FK_UserCommentEnter]
-    FOREIGN KEY ([User])
+    FOREIGN KEY ([User_UserId])
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -436,13 +439,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserCommentEnter'
 CREATE INDEX [IX_FK_UserCommentEnter]
 ON [dbo].[CommentEnter]
-    ([User]);
+    ([User_UserId]);
 GO
 
 -- Creating foreign key on [Entertainment_EntertainmentId] in table 'ImageEnter'
 ALTER TABLE [dbo].[ImageEnter]
 ADD CONSTRAINT [FK_EntertainmentImageEnter]
-    FOREIGN KEY ([Entertainment])
+    FOREIGN KEY ([Entertainment_EntertainmentId])
     REFERENCES [dbo].[Entertainment]
         ([EntertainmentId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -451,13 +454,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_EntertainmentImageEnter'
 CREATE INDEX [IX_FK_EntertainmentImageEnter]
 ON [dbo].[ImageEnter]
-    ([Entertainment]);
+    ([Entertainment_EntertainmentId]);
 GO
 
--- Creating foreign key on [User_UserId] in table 'Entertainment'
+-- Creating foreign key on [Users_UserId] in table 'Entertainment'
 ALTER TABLE [dbo].[Entertainment]
 ADD CONSTRAINT [FK_UserEntertainment]
-    FOREIGN KEY ([User])
+    FOREIGN KEY ([Users_UserId])
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -466,7 +469,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserEntertainment'
 CREATE INDEX [IX_FK_UserEntertainment]
 ON [dbo].[Entertainment]
-    ([User]);
+    ([Users_UserId]);
 GO
 
 -- --------------------------------------------------

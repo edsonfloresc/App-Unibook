@@ -4,185 +4,185 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="ModelUnibook.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+    <Schema Namespace="ModelUnibook.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="ModelUnibookStoreContainer">
-    <EntitySet Name="User" EntityType="ModelUnibook.Store.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Career" EntityType="ModelUnibook.Store.Career" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Faculty" EntityType="ModelUnibook.Store.Faculty" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Role" EntityType="ModelUnibook.Store.Role" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserCareer" EntityType="ModelUnibook.Store.UserCareer" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Gender" EntityType="ModelUnibook.Store.Gender" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Contact" EntityType="ModelUnibook.Store.Contact" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CategoryEnter" EntityType="ModelUnibook.Store.CategoryEnter" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Entertainment" EntityType="ModelUnibook.Store.Entertainment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CommentEnter" EntityType="ModelUnibook.Store.CommentEnter" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ImageEnter" EntityType="ModelUnibook.Store.ImageEnter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="ModelUnibook.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Career" EntityType="ModelUnibook.Store.Career" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Faculty" EntityType="ModelUnibook.Store.Faculty" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="ModelUnibook.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserCareer" EntityType="ModelUnibook.Store.UserCareer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gender" EntityType="ModelUnibook.Store.Gender" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contact" EntityType="ModelUnibook.Store.Contact" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoryEnter" EntityType="ModelUnibook.Store.CategoryEnter" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Entertainment" EntityType="ModelUnibook.Store.Entertainment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CommentEnter" EntityType="ModelUnibook.Store.CommentEnter" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImageEnter" EntityType="ModelUnibook.Store.ImageEnter" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
-      <End EntitySet="Role" Role="Role" />
-      <End EntitySet="User" Role="User" />
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="PersonContact" Association="ModelUnibook.Store.PersonContact">
-      <End EntitySet="Person" Role="Person" />
-      <End EntitySet="Contact" Role="Contact" />
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Contact" EntitySet="Contact" />
     </AssociationSet>
     <AssociationSet Name="GenderPerson" Association="ModelUnibook.Store.GenderPerson">
-      <End EntitySet="Gender" Role="Gender" />
-      <End EntitySet="Person" Role="Person" />
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Person" EntitySet="Person" />
     </AssociationSet>
     <AssociationSet Name="FacultyCareer" Association="ModelUnibook.Store.FacultyCareer">
-      <End EntitySet="Faculty" Role="Faculty" />
-      <End EntitySet="Career" Role="Career" />
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Career" EntitySet="Career" />
     </AssociationSet>
     <AssociationSet Name="UserUserCareer" Association="ModelUnibook.Store.UserUserCareer">
-      <End EntitySet="User" Role="User" />
-      <End EntitySet="UserCareer" Role="UserCareer" />
+      <End Role="User" EntitySet="User" />
+      <End Role="UserCareer" EntitySet="UserCareer" />
     </AssociationSet>
     <AssociationSet Name="CareerUserCareer" Association="ModelUnibook.Store.CareerUserCareer">
-      <End EntitySet="Career" Role="Career" />
-      <End EntitySet="UserCareer" Role="UserCareer" />
+      <End Role="Career" EntitySet="Career" />
+      <End Role="UserCareer" EntitySet="UserCareer" />
     </AssociationSet>
     <AssociationSet Name="PersonUser" Association="ModelUnibook.Store.PersonUser">
-      <End EntitySet="Person" Role="Person" />
-      <End EntitySet="User" Role="User" />
+      <End Role="Person" EntitySet="Person" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="CategoryEnterEntertainment" Association="ModelUnibook.Store.CategoryEnterEntertainment">
-      <End EntitySet="CategoryEnter" Role="CategoryEnter" />
-      <End EntitySet="Entertainment" Role="Entertainment" />
+      <End Role="CategoryEnter" EntitySet="CategoryEnter" />
+      <End Role="Entertainment" EntitySet="Entertainment" />
     </AssociationSet>
     <AssociationSet Name="EntertainmentCommentEnter" Association="ModelUnibook.Store.EntertainmentCommentEnter">
-      <End EntitySet="Entertainment" Role="Entertainment" />
-      <End EntitySet="CommentEnter" Role="CommentEnter" />
+      <End Role="Entertainment" EntitySet="Entertainment" />
+      <End Role="CommentEnter" EntitySet="CommentEnter" />
     </AssociationSet>
     <AssociationSet Name="UserCommentEnter" Association="ModelUnibook.Store.UserCommentEnter">
-      <End EntitySet="User" Role="User" />
-      <End EntitySet="CommentEnter" Role="CommentEnter" />
+      <End Role="User" EntitySet="User" />
+      <End Role="CommentEnter" EntitySet="CommentEnter" />
     </AssociationSet>
     <AssociationSet Name="EntertainmentImageEnter" Association="ModelUnibook.Store.EntertainmentImageEnter">
-      <End EntitySet="Entertainment" Role="Entertainment" />
-      <End EntitySet="ImageEnter" Role="ImageEnter" />
+      <End Role="Entertainment" EntitySet="Entertainment" />
+      <End Role="ImageEnter" EntitySet="ImageEnter" />
     </AssociationSet>
     <AssociationSet Name="UserEntertainment" Association="ModelUnibook.Store.UserEntertainment">
-      <End EntitySet="User" Role="User" />
-      <End EntitySet="Entertainment" Role="Entertainment" />
+      <End Role="User" EntitySet="User" />
+      <End Role="Entertainment" EntitySet="Entertainment" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="UserId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="Email" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Password" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Role_RoleId" Nullable="false" Type="smallint" />
-    <Property Name="Person_PersonId" Nullable="false" Type="bigint" />
+    <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Role_RoleId" Type="smallint" Nullable="false" />
+    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Career">
     <Key>
       <PropertyRef Name="CareerId" />
     </Key>
-    <Property Name="CareerId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-    <Property Name="Name" Nullable="false" MaxLength="30" Type="nvarchar" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Faculty_FacultyId" Nullable="false" Type="smallint" />
+    <Property Name="CareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Faculty_FacultyId" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="FacultyId" />
     </Key>
-    <Property Name="FacultyId" Nullable="false" StoreGeneratedPattern="Identity" Type="smallint" />
-    <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
+    <Property Name="FacultyId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="RoleId" />
     </Key>
-    <Property Name="RoleId" Nullable="false" StoreGeneratedPattern="Identity" Type="smallint" />
-    <Property Name="Name" Nullable="false" MaxLength="25" Type="nvarchar" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
+    <Property Name="RoleId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UserCareer">
     <Key>
       <PropertyRef Name="UserCareerId" />
     </Key>
-    <Property Name="UserCareerId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="User_UserId" Nullable="false" Type="bigint" />
-    <Property Name="Career_CareerId" Nullable="false" Type="int" />
+    <Property Name="UserCareerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+    <Property Name="Career_CareerId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Gender">
     <Key>
       <PropertyRef Name="GenderId" />
     </Key>
-    <Property Name="GenderId" Nullable="false" StoreGeneratedPattern="Identity" Type="smallint" />
-    <Property Name="Name" Nullable="false" MaxLength="20" Type="nvarchar" />
+    <Property Name="GenderId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
   </EntityType>
   <EntityType Name="Person">
     <Key>
       <PropertyRef Name="PersonId" />
     </Key>
-    <Property Name="PersonId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="Name" Nullable="false" MaxLength="25" Type="nvarchar" />
-    <Property Name="LastName" Nullable="false" MaxLength="25" Type="nvarchar" />
-    <Property Name="Birthday" Nullable="false" Type="datetime" />
-    <Property Name="Gender_GenderId" Nullable="false" Type="smallint" />
+    <Property Name="PersonId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Gender_GenderId" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Contact">
     <Key>
       <PropertyRef Name="ContactId" />
     </Key>
-    <Property Name="ContactId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="Data" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Description" Nullable="false" MaxLength="50" Type="nvarchar" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Person_PersonId" Nullable="false" Type="bigint" />
+    <Property Name="ContactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryEnter">
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Nullable="false" StoreGeneratedPattern="Identity" Type="smallint" />
-    <Property Name="Description" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
+    <Property Name="CategoryId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Entertainment">
     <Key>
       <PropertyRef Name="EntertainmentId" />
     </Key>
-    <Property Name="EntertainmentId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="Title" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="PlaceAddress" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="DateHour" Nullable="false" Type="datetime" />
-    <Property Name="Details" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Discontinued" Nullable="false" Type="bit" />
-    <Property Name="CategoryEnter_CategoryId" Nullable="false" Type="smallint" />
-    <Property Name="User_UserId" Nullable="false" Type="bigint" />
+    <Property Name="EntertainmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlaceAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateHour" Type="datetime" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Discontinued" Type="bit" Nullable="false" />
+    <Property Name="CategoryEnter_CategoryId" Type="smallint" Nullable="false" />
+    <Property Name="Users_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="CommentEnter">
     <Key>
       <PropertyRef Name="CommentId" />
     </Key>
-    <Property Name="CommentId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="CommentText" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="DateHour" Nullable="false" Type="datetime" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Entertainment_EntertainmentId" Nullable="false" Type="bigint" />
-    <Property Name="User_UserId" Nullable="false" Type="bigint" />
+    <Property Name="CommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateHour" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Entertainment_EntertainmentId" Type="bigint" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="ImageEnter">
     <Key>
       <PropertyRef Name="ImageId" />
     </Key>
-    <Property Name="ImageId" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-    <Property Name="PathImage" Nullable="false" Type="nvarchar(max)" />
-    <Property Name="Deleted" Nullable="false" Type="bit" />
-    <Property Name="Entertainment_EntertainmentId" Nullable="false" Type="bigint" />
+    <Property Name="ImageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PathImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Entertainment_EntertainmentId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="RoleUser">
-    <End Type="ModelUnibook.Store.Role" Multiplicity="1" Role="Role" />
-    <End Type="ModelUnibook.Store.User" Multiplicity="*" Role="User" />
+    <End Role="Role" Type="ModelUnibook.Store.Role" Multiplicity="1" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Role">
         <PropertyRef Name="RoleId" />
@@ -193,8 +193,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonContact">
-    <End Type="ModelUnibook.Store.Person" Multiplicity="1" Role="Person" />
-    <End Type="ModelUnibook.Store.Contact" Multiplicity="*" Role="Contact" />
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="1" />
+    <End Role="Contact" Type="ModelUnibook.Store.Contact" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Person">
         <PropertyRef Name="PersonId" />
@@ -205,8 +205,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="GenderPerson">
-    <End Type="ModelUnibook.Store.Gender" Multiplicity="1" Role="Gender" />
-    <End Type="ModelUnibook.Store.Person" Multiplicity="*" Role="Person" />
+    <End Role="Gender" Type="ModelUnibook.Store.Gender" Multiplicity="1" />
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Gender">
         <PropertyRef Name="GenderId" />
@@ -217,8 +217,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FacultyCareer">
-    <End Type="ModelUnibook.Store.Faculty" Multiplicity="1" Role="Faculty" />
-    <End Type="ModelUnibook.Store.Career" Multiplicity="*" Role="Career" />
+    <End Role="Faculty" Type="ModelUnibook.Store.Faculty" Multiplicity="1" />
+    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Faculty">
         <PropertyRef Name="FacultyId" />
@@ -229,8 +229,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="UserUserCareer">
-    <End Type="ModelUnibook.Store.User" Multiplicity="1" Role="User" />
-    <End Type="ModelUnibook.Store.UserCareer" Multiplicity="*" Role="UserCareer" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
@@ -241,8 +241,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CareerUserCareer">
-    <End Type="ModelUnibook.Store.Career" Multiplicity="1" Role="Career" />
-    <End Type="ModelUnibook.Store.UserCareer" Multiplicity="*" Role="UserCareer" />
+    <End Role="Career" Type="ModelUnibook.Store.Career" Multiplicity="1" />
+    <End Role="UserCareer" Type="ModelUnibook.Store.UserCareer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Career">
         <PropertyRef Name="CareerId" />
@@ -253,8 +253,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonUser">
-    <End Type="ModelUnibook.Store.Person" Multiplicity="1" Role="Person" />
-    <End Type="ModelUnibook.Store.User" Multiplicity="*" Role="User" />
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="1" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Person">
         <PropertyRef Name="PersonId" />
@@ -265,8 +265,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CategoryEnterEntertainment">
-    <End Type="ModelUnibook.Store.CategoryEnter" Multiplicity="1" Role="CategoryEnter" />
-    <End Type="ModelUnibook.Store.Entertainment" Multiplicity="*" Role="Entertainment" />
+    <End Role="CategoryEnter" Type="ModelUnibook.Store.CategoryEnter" Multiplicity="1" />
+    <End Role="Entertainment" Type="ModelUnibook.Store.Entertainment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CategoryEnter">
         <PropertyRef Name="CategoryId" />
@@ -277,8 +277,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EntertainmentCommentEnter">
-    <End Type="ModelUnibook.Store.Entertainment" Multiplicity="1" Role="Entertainment" />
-    <End Type="ModelUnibook.Store.CommentEnter" Multiplicity="*" Role="CommentEnter" />
+    <End Role="Entertainment" Type="ModelUnibook.Store.Entertainment" Multiplicity="1" />
+    <End Role="CommentEnter" Type="ModelUnibook.Store.CommentEnter" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Entertainment">
         <PropertyRef Name="EntertainmentId" />
@@ -289,8 +289,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="UserCommentEnter">
-    <End Type="ModelUnibook.Store.User" Multiplicity="1" Role="User" />
-    <End Type="ModelUnibook.Store.CommentEnter" Multiplicity="*" Role="CommentEnter" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="CommentEnter" Type="ModelUnibook.Store.CommentEnter" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
@@ -301,8 +301,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EntertainmentImageEnter">
-    <End Type="ModelUnibook.Store.Entertainment" Multiplicity="1" Role="Entertainment" />
-    <End Type="ModelUnibook.Store.ImageEnter" Multiplicity="*" Role="ImageEnter" />
+    <End Role="Entertainment" Type="ModelUnibook.Store.Entertainment" Multiplicity="1" />
+    <End Role="ImageEnter" Type="ModelUnibook.Store.ImageEnter" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Entertainment">
         <PropertyRef Name="EntertainmentId" />
@@ -313,14 +313,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="UserEntertainment">
-    <End Type="ModelUnibook.Store.User" Multiplicity="1" Role="User" />
-    <End Type="ModelUnibook.Store.Entertainment" Multiplicity="*" Role="Entertainment" />
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="Entertainment" Type="ModelUnibook.Store.Entertainment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="Entertainment">
-        <PropertyRef Name="User_UserId" />
+        <PropertyRef Name="Users_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -772,7 +772,7 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserEntertainment" TypeName="ModelUnibook.UserEntertainment" StoreEntitySet="Entertainment">
       <EndProperty Name="User">
-        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+        <ScalarProperty Name="UserId" ColumnName="Users_UserId" />
       </EndProperty>
       <EndProperty Name="Entertainment">
         <ScalarProperty Name="EntertainmentId" ColumnName="EntertainmentId" />
