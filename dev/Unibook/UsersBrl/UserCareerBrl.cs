@@ -70,6 +70,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 userCareerDto.User.UserId = userCareer.User.UserId;
                 userCareerDto.User.Email = userCareer.User.Email;
                 userCareerDto.User.Deleted = userCareer.User.Deleted;
+                userCareerDto.User.Password = new PasswordDto();
                 userCareerDto.User.Role = new RoleDto();
                 userCareerDto.User.Role.RoleId = userCareer.User.Role.RoleId;
                 userCareerDto.User.Role.Name = userCareer.User.Role.Name;

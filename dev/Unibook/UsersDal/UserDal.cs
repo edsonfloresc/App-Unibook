@@ -43,7 +43,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="user"></param>
         /// <param name="objContex"></param>
-        public static void Insert(User user, Password password,
+        public static void Insert(User user, PasswordDto password,
             ModelUnibookContainer objContex)
         {
             using (var transaction = objContex.Database.BeginTransaction())
@@ -53,7 +53,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                     objContex.User.Add(user);
                     objContex.SaveChanges();
 
-                    PasswordDal.AddNewPassword(password, objContex);
+                    PasswordBrl.PasswordBrl.AddNewPassword(password, objContex);
 
                     transaction.Commit();
                 }

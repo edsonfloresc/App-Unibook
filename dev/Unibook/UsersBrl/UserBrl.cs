@@ -27,7 +27,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 user.Person = PersonBrl.Get(userDto.Person.PersonId, objContex);
                 user.Deleted = userDto.Deleted;
 
-                Password password = new Password() { Psw = userDto.Password.Psw, State = userDto.Password.State, Date = userDto.Password.Date, User = user };
+                PasswordDto password = userDto.Password;
                 UserDal.Insert(user, password, objContex);
             }
             catch (Exception ex)

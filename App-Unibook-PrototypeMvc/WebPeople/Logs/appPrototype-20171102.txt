@@ -1,6 +1,0 @@
-2017-11-02T19:50:45.9905172-04:00 0HL929I4J6V1O:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:51028/   (ca22a1cb)
-2017-11-02T19:50:47.8726632-04:00 0HL929I4J6V1O:00000001 [INF] Executing action method "Univalle.Fie.Sistemas.Unibook.Mvc.WebPeople.Controllers.PersonController.Index (Univalle.Fie.Sistemas.Unibook.Mvc.WebPeople)" with arguments (null) - ModelState is Valid (ba7f4ac2)
-2017-11-02T19:50:47.8998126-04:00 0HL929I4J6V1O:00000001 [INF] Index Method Called!!! (7006a0e2)
-2017-11-02T19:50:57.7565115-04:00 0HL929I4J6V1O:00000001 [INF] Executing ViewResult, running view at path "/Views/Person/Index.cshtml". (9707eebe)
-2017-11-02T19:50:58.4218308-04:00 0HL929I4J6V1O:00000001 [INF] Executed action "Univalle.Fie.Sistemas.Unibook.Mvc.WebPeople.Controllers.PersonController.Index (Univalle.Fie.Sistemas.Unibook.Mvc.WebPeople)" in 10748.5256ms (afa2e885)
-2017-11-02T19:50:58.4648553-04:00 0HL929I4J6V1O:00000001 [INF] Request finished in 12491.6801ms 200 text/html; charset=utf-8 (791a596a)

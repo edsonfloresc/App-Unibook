@@ -4,17 +4,6 @@
 dev/Unibook/packages/
 obj
 bin
-<<<<<<< HEAD
-=======
 *.cache
 obj
 debug
->>>>>>> 4891370b227da12cfa88a16a24ba4e98561f4dec
-App-Unibook-Prototype/.vs/App-Unibook/v14/.suo
-App-Unibook-Prototype/.vs/App-Unibook/v14/.suo
-App-Unibook-Prototype/.vs/config/applicationhost.config
-App-Unibook-Prototype/Common/bin/Debug/Univalle.Fie.Sistemas.UniBook.Common.dll
-App-Unibook-Prototype/PeopleDal/obj/Debug/Univalle.Fie.Sistemas.UniBook.PeopleDal.pdb
-App-Unibook-Prototype/PeopleDal/obj/Debug/Univalle.Fie.Sistemas.UniBook.PeopleDal.dll
-=======
->>>>>>> cd1cfabb56160d1a4aba24967742388462f20c46
