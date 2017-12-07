@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
 
@@ -24,7 +23,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
             try
             {
                 EntertainmentsReturn = (from entertainment in objContex.Entertainment
-                                       // where entertainment.Deleted == false
+                                            // where entertainment.Deleted == false
                                         select entertainment).ToList<Entertainment>();
             }
             catch (DbEntityValidationException ex)
@@ -44,3 +43,4 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
         #endregion
     }
 }
+

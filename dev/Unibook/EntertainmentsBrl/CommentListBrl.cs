@@ -18,6 +18,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             try
             {
                 List<CommentEnterDto> commentList = new List<CommentEnterDto>();
+
                 foreach (var item in CommentListDal.Get(objContex))
                 {
                     CommentEnterDto comment = new CommentEnterDto()
@@ -27,7 +28,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                         DateHour = item.DateHour,
                         CommentId = item.CommentId,
                         Entertainment = new EntertainmentDto() { EntertainmentId = item.Entertainment.EntertainmentId, Title = item.Entertainment.Title, PlaceAddress = item.Entertainment.PlaceAddress, DateHour = item.Entertainment.DateHour, Details = item.Entertainment.Details, Discontinued = item.Entertainment.Discontinued, Deleted = item.Entertainment.Deleted },
-                        User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Password = item.User.Password, Deleted = item.User.Deleted }
+                        User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Deleted = item.User.Deleted }
 
                     };
 

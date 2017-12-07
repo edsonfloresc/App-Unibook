@@ -19,22 +19,25 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
     // [System.Web.Script.Services.ScriptService]
     public class WebCategoryListService : System.Web.Services.WebService
     {
-        ModelUnibookContainer content = new ModelUnibookContainer();
-        [WebMethod]
-        public List<CategoryEnterDto> Get()
-        {
-            List<CategoryEnterDto> personTypeList = new List<CategoryEnterDto>();
-
-            try
+       
+            ModelUnibookContainer content = new ModelUnibookContainer();
+            [WebMethod]
+            public List<CategoryEnterDto> Get()
             {
-                personTypeList = CategoryListBrl.Get(content);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                List<CategoryEnterDto> personTypeList = new List<CategoryEnterDto>();
 
-            return personTypeList;
+                try
+                {
+                    personTypeList = CategoryListBrl.Get(content);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                return personTypeList;
+            }
         }
-    }
+
+    
 }

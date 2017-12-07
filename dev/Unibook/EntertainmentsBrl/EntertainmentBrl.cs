@@ -71,7 +71,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 //entertainmentDto.User.Email = entertainment.User.Email;
                 //entertainmentDto.User.Password = entertainment.User.Password;
                 //entertainmentDto.User.Deleted = entertainment.User.Deleted;
-               // entertainmentDto.User.RoleId = entertainment.User.RoleId;
+                // entertainmentDto.User.RoleId = entertainment.User.RoleId;
             }
 
             catch (Exception)
@@ -101,7 +101,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 entertainment.Deleted = entertainmentDto.Deleted;
                 entertainment.Discontinued = entertainmentDto.Discontinued;
                 entertainment.CategoryEnter = CategoryBrl.Get(entertainmentDto.CategoryEnter.CategoryId, objContex);
-                entertainment.Users = UserBrl.Get(entertainmentDto.Users.UserId, objContex);
+                entertainment.User = UserBrl.Get(entertainmentDto.Users.UserId, objContex);
 
                 EntertainmentDal.Insert(entertainment, objContex);
             }

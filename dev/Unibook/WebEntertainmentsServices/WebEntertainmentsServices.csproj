@@ -8,13 +8,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D6372275-D32D-48CF-BB69-044E1CE0731F}</ProjectGuid>
+    <ProjectGuid>{ED6B7779-151F-4AF8-9B11-C54F5B0819B0}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -84,9 +84,11 @@
     <Content Include="Web.config" />
     <Content Include="WebCategoryListService.asmx" />
     <Content Include="WebCategoryService.asmx" />
+    <Content Include="WebCommentListService.asmx" />
     <Content Include="WebCommentService.asmx" />
     <Content Include="WebEntertainmentListService.asmx" />
     <Content Include="WebEntertainmentService.asmx" />
+    <Content Include="WebImageListService.asmx" />
     <Content Include="WebImageService.asmx" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +101,10 @@
       <DependentUpon>WebCategoryService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebCommentListService.asmx.cs">
+      <DependentUpon>WebCommentListService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebCommentService.asmx.cs">
       <DependentUpon>WebCommentService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -109,6 +115,10 @@
     </Compile>
     <Compile Include="WebEntertainmentService.asmx.cs">
       <DependentUpon>WebEntertainmentService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebImageListService.asmx.cs">
+      <DependentUpon>WebImageListService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebImageService.asmx.cs">
@@ -126,7 +136,7 @@
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntertainmentsBrl\EntertainmentsBrl.csproj">
-      <Project>{67729d38-0c9b-4719-95c7-8639b09d3a53}</Project>
+      <Project>{cf150814-07d8-47ec-bc0a-b498420adf08}</Project>
       <Name>EntertainmentsBrl</Name>
     </ProjectReference>
     <ProjectReference Include="..\UsersBrl\UsersBrl.csproj">
@@ -147,9 +157,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62832</DevelopmentServerPort>
+          <DevelopmentServerPort>52163</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62832/</IISUrl>
+          <IISUrl>http://localhost:52163/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

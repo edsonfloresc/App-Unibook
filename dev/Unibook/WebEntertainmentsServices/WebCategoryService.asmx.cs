@@ -12,9 +12,9 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
     /// <summary>
     /// Descripción breve de WebCategoryService
     /// </summary>
-    //[WebService(Namespace = "http://tempuri.org/")]
-   // [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-  //  [System.ComponentModel.ToolboxItem(false)]
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
     // [System.Web.Script.Services.ScriptService]
     public class WebCategoryService : System.Web.Services.WebService

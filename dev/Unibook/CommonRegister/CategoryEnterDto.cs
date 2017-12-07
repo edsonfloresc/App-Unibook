@@ -8,11 +8,9 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
 {
     public class CategoryEnterDto
     {
-       
-            public short CategoryId { get; set; }
-            public string Description { get; set; }
-            public bool Deleted { get; set; }
 
-        
+        public short CategoryId { get; set; }
+        public string Description { get; set; }
+        public bool Deleted { get; set; }
     }
 }

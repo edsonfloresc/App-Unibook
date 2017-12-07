@@ -22,7 +22,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 {
                     EntertainmentDto enterteinment = new EntertainmentDto()
                     {
-                        EntertainmentId= item.EntertainmentId,
+                        EntertainmentId = item.EntertainmentId,
                         Deleted = item.Deleted,
                         Title = item.Title,
                         DateHour = item.DateHour,
@@ -30,7 +30,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                         Details = item.Details,
                         Discontinued = item.Discontinued,
                         CategoryEnter = new CategoryEnterDto() { CategoryId = item.CategoryEnter.CategoryId, Description = item.CategoryEnter.Description, Deleted = item.CategoryEnter.Deleted },
-                        Users = new UserDto() { UserId = item.Users.UserId, Email = item.Users.Email,Password=item.Users.Password , Deleted = item.Users.Deleted, Role=new RoleDto() { RoleId=item.Users.Role.RoleId, Name= item.Users.Role.Name, Deleted= item.Users.Role.Deleted }, Person=new PersonDto() { PersonId= item.Users.Person.PersonId, Birthday= item.Users.Person.Birthday, Name= item.Users.Person.Name, LastName=item.Users.Person.LastName, Gender= new GenderDto() { GenderId=item.Users.Person.Gender.GenderId, Name= item.Users.Person.Gender.Name} } }
+                        Users = new UserDto() { UserId = item.User.UserId, Email = item.User.Email,  Deleted = item.User.Deleted, Role = new RoleDto() { RoleId = item.User.Role.RoleId, Name = item.User.Role.Name, Deleted = item.User.Role.Deleted }, Person = new PersonDto() { PersonId = item.User.Person.PersonId,  Name = item.User.Person.Name, LastName = item.User.Person.LastName, Gender = new GenderDto() { GenderId = item.User.Person.Gender.GenderId, Name = item.User.Person.Gender.Name } } }
 
 
                     };
@@ -52,3 +52,4 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         #endregion
     }
 }
+
