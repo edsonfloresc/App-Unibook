@@ -1,0 +1,35 @@
+2017-12-06T13:46:07.8476345-04:00 0HL9SQ4T9MJ30:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:50434/   (ca22a1cb)
+2017-12-06T13:46:11.0541535-04:00 0HL9SQ4T9MJ30:00000001 [INF] Executing action method "UnibookEntertainmentMvc.Controllers.EntertainmentController.Index (Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-12-06T13:46:14.9734799-04:00 0HL9SQ4T9MJ31:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:50434/WebEntertainmentListService.asmx text/xml; charset=utf-8 258 (ca22a1cb)
+2017-12-06T13:46:15.2041789-04:00 0HL9SQ4T9MJ31:00000001 [INF] Request finished in 172.6328ms 404  (791a596a)
+2017-12-06T13:46:16.2878941-04:00 0HL9SQ4T9MJ30:00000001 [FTL] There was no endpoint listening at http://localhost:50434/WebEntertainmentListService.asmx that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details. (aebedea0)
+2017-12-06T13:46:16.7478641-04:00 0HL9SQ4T9MJ30:00000001 [FTL]    at System.ServiceModel.Channels.HttpResponseMessageHelper.ValidateResponseStatusCode()
+   at System.ServiceModel.Channels.HttpResponseMessageHelper.<ParseIncomingResponse>d__7.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpClientRequestChannel.HttpClientChannelAsyncRequest.<ReceiveReplyAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.ServiceModel.Channels.RequestChannel.<RequestAsync>d__33.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.ServiceModel.Channels.RequestChannel.<RequestAsyncInternal>d__32.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.TaskHelpers.WaitForCompletionNoSpin[TResult](Task`1 task)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(MethodCall methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(MethodInfo targetMethod, Object[] args)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Reflection.DispatchProxyGenerator.Invoke(Object[] args)
+   at generatedProxy_1.Get(GetRequest )
+   at WebEntertainmentListService.WebEntertainmentListServiceSoapClient.WebEntertainmentListService.WebEntertainmentListServiceSoap.Get(GetRequest request) in C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\AppUnibookEntertainmentMvc\UnibookEntertainmentMvc\Connected Services\WebEntertainmentListService\Reference.cs:line 968
+   at WebEntertainmentListService.WebEntertainmentListServiceSoapClient.Get() in C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\AppUnibookEntertainmentMvc\UnibookEntertainmentMvc\Connected Services\WebEntertainmentListService\Reference.cs:line 975
+   at UnibookEntertainmentMvc.Controllers.EntertainmentController.get_EntertainmentListModel() in C:\Users\andii\Documents\GitHub\App-Unibook\dev\Unibook\AppUnibookEntertainmentMvc\UnibookEntertainmentMvc\Controllers\EntertainmentController.cs:line 45 (a6e67efc)

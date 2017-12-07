@@ -136,7 +136,7 @@ namespace UnibookEntertainmentMvc.Controllers
             {
                 EntertainmentId= entertainment.EntertainmentId,
                 Title= entertainment.Title,
-                DateHour= entertainment.DateHour,
+             //   DateHour= entertainment.DateHour,
                 PlaceAddress= entertainment.PlaceAddress,
                 Details= entertainment.Details,
                 Discontinued= entertainment.Discontinued,
