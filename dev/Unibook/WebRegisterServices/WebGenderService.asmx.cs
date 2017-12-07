@@ -28,11 +28,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             GenderDto genderDto = null;
             try
             {
-<<<<<<< HEAD
-                genderDto = GenderBrl.GetDto(id, dbcontex);
-=======
                 genderDto = GenderBrl.GetDto(1, dbcontex);
->>>>>>> master
 
             }
             catch (Exception ex)
@@ -43,8 +39,6 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             return genderDto;
 
         }
-<<<<<<< HEAD
-=======
 
         [WebMethod]
         public List<GenderDto> GetAll()
@@ -58,6 +52,5 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
                 throw ex;
             }
         }
->>>>>>> master
     }
 }

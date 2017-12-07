@@ -54,11 +54,7 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-<<<<<<< HEAD
-        public void Delete(long id)
-=======
         public void Delete(short id)
->>>>>>> master
         {
             try
             {
@@ -73,11 +69,7 @@ namespace WebRegisterUserServices
 
 
         [WebMethod]
-<<<<<<< HEAD
-        public RoleDto Get(long id)
-=======
         public RoleDto Get(short id)
->>>>>>> master
         {
             RoleDto roleDto = null;
             try

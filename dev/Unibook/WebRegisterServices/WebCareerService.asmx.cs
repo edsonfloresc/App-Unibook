@@ -9,10 +9,7 @@ using Univalle.Fie.Sistemas.UniBook.UsersBrl;
 
 namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
 {
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     /// <summary>
     /// Summary description for WebCareerService
     /// </summary>
@@ -32,11 +29,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
-<<<<<<< HEAD
-                CareerBrl.Insertar(careerDto, dbcontex);
-=======
                 CareerBrl.Insert(careerDto, dbcontex);
->>>>>>> master
             }
             catch (Exception ex)
             {
@@ -82,11 +75,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             CareerDto careerDto = null;
             try
             {
-<<<<<<< HEAD
-                careerDto = CareerBrl.GetDto(id, dbcontex);
-=======
                 careerDto = CareerBrl.GetDto(1, dbcontex);
->>>>>>> master
 
             }
             catch (Exception ex)

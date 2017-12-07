@@ -28,11 +28,7 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
-<<<<<<< HEAD
-                PersonBrl.Insertar(roleDto, dbcontex);
-=======
                 PersonBrl.Insert(roleDto, dbcontex);
->>>>>>> master
             }
             catch (Exception ex)
             {

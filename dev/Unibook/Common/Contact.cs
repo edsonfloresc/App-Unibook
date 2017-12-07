@@ -14,11 +14,7 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
     
     public partial class Contact
     {
-<<<<<<< HEAD
-        public long ContactId { get; set; }
-=======
         public int ContactId { get; set; }
->>>>>>> master
         public string Data { get; set; }
         public string Description { get; set; }
         public bool Deleted { get; set; }
