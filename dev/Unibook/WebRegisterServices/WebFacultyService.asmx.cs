@@ -28,7 +28,11 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
+<<<<<<< HEAD
                 FacultyBrl.Insertar(facultyDto, dbcontex);
+=======
+                FacultyBrl.Insert(facultyDto, dbcontex);
+>>>>>>> master
             }
             catch (Exception ex)
             {
@@ -74,7 +78,11 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             FacultyDto facultyDto = null;
             try
             {
+<<<<<<< HEAD
                 facultyDto = FacultyBrl.GetDto(id, dbcontex);
+=======
+                facultyDto = FacultyBrl.GetDto(1, dbcontex);
+>>>>>>> master
 
             }
             catch (Exception ex)

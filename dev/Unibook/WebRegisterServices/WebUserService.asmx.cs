@@ -28,7 +28,11 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
+<<<<<<< HEAD
                 UserBrl.Insertar(userDto, dbcontex);
+=======
+                UserBrl.Insert(userDto, dbcontex);
+>>>>>>> master
             }
             catch (Exception ex)
             {
@@ -85,5 +89,21 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             return personDto;
 
         }
+<<<<<<< HEAD
+=======
+
+        [WebMethod]
+        public List<UserDto> GetAll()
+        {
+            try
+            {
+                return UserBrl.GetAll(dbcontex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+>>>>>>> master
     }
 }

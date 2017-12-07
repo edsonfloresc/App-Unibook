@@ -11,9 +11,16 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
         public long PersonId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+<<<<<<< HEAD
         public System.DateTime Birthday { get; set; }
         public ContactDto Contact { get; set; }
         public GenderDto Gender { get; set; }
         public UserDto User { get; set; }
+=======
+        public DateTime? BirthDay { get; set; }
+        public bool Deleted { get; set; }
+        public virtual GenderDto Gender { get; set; }
+        public virtual UserDto User { get; set; }
+>>>>>>> master
     }
 }

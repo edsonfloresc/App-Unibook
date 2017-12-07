@@ -28,7 +28,11 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
         {
             try
             {
+<<<<<<< HEAD
                 RoleBrl.Insertar(roleDto, dbcontex);
+=======
+                RoleBrl.Insert(roleDto, dbcontex);
+>>>>>>> master
             }
             catch (Exception ex)
             {
@@ -44,6 +48,10 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             try
             {
                 RoleBrl.Update(roleDto, dbcontex);
+<<<<<<< HEAD
+=======
+                //sdfsfsfs
+>>>>>>> master
             }
             catch (Exception ex)
             {
@@ -54,7 +62,11 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
 
 
         [WebMethod]
+<<<<<<< HEAD
         public void Delete(long id)
+=======
+        public void Delete(short id)
+>>>>>>> master
         {
             try
             {
@@ -66,15 +78,24 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             }
         }
 
+<<<<<<< HEAD
 
 
         [WebMethod]
         public RoleDto Get(long id)
+=======
+        [WebMethod]
+        public RoleDto Get(short id)
+>>>>>>> master
         {
             RoleDto roleDto = null;
             try
             {
+<<<<<<< HEAD
                 roleDto = RoleBrl.GetDto(id, dbcontex);
+=======
+                roleDto = RoleBrl.GetDto(1, dbcontex);
+>>>>>>> master
 
             }
             catch (Exception ex)
@@ -85,5 +106,21 @@ namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
             return roleDto;
 
         }
+<<<<<<< HEAD
+=======
+
+        [WebMethod]
+        public List<RoleDto> GetAll()
+        {
+            try
+            {
+                return RoleBrl.GetAll(dbcontex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+>>>>>>> master
     }
 }

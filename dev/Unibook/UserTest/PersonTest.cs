@@ -17,7 +17,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UserTest
             person.Name = "Rodrigo";
             person.LastName = "Siles Mayorga";
             person.Gender = GenderBrl.Get(1, container);
+<<<<<<< HEAD
             person.Birthday = DateTime.Now;
+=======
+            //person.Birthday = DateTime.Now;
+>>>>>>> master
             //PersonBrl.Insertar(person, container);
         }
 

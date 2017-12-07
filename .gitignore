@@ -1,6 +1,9 @@
 *.dll
 *.pdb
 *.exe
+dev/Unibook/packages/
+obj
+bin
 *.cache
 obj
 debug

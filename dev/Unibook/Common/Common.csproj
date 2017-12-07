@@ -10,11 +10,17 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.Unibook.Common</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.Unibook.Common</AssemblyName>
+<<<<<<< HEAD
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+=======
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+>>>>>>> master
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+<<<<<<< HEAD
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -45,6 +52,12 @@
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+=======
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -61,6 +74,7 @@
     <Compile Include="Career.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="CategoryEnter.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
@@ -73,15 +87,23 @@
     <Compile Include="Entertainment.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Contact.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+>>>>>>> master
     <Compile Include="Faculty.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ImageEnter.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+=======
+>>>>>>> master
     <Compile Include="ModelUnibook.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,6 +119,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Password.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+>>>>>>> master
     <Compile Include="Person.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
@@ -132,6 +160,7 @@
       <LastGenOutput>ModelUnibook.cs</LastGenOutput>
       <DependentUpon>ModelUnibook.edmx</DependentUpon>
     </None>
+<<<<<<< HEAD
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -141,6 +170,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+=======
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelUnibook.edmx.sql" />
+>>>>>>> master
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

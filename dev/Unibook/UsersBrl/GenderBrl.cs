@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using System.Data.Entity.Validation;
+>>>>>>> master
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +60,35 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 
             return genderDto;
         }
+<<<<<<< HEAD
+=======
+
+        /// <summary>
+        /// Get list gender
+        /// </summary>
+        /// <param name="objContex">Get table to object</param>
+        /// <returns></returns>
+        public static List<GenderDto> GetAll(ModelUnibookContainer objContex)
+        {
+            try
+            {
+                List<GenderDto> genderList = new List<GenderDto>();
+                foreach (var item in GenderDal.GetAll(objContex))
+                {
+                    genderList.Add(GenderBrl.GetDto(item.GenderId, objContex));
+                }
+
+                return genderList;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+>>>>>>> master
     }
 }

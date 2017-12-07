@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerDto.cs" />
+<<<<<<< HEAD
     <Compile Include="CategoryEnterDto.cs" />
     <Compile Include="CommentEnterDto.cs" />
     <Compile Include="ContactDto.cs" />
@@ -48,6 +49,12 @@
     <Compile Include="FacultyDto.cs" />
     <Compile Include="GenderDto.cs" />
     <Compile Include="ImageEnterDto.cs" />
+=======
+    <Compile Include="ContactDto.cs" />
+    <Compile Include="FacultyDto.cs" />
+    <Compile Include="GenderDto.cs" />
+    <Compile Include="PasswordDto.cs" />
+>>>>>>> master
     <Compile Include="PersonDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDto.cs" />

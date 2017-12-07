@@ -16,7 +16,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="userCareer"></param>
         /// <param name="objContex"></param>
+<<<<<<< HEAD
         public static void Insertar(UserCareerDto userCareerDto, ModelUnibookContainer objContex)
+=======
+        public static void Insert(UserCareerDto userCareerDto, ModelUnibookContainer objContex)
+>>>>>>> master
         {
             try
             {
@@ -70,7 +74,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 userCareerDto.User.UserId = userCareer.User.UserId;
                 userCareerDto.User.Email = userCareer.User.Email;
                 userCareerDto.User.Deleted = userCareer.User.Deleted;
+<<<<<<< HEAD
                 userCareerDto.User.Password = userCareer.User.Password;
+=======
+                userCareerDto.User.Password = new PasswordDto();
+>>>>>>> master
                 userCareerDto.User.Role = new RoleDto();
                 userCareerDto.User.Role.RoleId = userCareer.User.Role.RoleId;
                 userCareerDto.User.Role.Name = userCareer.User.Role.Name;

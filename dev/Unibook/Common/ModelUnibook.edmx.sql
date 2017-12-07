@@ -2,13 +2,22 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
+<<<<<<< HEAD
 -- Date Created: 12/05/2017 16:46:25
 -- Generated from EDMX file: C:\Users\andii\Desktop\backupUnibook\con web services\Unibook\Common\ModelUnibook.edmx
+=======
+-- Date Created: 12/04/2017 13:10:01
+-- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+>>>>>>> master
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
+<<<<<<< HEAD
 USE [Unibook];
+=======
+USE [UniBook];
+>>>>>>> master
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -38,6 +47,7 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_PersonUser];
 GO
+<<<<<<< HEAD
 IF OBJECT_ID(N'[dbo].[FK_CategoryEnterEntertainment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Entertainment] DROP CONSTRAINT [FK_CategoryEnterEntertainment];
 GO
@@ -52,15 +62,22 @@ IF OBJECT_ID(N'[dbo].[FK_EntertainmentImageEnter]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserEntertainment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Entertainment] DROP CONSTRAINT [FK_UserEntertainment];
+=======
+IF OBJECT_ID(N'[dbo].[FK_UserPassword]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Password] DROP CONSTRAINT [FK_UserPassword];
+>>>>>>> master
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User];
 GO
+=======
+>>>>>>> master
 IF OBJECT_ID(N'[dbo].[Career]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Career];
 GO
@@ -76,6 +93,7 @@ GO
 IF OBJECT_ID(N'[dbo].[Gender]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Gender];
 GO
+<<<<<<< HEAD
 IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Person];
 GO
@@ -93,12 +111,26 @@ IF OBJECT_ID(N'[dbo].[CommentEnter]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ImageEnter]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ImageEnter];
+=======
+IF OBJECT_ID(N'[dbo].[Contact]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contact];
+GO
+IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Person];
+GO
+IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[User];
+GO
+IF OBJECT_ID(N'[dbo].[Password]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Password];
+>>>>>>> master
 GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- Creating table 'User'
 CREATE TABLE [dbo].[User] (
     [UserId] bigint IDENTITY(1,1) NOT NULL,
@@ -110,6 +142,8 @@ CREATE TABLE [dbo].[User] (
 );
 GO
 
+=======
+>>>>>>> master
 -- Creating table 'Career'
 CREATE TABLE [dbo].[Career] (
     [CareerId] int IDENTITY(1,1) NOT NULL,
@@ -150,6 +184,7 @@ CREATE TABLE [dbo].[Gender] (
 );
 GO
 
+<<<<<<< HEAD
 -- Creating table 'Person'
 CREATE TABLE [dbo].[Person] (
     [PersonId] bigint IDENTITY(1,1) NOT NULL,
@@ -163,6 +198,11 @@ GO
 -- Creating table 'Contact'
 CREATE TABLE [dbo].[Contact] (
     [ContactId] bigint IDENTITY(1,1) NOT NULL,
+=======
+-- Creating table 'Contact'
+CREATE TABLE [dbo].[Contact] (
+    [ContactId] int IDENTITY(1,1) NOT NULL,
+>>>>>>> master
     [Data] nvarchar(max)  NOT NULL,
     [Description] nvarchar(50)  NOT NULL,
     [Deleted] bit  NOT NULL,
@@ -170,6 +210,7 @@ CREATE TABLE [dbo].[Contact] (
 );
 GO
 
+<<<<<<< HEAD
 -- Creating table 'CategoryEnter'
 CREATE TABLE [dbo].[CategoryEnter] (
     [CategoryId] smallint IDENTITY(1,1) NOT NULL,
@@ -209,6 +250,36 @@ CREATE TABLE [dbo].[ImageEnter] (
     [PathImage] nvarchar(max)  NOT NULL,
     [Deleted] bit  NOT NULL,
     [Entertainment_EntertainmentId] bigint  NOT NULL
+=======
+-- Creating table 'Person'
+CREATE TABLE [dbo].[Person] (
+    [PersonId] bigint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(25)  NOT NULL,
+    [LastName] nvarchar(25)  NOT NULL,
+    [Birthday] datetime  NULL,
+    [Deleted] bit  NOT NULL,
+    [Gender_GenderId] smallint  NOT NULL
+);
+GO
+
+-- Creating table 'User'
+CREATE TABLE [dbo].[User] (
+    [UserId] bigint IDENTITY(1,1) NOT NULL,
+    [Email] nvarchar(50)  NOT NULL,
+    [Deleted] bit  NOT NULL,
+    [Role_RoleId] smallint  NOT NULL,
+    [Person_PersonId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Password'
+CREATE TABLE [dbo].[Password] (
+    [PasswordId] bigint IDENTITY(1,1) NOT NULL,
+    [Psw] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [State] tinyint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
+>>>>>>> master
 );
 GO
 
@@ -216,12 +287,15 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
+<<<<<<< HEAD
 -- Creating primary key on [UserId] in table 'User'
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [PK_User]
     PRIMARY KEY CLUSTERED ([UserId] ASC);
 GO
 
+=======
+>>>>>>> master
 -- Creating primary key on [CareerId] in table 'Career'
 ALTER TABLE [dbo].[Career]
 ADD CONSTRAINT [PK_Career]
@@ -252,18 +326,22 @@ ADD CONSTRAINT [PK_Gender]
     PRIMARY KEY CLUSTERED ([GenderId] ASC);
 GO
 
+<<<<<<< HEAD
 -- Creating primary key on [PersonId] in table 'Person'
 ALTER TABLE [dbo].[Person]
 ADD CONSTRAINT [PK_Person]
     PRIMARY KEY CLUSTERED ([PersonId] ASC);
 GO
 
+=======
+>>>>>>> master
 -- Creating primary key on [ContactId] in table 'Contact'
 ALTER TABLE [dbo].[Contact]
 ADD CONSTRAINT [PK_Contact]
     PRIMARY KEY CLUSTERED ([ContactId] ASC);
 GO
 
+<<<<<<< HEAD
 -- Creating primary key on [CategoryId] in table 'CategoryEnter'
 ALTER TABLE [dbo].[CategoryEnter]
 ADD CONSTRAINT [PK_CategoryEnter]
@@ -286,6 +364,24 @@ GO
 ALTER TABLE [dbo].[ImageEnter]
 ADD CONSTRAINT [PK_ImageEnter]
     PRIMARY KEY CLUSTERED ([ImageId] ASC);
+=======
+-- Creating primary key on [PersonId] in table 'Person'
+ALTER TABLE [dbo].[Person]
+ADD CONSTRAINT [PK_Person]
+    PRIMARY KEY CLUSTERED ([PersonId] ASC);
+GO
+
+-- Creating primary key on [UserId] in table 'User'
+ALTER TABLE [dbo].[User]
+ADD CONSTRAINT [PK_User]
+    PRIMARY KEY CLUSTERED ([UserId] ASC);
+GO
+
+-- Creating primary key on [PasswordId] in table 'Password'
+ALTER TABLE [dbo].[Password]
+ADD CONSTRAINT [PK_Password]
+    PRIMARY KEY CLUSTERED ([PasswordId] ASC);
+>>>>>>> master
 GO
 
 -- --------------------------------------------------
@@ -397,6 +493,7 @@ ON [dbo].[User]
     ([Person_PersonId]);
 GO
 
+<<<<<<< HEAD
 -- Creating foreign key on [CategoryEnter_CategoryId] in table 'Entertainment'
 ALTER TABLE [dbo].[Entertainment]
 ADD CONSTRAINT [FK_CategoryEnterEntertainment]
@@ -430,12 +527,18 @@ GO
 -- Creating foreign key on [User_UserId] in table 'CommentEnter'
 ALTER TABLE [dbo].[CommentEnter]
 ADD CONSTRAINT [FK_UserCommentEnter]
+=======
+-- Creating foreign key on [User_UserId] in table 'Password'
+ALTER TABLE [dbo].[Password]
+ADD CONSTRAINT [FK_UserPassword]
+>>>>>>> master
     FOREIGN KEY ([User_UserId])
     REFERENCES [dbo].[User]
         ([UserId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
+<<<<<<< HEAD
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserCommentEnter'
 CREATE INDEX [IX_FK_UserCommentEnter]
 ON [dbo].[CommentEnter]
@@ -472,6 +575,14 @@ ON [dbo].[Entertainment]
     ([Users_UserId]);
 GO
 
+=======
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPassword'
+CREATE INDEX [IX_FK_UserPassword]
+ON [dbo].[Password]
+    ([User_UserId]);
+GO
+
+>>>>>>> master
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

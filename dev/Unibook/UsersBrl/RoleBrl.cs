@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using System.Data.Entity.Validation;
+>>>>>>> master
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +20,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="role"></param>
         /// <param name="objContex"></param>
+<<<<<<< HEAD
         public static void Insertar(RoleDto roleDto, ModelUnibookContainer objContex)
+=======
+        public static void Insert(RoleDto roleDto, ModelUnibookContainer objContex)
+>>>>>>> master
         {
             try
             {
@@ -38,7 +46,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static Role Get(long id, ModelUnibookContainer objContex)
+=======
+        public static Role Get(short id, ModelUnibookContainer objContex)
+>>>>>>> master
         {
             Role role = null;
             try
@@ -59,7 +71,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <param name="id"></param>
         /// <param name="objContex"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public static RoleDto GetDto(long id, ModelUnibookContainer objContex)
+=======
+        public static RoleDto GetDto(short id, ModelUnibookContainer objContex)
+>>>>>>> master
         {
             RoleDto roleDto = null;
             try
@@ -103,7 +119,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
+<<<<<<< HEAD
         public static void Delete(long id, ModelUnibookContainer objContex)
+=======
+        public static void Delete(short id, ModelUnibookContainer objContex)
+>>>>>>> master
         {
             try
             {
@@ -114,5 +134,35 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 throw ex;
             }
         }
+<<<<<<< HEAD
+=======
+
+        /// <summary>
+        /// Get list role
+        /// </summary>
+        /// <param name="objContex">Get table to object</param>
+        /// <returns></returns>
+        public static List<RoleDto> GetAll(ModelUnibookContainer objContex)
+        {
+            try
+            {
+                List<RoleDto> roleList = new List<RoleDto>();
+                foreach (var item in RoleDal.GetAll(objContex))
+                {
+                    roleList.Add(RoleBrl.GetDto(item.RoleId, objContex));
+                }
+
+                return roleList;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+>>>>>>> master
     }
 }
