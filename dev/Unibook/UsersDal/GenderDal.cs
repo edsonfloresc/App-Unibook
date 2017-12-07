@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,34 +31,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
             }
 
             return genderReturn;
-        }
-
-        /// <summary>
-        /// Get list gender
-        /// </summary>
-        /// <param name="objContex">Get table to object</param>
-        /// <returns></returns>
-        public static List<Gender> GetAll(ModelUnibookContainer objContex)
-        {
-            List<Gender> gendersReturn = null;
-
-            try
-            {
-                gendersReturn = (from gender in objContex.Gender
-                               select gender).ToList<Gender>();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-
-            return gendersReturn;
         }
     }
 }

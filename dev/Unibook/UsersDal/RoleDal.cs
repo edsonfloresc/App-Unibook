@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="id">Id role to search</param>
         /// <returns></returns>
-        public static Role Get(short id, ModelUnibookContainer objContex)
+        public static Role Get(long id, ModelUnibookContainer objContex)
         {
             Role roleReturn = null;
 
@@ -79,7 +78,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="objContex"></param>
-        public static void Delete(short id, ModelUnibookContainer objContex)
+        public static void Delete(long id, ModelUnibookContainer objContex)
         {
             try
             {
@@ -92,34 +91,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                 System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
-        }
-
-        /// <summary>
-        /// Get list role
-        /// </summary>
-        /// <param name="objContex">Get table to object</param>
-        /// <returns></returns>
-        public static List<Role> GetAll(ModelUnibookContainer objContex)
-        {
-            List<Role> rolesReturn = null;
-
-            try
-            {
-                rolesReturn = (from role in objContex.Role
-                               select role).ToList<Role>();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-
-            return rolesReturn;
         }
 
         #endregion metodos

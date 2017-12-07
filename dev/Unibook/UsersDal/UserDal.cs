@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.Common;
-using Univalle.Fie.Sistemas.UniBook.CommonDto;
 
 namespace Univalle.Fie.Sistemas.UniBook.UsersDal
 {
@@ -43,26 +41,17 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
         /// </summary>
         /// <param name="user"></param>
         /// <param name="objContex"></param>
-        public static void Insert(User user, PasswordDto password,
-            ModelUnibookContainer objContex)
+        public static void Insert(User user, ModelUnibookContainer objContex)
         {
-            using (var transaction = objContex.Database.BeginTransaction())
+            try
             {
-                try
-                {
-                    objContex.User.Add(user);
-                    objContex.SaveChanges();
-
-                    PasswordBrl.PasswordBrl.AddNewPassword(password, objContex);
-
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                    throw ex;
-                }
+                objContex.User.Add(user);
+                objContex.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
+                throw ex;
             }
         }
 
@@ -102,34 +91,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersDal
                 System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
             }
-        }
-
-        /// <summary>
-        /// Get list user
-        /// </summary>
-        /// <param name="objContex">Get table to object</param>
-        /// <returns></returns>
-        public static List<User> GetAll(ModelUnibookContainer objContex)
-        {
-            List<User> usersReturn = null;
-
-            try
-            {
-                usersReturn = (from user in objContex.User
-                               select user).ToList<User>();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
-                throw ex;
-            }
-
-            return usersReturn;
         }
 
         #endregion metodos

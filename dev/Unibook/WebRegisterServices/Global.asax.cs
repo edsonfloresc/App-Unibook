@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace Univalle.Fie.Sistemas.UniBook.WebRegisterServices
+namespace WebRegisterServices
 {
     public class Global : System.Web.HttpApplication
     {

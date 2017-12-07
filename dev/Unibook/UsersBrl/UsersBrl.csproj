@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Univalle.Fie.Sistemas.UniBook.UsersBrl</RootNamespace>
     <AssemblyName>Univalle.Fie.Sistemas.UniBook.UsersBrl</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,23 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CareerBrl.cs" />
-    <Compile Include="CareerListBrl.cs" />
-    <Compile Include="ContactBrl.cs" />
-    <Compile Include="ContactListBrl.cs" />
     <Compile Include="FacultyBrl.cs" />
-    <Compile Include="FacultyListBrl.cs" />
     <Compile Include="GenderBrl.cs" />
-    <Compile Include="GenderListBrl.cs" />
-    <Compile Include="PasswordBrl.cs" />
     <Compile Include="PersonBrl.cs" />
-    <Compile Include="PersonListBrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleBrl.cs" />
-    <Compile Include="RoleListBrl.cs" />
     <Compile Include="UserBrl.cs" />
     <Compile Include="UserCareerBrl.cs" />
-    <Compile Include="UserCareerListBrl.cs" />
-    <Compile Include="UserListBrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonRegister\CommonDto.csproj">

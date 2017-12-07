@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +11,21 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
 {
     public class PersonBrl
     {
-        #region Methods
-
         /// <summary>
-        /// Insert a person
+        /// Create a new person
         /// </summary>
-        /// <param name="person">Object person to insert</param>
-        /// <param name="objContex">Get table to object</param>
-        public static void Insert(PersonDto personDto, ModelUnibookContainer objContex)
+        /// <param name="role"></param>
+        /// <param name="objContex"></param>
+        public static void Insertar(PersonDto personDto, ModelUnibookContainer objContex)
         {
             try
             {
                 Person person = new Person();
-                person.PersonId = personDto.PersonId;
                 person.Name = personDto.Name;
                 person.LastName = personDto.LastName;
-                person.Birthday = personDto.BirthDay;
-                person.Deleted = personDto.Deleted;
-                //person.Gender = GenderBrl.Get(personDto.Gender.GenderId);
+                person.Birthday = personDto.Birthday;
+                person.PersonId = personDto.PersonId;
                 PersonDal.Insert(person, objContex);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                throw ex;
             }
             catch (Exception ex)
             {
@@ -43,21 +34,17 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         }
 
         /// <summary>
-        /// Get person by id
+        /// Get a person with identifier
         /// </summary>
-        /// <param name="id">Id person to search</param>
-        /// <returns>Return object person</returns>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
         public static Person Get(long id, ModelUnibookContainer objContex)
         {
             Person person = null;
-
             try
             {
                 person = PersonDal.Get(id, objContex);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                throw ex;
             }
             catch (Exception ex)
             {
@@ -68,28 +55,23 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         }
 
         /// <summary>
-        /// Get person by id Dto
+        /// Get a person with identifier
         /// </summary>
-        /// <param name="id">Id person to search</param>
-        /// <returns>Return object person</returns>
+        /// <param name="id"></param>
+        /// <param name="objContex"></param>
+        /// <returns></returns>
         public static PersonDto GetDto(long id, ModelUnibookContainer objContex)
         {
             PersonDto personDto = null;
-
             try
             {
                 Person person = PersonDal.Get(id, objContex);
                 personDto = new PersonDto();
-                personDto.PersonId = person.PersonId;
-                personDto.Name = person.Name;
-                personDto.LastName = person.LastName;
-                personDto.BirthDay = person.Birthday;
-                personDto.Deleted = person.Deleted;
-                personDto.Gender = GenderBrl.GetDto(person.Gender.GenderId, objContex);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                throw ex;
+                person.Name = personDto.Name;
+                person.LastName = personDto.LastName;
+                person.Birthday = personDto.Birthday;
+                person.PersonId = personDto.PersonId;
+               
             }
             catch (Exception ex)
             {
@@ -100,51 +82,24 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         }
 
         /// <summary>
-        /// Update a Person
+        /// Update changes in the context
         /// </summary>
-        /// <param name="objContex">Get table to object</param>
+        /// <param name="role"></param>
+        /// <param name="objContex"></param>
         public static void Update(PersonDto personDto, ModelUnibookContainer objContex)
         {
             try
             {
-                Person person = PersonDal.Get(personDto.PersonId, objContex);
-                person.Name = personDto.Name;
+                Person person = PersonBrl.Get(personDto.PersonId, objContex); ;
                 person.LastName = personDto.LastName;
-                person.Birthday = personDto.BirthDay;
-                person.Deleted = personDto.Deleted;
-                //person.Gender = GenderBrl.Get(personDto.Gender.GenderId, objContex);
-                PersonDal.Update(objContex);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                throw ex;
+                person.Birthday = personDto.Birthday;
+                person.PersonId = personDto.PersonId;
+                PersonDal.Update(person, objContex);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        /// <summary>
-        /// Deleted a person
-        /// </summary>
-        /// <param name="id">Id person to deleted</param>
-        /// <param name="objContex">Get table to object</param>
-        public static void Delete(long id, ModelUnibookContainer objContex)
-        {
-            try
-            {
-                PersonDal.Delete(id, objContex);
-            }
-            catch (DbEntityValidationException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        #endregion
     }
 }

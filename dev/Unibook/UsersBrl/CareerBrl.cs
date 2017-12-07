@@ -16,7 +16,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="career"></param>
         /// <param name="objContex"></param>
-        public static void Insert(CareerDto careerDto, ModelUnibookContainer objContex)
+        public static void Insertar(CareerDto careerDto, ModelUnibookContainer objContex)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// <returns></returns>
         public static CareerDto GetDto(int id, ModelUnibookContainer objContex)
         {
-            CareerDto careerDto = new CareerDto();
+            CareerDto careerDto = null;
             try
             {
                 Career career = CareerDal.Get(id, objContex);

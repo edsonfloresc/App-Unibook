@@ -8,11 +8,10 @@ namespace Univalle.Fie.Sistemas.UniBook.CommonDto
 {
     public class ContactDto
     {
-        public int ContactId { get; set; }
+        public System.Guid ContactId { get; set; }
         public string Data { get; set; }
         public string Description { get; set; }
         public bool Deleted { get; set; }
-
-        public virtual PersonDto Person { get; set; }
+        public PersonDto Person { get; set; }
     }
 }
