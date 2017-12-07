@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,18 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
         /// </summary>
         /// <param name="role"></param>
         /// <param name="objContex"></param>
-        public static void Insertar(UserDto userDto, ModelUnibookContainer objContex)
+        public static void Insert(UserDto userDto, ModelUnibookContainer objContex)
         {
             try
             {
                 User user = new User();
                 user.Email = userDto.Email;
-                user.Password = userDto.Password;
+                user.Role = RoleBrl.Get(userDto.Role.RoleId, objContex);
+                user.Person = PersonBrl.Get(userDto.Person.PersonId, objContex);
                 user.Deleted = userDto.Deleted;
-                user.Role = RoleBrl.Get(userDto.Role.RoleId,objContex);
-                //user.Person = PersonBrl.Get(userDto.Person.PersonId, objContex);
-                UserDal.Insert(user, objContex);
+
+                PasswordDto password = userDto.Password;
+                UserDal.Insert(user, password, objContex);
             }
             catch (Exception ex)
             {
@@ -69,11 +71,11 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
             {
                 User user = UserDal.Get(id, objContex);
                 userDto = new UserDto();
-                userDto.UserId = user.UserId;
                 userDto.Email = user.Email;
-                userDto.Password = user.Password;
                 userDto.Deleted = user.Deleted;
-             }
+                userDto.Role = new RoleDto() { RoleId = user.Role.RoleId, Name = user.Role.Name, Deleted = user.Role.Deleted};
+                userDto.Person = new PersonDto() { PersonId = user.Person.PersonId, Name = user.Person.Name, Deleted = user.Person.Deleted, BirthDay = user.Person.Birthday, LastName = user.Person.LastName, Gender = new GenderDto() { GenderId = user.Person.Gender.GenderId, Name = user.Person.Gender.Name }, User = new UserDto() };
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -94,7 +96,6 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
                 User user = UserBrl.Get(userDto.UserId, objContex); ;
                 user.Email = userDto.Email;
                 user.Deleted = userDto.Deleted;
-                user.Password = userDto.Password;
                 UserDal.Update(user, objContex);
             }
             catch (Exception ex)
@@ -113,6 +114,33 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
             try
             {
                 UserDal.Delete(id, objContex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get list user
+        /// </summary>
+        /// <param name="objContex">Get table to object</param>
+        /// <returns></returns>
+        public static List<UserDto> GetAll(ModelUnibookContainer objContex)
+        {
+            try
+            {
+                List<UserDto> roleList = new List<UserDto>();
+                foreach (var item in UserDal.GetAll(objContex))
+                {
+                    roleList.Add(UserBrl.GetDto(item.UserId, objContex));
+                }
+
+                return roleList;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

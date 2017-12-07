@@ -23,7 +23,8 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public long PersonId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
-        public System.DateTime Birthday { get; set; }
+        public Nullable<System.DateTime> Birthday { get; set; }
+        public bool Deleted { get; set; }
     
         public virtual ICollection<Contact> Contact { get; set; }
         public virtual Gender Gender { get; set; }

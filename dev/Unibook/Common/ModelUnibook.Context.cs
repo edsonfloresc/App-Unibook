@@ -25,17 +25,14 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Career> Career { get; set; }
         public virtual DbSet<Faculty> Faculty { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<UserCareer> UserCareer { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
-        public virtual DbSet<CategoryEnter> CategoryEnter { get; set; }
-        public virtual DbSet<Entertainment> Entertainment { get; set; }
-        public virtual DbSet<CommentEnter> CommentEnter { get; set; }
-        public virtual DbSet<ImageEnter> ImageEnter { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Password> Password { get; set; }
     }
 }
