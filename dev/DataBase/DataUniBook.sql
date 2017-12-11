@@ -52,6 +52,30 @@ INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('Calle
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('444444', 'Telefono', 0, 3);
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('777777', 'Celular', 0, 4);
 
+--Insert State--
+INSERT INTO State(Description) VALUES ('Perdido');
+INSERT INTO State(Description) VALUES ('Buscandolo');
+INSERT INTO State(Description) VALUES ('Encontrado');
+
+--Insert Category--
+
+INSERT INTO Category (Description,Active) VALUES ('Tecnología',1);
+INSERT INTO Category (Description,Active) VALUES ('Ropa',1);
+INSERT INTO Category (Description,Active) VALUES ('Materiales',1);
+
+--Insert Lost Object--
+
+INSERT INTO LostObject (Title,Description,DisplayTime,LostDate,Latitude,Longitude,Category_CategoryId,State_StateId,Person_PersonId) VALUES ('Celular','Se perdio mi celular de color negro',20,12/10/2017,-16.89567,-16.56784,1,1,1);
+INSERT INTO LostObject (Title,Description,DisplayTime,LostDate,Latitude,Longitude,Category_CategoryId,State_StateId,Person_PersonId) VALUES ('Chaqueta','Se perdio mi chaqueta en el bloque e',20,12/10/2017,-16.89567,-16.56784,2,1,1);
+INSERT INTO LostObject (Title,Description,DisplayTime,LostDate,Latitude,Longitude,Category_CategoryId,State_StateId,Person_PersonId) VALUES ('Celular','Se perdio mi celular de color rojo en el bloque de tecnologia',20,12/10/2017,-16.89567,-16.56784,1,1,1);
+
+--Insert Comment--
+
+INSERT INTO Comment (Description,Date,Active,LostObject_LostObjectId) VALUES ('Yo creo que vi tu celular en el bloque e en el segundo piso',21/10/2017,1);
+INSERT INTO Comment (Description,Date,Active,LostObject_LostObjectId) VALUES ('Yo vi tu chaqueta por sociales',21/10/2017,2);
+INSERT INTO Comment (Description,Date,Active,LostObject_LostObjectId) VALUES ('Yo tengo tu celular llamame para que te lo devuelva',21/10/2017,1);
+
+
 END TRY
 
 BEGIN CATCH
