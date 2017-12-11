@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/04/2017 13:10:01
--- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 12/10/2017 17:08:56
+-- Generated from EDMX file: E:\Univalle\Programacion Avanzada II\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -159,6 +159,39 @@ CREATE TABLE [dbo].[Password] (
 );
 GO
 
+-- Creating table 'Category'
+CREATE TABLE [dbo].[Category] (
+    [CategoryId] smallint IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Purpose] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Questions'
+CREATE TABLE [dbo].[Questions] (
+    [QuestionsId] bigint IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [Points] smallint  NOT NULL,
+    [Solved] bit  NOT NULL,
+    [Deleted] bit  NOT NULL,
+    [Category_CategoryId] smallint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'Answer'
+CREATE TABLE [dbo].[Answer] (
+    [AnswerId] bigint IDENTITY(1,1) NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [Points] smallint  NOT NULL,
+    [Solved] bit  NOT NULL,
+    [Deleted] bit  NOT NULL,
+    [Questions_QuestionsId] bigint  NOT NULL,
+    [User_UserId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -215,6 +248,24 @@ GO
 ALTER TABLE [dbo].[Password]
 ADD CONSTRAINT [PK_Password]
     PRIMARY KEY CLUSTERED ([PasswordId] ASC);
+GO
+
+-- Creating primary key on [CategoryId] in table 'Category'
+ALTER TABLE [dbo].[Category]
+ADD CONSTRAINT [PK_Category]
+    PRIMARY KEY CLUSTERED ([CategoryId] ASC);
+GO
+
+-- Creating primary key on [QuestionsId] in table 'Questions'
+ALTER TABLE [dbo].[Questions]
+ADD CONSTRAINT [PK_Questions]
+    PRIMARY KEY CLUSTERED ([QuestionsId] ASC);
+GO
+
+-- Creating primary key on [AnswerId] in table 'Answer'
+ALTER TABLE [dbo].[Answer]
+ADD CONSTRAINT [PK_Answer]
+    PRIMARY KEY CLUSTERED ([AnswerId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -338,6 +389,66 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserPassword'
 CREATE INDEX [IX_FK_UserPassword]
 ON [dbo].[Password]
+    ([User_UserId]);
+GO
+
+-- Creating foreign key on [Category_CategoryId] in table 'Questions'
+ALTER TABLE [dbo].[Questions]
+ADD CONSTRAINT [FK_CategoryQuestions]
+    FOREIGN KEY ([Category_CategoryId])
+    REFERENCES [dbo].[Category]
+        ([CategoryId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryQuestions'
+CREATE INDEX [IX_FK_CategoryQuestions]
+ON [dbo].[Questions]
+    ([Category_CategoryId]);
+GO
+
+-- Creating foreign key on [Questions_QuestionsId] in table 'Answer'
+ALTER TABLE [dbo].[Answer]
+ADD CONSTRAINT [FK_QuestionsAnswer]
+    FOREIGN KEY ([Questions_QuestionsId])
+    REFERENCES [dbo].[Questions]
+        ([QuestionsId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_QuestionsAnswer'
+CREATE INDEX [IX_FK_QuestionsAnswer]
+ON [dbo].[Answer]
+    ([Questions_QuestionsId]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'Questions'
+ALTER TABLE [dbo].[Questions]
+ADD CONSTRAINT [FK_UserQuestions]
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserQuestions'
+CREATE INDEX [IX_FK_UserQuestions]
+ON [dbo].[Questions]
+    ([User_UserId]);
+GO
+
+-- Creating foreign key on [User_UserId] in table 'Answer'
+ALTER TABLE [dbo].[Answer]
+ADD CONSTRAINT [FK_UserAnswer]
+    FOREIGN KEY ([User_UserId])
+    REFERENCES [dbo].[User]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserAnswer'
+CREATE INDEX [IX_FK_UserAnswer]
+ON [dbo].[Answer]
     ([User_UserId]);
 GO
 

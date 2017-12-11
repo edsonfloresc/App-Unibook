@@ -49,7 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Career.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Contact.cs">
@@ -83,6 +89,9 @@
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questions.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
