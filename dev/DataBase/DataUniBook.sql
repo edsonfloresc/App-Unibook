@@ -52,6 +52,22 @@ INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('Calle
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('444444', 'Telefono', 0, 3);
 INSERT INTO Contact (Data, Description, Deleted, Person_PersonId) VALUES ('777777', 'Celular', 0, 4);
 
+-- Insert Category --
+
+INSERT INTO Category (Name, Purpose) VALUES ('General', 'Dudas Generales');
+INSERT INTO Category (Name, Purpose) VALUES ('Diversion', 'Comedia y Alegria');
+
+-- Insert Questions --
+
+INSERT INTO Questions (Title, Content, Points, Solved, Deleted, Category_CategoryId, User_UserId) VALUES ('Que documentos se requiere para inscribirse a la uiversidad?', 'Fui a la universidad y me perdi', 2, 0, 0, 1, 1);
+INSERT INTO Questions (Title, Content, Points, Solved, Deleted, Category_CategoryId, User_UserId) VALUES ('Quienes se animan a ir al Hotel Regina?', 'Fiesta de los de sistemas', 5, 1, 0, 2, 2);
+
+
+-- Insert Answer --
+
+INSERT INTO Answer (Content, Points, Solved, Deleted, Questions_QuestionsId, User_UserId) VALUES ('En la parte superior de la universidad se encuentra informacion', 2, 1, 0, 1, 3);
+INSERT INTO Answer (Content, Points, Solved, Deleted, Questions_QuestionsId, User_UserId) VALUES ('yo me apunto para ir a la fiesta', 5, 1, 0, 2, 4);
+
 END TRY
 
 BEGIN CATCH

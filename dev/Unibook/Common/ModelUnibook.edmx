@@ -15,6 +15,9 @@
     <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="ModelUnibook.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Password" EntityType="ModelUnibook.Store.Password" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="ModelUnibook.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Questions" EntityType="ModelUnibook.Store.Questions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Answer" EntityType="ModelUnibook.Store.Answer" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
@@ -46,6 +49,22 @@
     <AssociationSet Name="UserPassword" Association="ModelUnibook.Store.UserPassword">
       <End Role="User" EntitySet="User" />
       <End Role="Password" EntitySet="Password" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryQuestions" Association="ModelUnibook.Store.CategoryQuestions">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="QuestionsAnswer" Association="ModelUnibook.Store.QuestionsAnswer">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="UserQuestions" Association="ModelUnibook.Store.UserQuestions">
+      <End Role="User" EntitySet="User" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="UserAnswer" Association="ModelUnibook.Store.UserAnswer">
+      <End Role="User" EntitySet="User" />
+      <End Role="Answer" EntitySet="Answer" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Career">
@@ -127,6 +146,39 @@
     <Property Name="Psw" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Purpose" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="QuestionsId" />
+    </Key>
+    <Property Name="QuestionsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Points" Type="smallint" Nullable="false" />
+    <Property Name="Solved" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Category_CategoryId" Type="smallint" Nullable="false" />
+    <Property Name="User_UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+    </Key>
+    <Property Name="AnswerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Points" Type="smallint" Nullable="false" />
+    <Property Name="Solved" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Questions_QuestionsId" Type="bigint" Nullable="false" />
     <Property Name="User_UserId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="RoleUser">
@@ -225,6 +277,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CategoryQuestions">
+    <End Role="Category" Type="ModelUnibook.Store.Category" Multiplicity="1" />
+    <End Role="Questions" Type="ModelUnibook.Store.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="Category_CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="QuestionsAnswer">
+    <End Role="Questions" Type="ModelUnibook.Store.Questions" Multiplicity="1" />
+    <End Role="Answer" Type="ModelUnibook.Store.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="QuestionsId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="Questions_QuestionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserQuestions">
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="Questions" Type="ModelUnibook.Store.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserAnswer">
+    <End Role="User" Type="ModelUnibook.Store.User" Multiplicity="1" />
+    <End Role="Answer" Type="ModelUnibook.Store.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="User_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -271,6 +371,25 @@
             <End Role="User" EntitySet="User" />
             <End Role="Password" EntitySet="Password" />
           </AssociationSet>
+          <EntitySet Name="Category" EntityType="ModelUnibook.Category" />
+          <EntitySet Name="Questions" EntityType="ModelUnibook.Questions" />
+          <EntitySet Name="Answer" EntityType="ModelUnibook.Answer" />
+          <AssociationSet Name="CategoryQuestions" Association="ModelUnibook.CategoryQuestions">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionsAnswer" Association="ModelUnibook.QuestionsAnswer">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="UserQuestions" Association="ModelUnibook.UserQuestions">
+            <End Role="User" EntitySet="User" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="UserAnswer" Association="ModelUnibook.UserAnswer">
+            <End Role="User" EntitySet="User" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -283,6 +402,8 @@
           <NavigationProperty Name="Person" Relationship="ModelUnibook.PersonUser" FromRole="User" ToRole="Person" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Password" Relationship="ModelUnibook.UserPassword" FromRole="User" ToRole="Password" />
+          <NavigationProperty Name="Questions" Relationship="ModelUnibook.UserQuestions" FromRole="User" ToRole="Questions" />
+          <NavigationProperty Name="Answer" Relationship="ModelUnibook.UserAnswer" FromRole="User" ToRole="Answer" />
         </EntityType>
         <EntityType Name="Career">
           <Key>
@@ -393,6 +514,57 @@
           <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
           <End Type="ModelUnibook.Password" Role="Password" Multiplicity="*" />
         </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Purpose" Type="String" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="ModelUnibook.CategoryQuestions" FromRole="Category" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QuestionsId" />
+          </Key>
+          <Property Name="QuestionsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="Points" Type="Int16" Nullable="false" />
+          <Property Name="Solved" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="ModelUnibook.CategoryQuestions" FromRole="Questions" ToRole="Category" />
+          <NavigationProperty Name="Answer" Relationship="ModelUnibook.QuestionsAnswer" FromRole="Questions" ToRole="Answer" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserQuestions" FromRole="Questions" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="Points" Type="Int16" Nullable="false" />
+          <Property Name="Solved" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="ModelUnibook.QuestionsAnswer" FromRole="Answer" ToRole="Questions" />
+          <NavigationProperty Name="User" Relationship="ModelUnibook.UserAnswer" FromRole="Answer" ToRole="User" />
+        </EntityType>
+        <Association Name="CategoryQuestions">
+          <End Type="ModelUnibook.Category" Role="Category" Multiplicity="1" />
+          <End Type="ModelUnibook.Questions" Role="Questions" Multiplicity="*" />
+        </Association>
+        <Association Name="QuestionsAnswer">
+          <End Type="ModelUnibook.Questions" Role="Questions" Multiplicity="1" />
+          <End Type="ModelUnibook.Answer" Role="Answer" Multiplicity="*" />
+        </Association>
+        <Association Name="UserQuestions">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.Questions" Role="Questions" Multiplicity="*" />
+        </Association>
+        <Association Name="UserAnswer">
+          <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
+          <End Type="ModelUnibook.Answer" Role="Answer" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -481,6 +653,38 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Category)">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Questions)">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Solved" ColumnName="Solved" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Answer)">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Solved" ColumnName="Solved" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="RoleUser" TypeName="ModelUnibook.RoleUser" StoreEntitySet="User">
       <EndProperty Name="Role">
         <ScalarProperty Name="RoleId" ColumnName="Role_RoleId" />
@@ -543,6 +747,38 @@
       </EndProperty>
       <EndProperty Name="Password">
         <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoryQuestions" TypeName="ModelUnibook.CategoryQuestions" StoreEntitySet="Questions">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="CategoryId" ColumnName="Category_CategoryId" />
+      </EndProperty>
+      <EndProperty Name="Questions">
+        <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="QuestionsAnswer" TypeName="ModelUnibook.QuestionsAnswer" StoreEntitySet="Answer">
+      <EndProperty Name="Questions">
+        <ScalarProperty Name="QuestionsId" ColumnName="Questions_QuestionsId" />
+      </EndProperty>
+      <EndProperty Name="Answer">
+        <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserQuestions" TypeName="ModelUnibook.UserQuestions" StoreEntitySet="Questions">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Questions">
+        <ScalarProperty Name="QuestionsId" ColumnName="QuestionsId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserAnswer" TypeName="ModelUnibook.UserAnswer" StoreEntitySet="Answer">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="User_UserId" />
+      </EndProperty>
+      <EndProperty Name="Answer">
+        <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

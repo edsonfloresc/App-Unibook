@@ -57,7 +57,8 @@ namespace AppUnibookRegisterMvc.Controllers
                         Deleted = person.Deleted,
                         LastName = person.LastName,
                         Name = person.Name,
-                        Gender = new GenderModel() { GenderId = person.Gender.GenderId, Name = person.Gender.Name }
+                        Gender = new GenderModel() { GenderId = person.Gender.GenderId, Name = person.Gender.Name },
+                        User = new UserModel()
                     });
                 }
                 return personModel;
@@ -167,7 +168,7 @@ namespace AppUnibookRegisterMvc.Controllers
                     Deleted = personModel.Deleted,
                     LastName = personModel.LastName,
                     Name = personModel.Name,
-                    Gender = new WebPersonService.GenderDto() { GenderId = personModel.Gender.GenderId, Name = personModel.Gender.Name }
+                    Gender = new WebPersonService.GenderDto() { GenderId = 1, Name = "Masculino" }
                 };
                 soapClient.Insert(person);
                 return RedirectToAction(nameof(Index));
