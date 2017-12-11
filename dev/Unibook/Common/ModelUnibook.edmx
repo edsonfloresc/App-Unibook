@@ -15,6 +15,10 @@
     <EntitySet Name="Person" EntityType="ModelUnibook.Store.Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="ModelUnibook.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Password" EntityType="ModelUnibook.Store.Password" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comment" EntityType="ModelUnibook.Store.Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Category" EntityType="ModelUnibook.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="State" EntityType="ModelUnibook.Store.State" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LostObject" EntityType="ModelUnibook.Store.LostObject" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RoleUser" Association="ModelUnibook.Store.RoleUser">
       <End Role="Role" EntitySet="Role" />
       <End Role="User" EntitySet="User" />
@@ -46,6 +50,22 @@
     <AssociationSet Name="UserPassword" Association="ModelUnibook.Store.UserPassword">
       <End Role="User" EntitySet="User" />
       <End Role="Password" EntitySet="Password" />
+    </AssociationSet>
+    <AssociationSet Name="LostObjectComment" Association="ModelUnibook.Store.LostObjectComment">
+      <End Role="LostObject" EntitySet="LostObject" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryLostObject" Association="ModelUnibook.Store.CategoryLostObject">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="LostObject" EntitySet="LostObject" />
+    </AssociationSet>
+    <AssociationSet Name="StateLostObject" Association="ModelUnibook.Store.StateLostObject">
+      <End Role="State" EntitySet="State" />
+      <End Role="LostObject" EntitySet="LostObject" />
+    </AssociationSet>
+    <AssociationSet Name="PersonLostObject" Association="ModelUnibook.Store.PersonLostObject">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="LostObject" EntitySet="LostObject" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Career">
@@ -128,6 +148,46 @@
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="State" Type="tinyint" Nullable="false" />
     <Property Name="User_UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="LostObject_LostObjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LostObject">
+    <Key>
+      <PropertyRef Name="LostObjectId" />
+    </Key>
+    <Property Name="LostObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="LostDate" Type="datetime" Nullable="false" />
+    <Property Name="DisplayTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Category_CategoryId" Type="int" Nullable="false" />
+    <Property Name="State_StateId" Type="tinyint" Nullable="false" />
+    <Property Name="Person_PersonId" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="RoleUser">
     <End Role="Role" Type="ModelUnibook.Store.Role" Multiplicity="1" />
@@ -225,6 +285,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="LostObjectComment">
+    <End Role="LostObject" Type="ModelUnibook.Store.LostObject" Multiplicity="1" />
+    <End Role="Comment" Type="ModelUnibook.Store.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LostObject">
+        <PropertyRef Name="LostObjectId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="LostObject_LostObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryLostObject">
+    <End Role="Category" Type="ModelUnibook.Store.Category" Multiplicity="1" />
+    <End Role="LostObject" Type="ModelUnibook.Store.LostObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="LostObject">
+        <PropertyRef Name="Category_CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StateLostObject">
+    <End Role="State" Type="ModelUnibook.Store.State" Multiplicity="1" />
+    <End Role="LostObject" Type="ModelUnibook.Store.LostObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="LostObject">
+        <PropertyRef Name="State_StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonLostObject">
+    <End Role="Person" Type="ModelUnibook.Store.Person" Multiplicity="1" />
+    <End Role="LostObject" Type="ModelUnibook.Store.LostObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="LostObject">
+        <PropertyRef Name="Person_PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -270,6 +378,26 @@
           <AssociationSet Name="UserPassword" Association="ModelUnibook.UserPassword">
             <End Role="User" EntitySet="User" />
             <End Role="Password" EntitySet="Password" />
+          </AssociationSet>
+          <EntitySet Name="Comment" EntityType="ModelUnibook.Comment" />
+          <EntitySet Name="Category" EntityType="ModelUnibook.Category" />
+          <EntitySet Name="State" EntityType="ModelUnibook.State" />
+          <EntitySet Name="LostObject" EntityType="ModelUnibook.LostObject" />
+          <AssociationSet Name="LostObjectComment" Association="ModelUnibook.LostObjectComment">
+            <End Role="LostObject" EntitySet="LostObject" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryLostObject" Association="ModelUnibook.CategoryLostObject">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="LostObject" EntitySet="LostObject" />
+          </AssociationSet>
+          <AssociationSet Name="StateLostObject" Association="ModelUnibook.StateLostObject">
+            <End Role="State" EntitySet="State" />
+            <End Role="LostObject" EntitySet="LostObject" />
+          </AssociationSet>
+          <AssociationSet Name="PersonLostObject" Association="ModelUnibook.PersonLostObject">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="LostObject" EntitySet="LostObject" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -340,6 +468,7 @@
           <NavigationProperty Name="Gender" Relationship="ModelUnibook.GenderPerson" FromRole="Person" ToRole="Gender" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ModelUnibook.PersonUser" FromRole="Person" ToRole="User" />
+          <NavigationProperty Name="LostObject" Relationship="ModelUnibook.PersonLostObject" FromRole="Person" ToRole="LostObject" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -392,6 +521,65 @@
         <Association Name="UserPassword">
           <End Type="ModelUnibook.User" Role="User" Multiplicity="1" />
           <End Type="ModelUnibook.Password" Role="Password" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LostObject" Relationship="ModelUnibook.LostObjectComment" FromRole="Comment" ToRole="LostObject" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LostObject" Relationship="ModelUnibook.CategoryLostObject" FromRole="Category" ToRole="LostObject" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="LostObject" Relationship="ModelUnibook.StateLostObject" FromRole="State" ToRole="LostObject" />
+        </EntityType>
+        <EntityType Name="LostObject">
+          <Key>
+            <PropertyRef Name="LostObjectId" />
+          </Key>
+          <Property Name="LostObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="LostDate" Type="DateTime" Nullable="false" />
+          <Property Name="DisplayTime" Type="String" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="ModelUnibook.LostObjectComment" FromRole="LostObject" ToRole="Comment" />
+          <NavigationProperty Name="Category" Relationship="ModelUnibook.CategoryLostObject" FromRole="LostObject" ToRole="Category" />
+          <NavigationProperty Name="State" Relationship="ModelUnibook.StateLostObject" FromRole="LostObject" ToRole="State" />
+          <NavigationProperty Name="Person" Relationship="ModelUnibook.PersonLostObject" FromRole="LostObject" ToRole="Person" />
+        </EntityType>
+        <Association Name="LostObjectComment">
+          <End Type="ModelUnibook.LostObject" Role="LostObject" Multiplicity="1" />
+          <End Type="ModelUnibook.Comment" Role="Comment" Multiplicity="*" />
+        </Association>
+        <Association Name="CategoryLostObject">
+          <End Type="ModelUnibook.Category" Role="Category" Multiplicity="1" />
+          <End Type="ModelUnibook.LostObject" Role="LostObject" Multiplicity="*" />
+        </Association>
+        <Association Name="StateLostObject">
+          <End Type="ModelUnibook.State" Role="State" Multiplicity="1" />
+          <End Type="ModelUnibook.LostObject" Role="LostObject" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonLostObject">
+          <End Type="ModelUnibook.Person" Role="Person" Multiplicity="1" />
+          <End Type="ModelUnibook.LostObject" Role="LostObject" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -481,6 +669,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Comment)">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.Category)">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="State">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.State)">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LostObject">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelUnibook.LostObject)">
+        <MappingFragment StoreEntitySet="LostObject">
+          <ScalarProperty Name="LostObjectId" ColumnName="LostObjectId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="LostDate" ColumnName="LostDate" />
+          <ScalarProperty Name="DisplayTime" ColumnName="DisplayTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="RoleUser" TypeName="ModelUnibook.RoleUser" StoreEntitySet="User">
       <EndProperty Name="Role">
         <ScalarProperty Name="RoleId" ColumnName="Role_RoleId" />
@@ -543,6 +771,38 @@
       </EndProperty>
       <EndProperty Name="Password">
         <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LostObjectComment" TypeName="ModelUnibook.LostObjectComment" StoreEntitySet="Comment">
+      <EndProperty Name="LostObject">
+        <ScalarProperty Name="LostObjectId" ColumnName="LostObject_LostObjectId" />
+      </EndProperty>
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoryLostObject" TypeName="ModelUnibook.CategoryLostObject" StoreEntitySet="LostObject">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="CategoryId" ColumnName="Category_CategoryId" />
+      </EndProperty>
+      <EndProperty Name="LostObject">
+        <ScalarProperty Name="LostObjectId" ColumnName="LostObjectId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StateLostObject" TypeName="ModelUnibook.StateLostObject" StoreEntitySet="LostObject">
+      <EndProperty Name="State">
+        <ScalarProperty Name="StateId" ColumnName="State_StateId" />
+      </EndProperty>
+      <EndProperty Name="LostObject">
+        <ScalarProperty Name="LostObjectId" ColumnName="LostObjectId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonLostObject" TypeName="ModelUnibook.PersonLostObject" StoreEntitySet="LostObject">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="PersonId" ColumnName="Person_PersonId" />
+      </EndProperty>
+      <EndProperty Name="LostObject">
+        <ScalarProperty Name="LostObjectId" ColumnName="LostObjectId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

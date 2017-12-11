@@ -52,6 +52,12 @@
     <Compile Include="Career.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
@@ -59,6 +65,9 @@
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="Gender.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LostObject.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelUnibook.Context.cs">
@@ -84,6 +93,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
+      <DependentUpon>ModelUnibook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs">
       <DependentUpon>ModelUnibook.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">

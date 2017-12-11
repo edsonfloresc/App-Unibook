@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/04/2017 13:10:01
--- Generated from EDMX file: D:\Jose\Univalle\6to Semestre\Programacion Avanzada II\3ra Opcion\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
+-- Date Created: 12/10/2017 20:30:53
+-- Generated from EDMX file: C:\Users\Javier Mercado\Documents\Univalle\6to Semestre\Programacion Avanzada II\Final\App-Unibook\dev\Unibook\Common\ModelUnibook.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -159,6 +159,46 @@ CREATE TABLE [dbo].[Password] (
 );
 GO
 
+-- Creating table 'Comment'
+CREATE TABLE [dbo].[Comment] (
+    [CommentId] int IDENTITY(1,1) NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [Active] bit  NOT NULL,
+    [LostObject_LostObjectId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Category'
+CREATE TABLE [dbo].[Category] (
+    [CategoryId] int IDENTITY(1,1) NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Active] bit  NOT NULL
+);
+GO
+
+-- Creating table 'State'
+CREATE TABLE [dbo].[State] (
+    [StateId] tinyint IDENTITY(1,1) NOT NULL,
+    [Description] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'LostObject'
+CREATE TABLE [dbo].[LostObject] (
+    [LostObjectId] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Latitude] float  NOT NULL,
+    [Longitude] float  NOT NULL,
+    [LostDate] datetime  NOT NULL,
+    [DisplayTime] nvarchar(max)  NOT NULL,
+    [Category_CategoryId] int  NOT NULL,
+    [State_StateId] tinyint  NOT NULL,
+    [Person_PersonId] bigint  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -215,6 +255,30 @@ GO
 ALTER TABLE [dbo].[Password]
 ADD CONSTRAINT [PK_Password]
     PRIMARY KEY CLUSTERED ([PasswordId] ASC);
+GO
+
+-- Creating primary key on [CommentId] in table 'Comment'
+ALTER TABLE [dbo].[Comment]
+ADD CONSTRAINT [PK_Comment]
+    PRIMARY KEY CLUSTERED ([CommentId] ASC);
+GO
+
+-- Creating primary key on [CategoryId] in table 'Category'
+ALTER TABLE [dbo].[Category]
+ADD CONSTRAINT [PK_Category]
+    PRIMARY KEY CLUSTERED ([CategoryId] ASC);
+GO
+
+-- Creating primary key on [StateId] in table 'State'
+ALTER TABLE [dbo].[State]
+ADD CONSTRAINT [PK_State]
+    PRIMARY KEY CLUSTERED ([StateId] ASC);
+GO
+
+-- Creating primary key on [LostObjectId] in table 'LostObject'
+ALTER TABLE [dbo].[LostObject]
+ADD CONSTRAINT [PK_LostObject]
+    PRIMARY KEY CLUSTERED ([LostObjectId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -339,6 +403,66 @@ GO
 CREATE INDEX [IX_FK_UserPassword]
 ON [dbo].[Password]
     ([User_UserId]);
+GO
+
+-- Creating foreign key on [LostObject_LostObjectId] in table 'Comment'
+ALTER TABLE [dbo].[Comment]
+ADD CONSTRAINT [FK_LostObjectComment]
+    FOREIGN KEY ([LostObject_LostObjectId])
+    REFERENCES [dbo].[LostObject]
+        ([LostObjectId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LostObjectComment'
+CREATE INDEX [IX_FK_LostObjectComment]
+ON [dbo].[Comment]
+    ([LostObject_LostObjectId]);
+GO
+
+-- Creating foreign key on [Category_CategoryId] in table 'LostObject'
+ALTER TABLE [dbo].[LostObject]
+ADD CONSTRAINT [FK_CategoryLostObject]
+    FOREIGN KEY ([Category_CategoryId])
+    REFERENCES [dbo].[Category]
+        ([CategoryId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryLostObject'
+CREATE INDEX [IX_FK_CategoryLostObject]
+ON [dbo].[LostObject]
+    ([Category_CategoryId]);
+GO
+
+-- Creating foreign key on [State_StateId] in table 'LostObject'
+ALTER TABLE [dbo].[LostObject]
+ADD CONSTRAINT [FK_StateLostObject]
+    FOREIGN KEY ([State_StateId])
+    REFERENCES [dbo].[State]
+        ([StateId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StateLostObject'
+CREATE INDEX [IX_FK_StateLostObject]
+ON [dbo].[LostObject]
+    ([State_StateId]);
+GO
+
+-- Creating foreign key on [Person_PersonId] in table 'LostObject'
+ALTER TABLE [dbo].[LostObject]
+ADD CONSTRAINT [FK_PersonLostObject]
+    FOREIGN KEY ([Person_PersonId])
+    REFERENCES [dbo].[Person]
+        ([PersonId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonLostObject'
+CREATE INDEX [IX_FK_PersonLostObject]
+ON [dbo].[LostObject]
+    ([Person_PersonId]);
 GO
 
 -- --------------------------------------------------
