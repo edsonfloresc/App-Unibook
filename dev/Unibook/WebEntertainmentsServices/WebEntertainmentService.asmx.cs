@@ -35,6 +35,18 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
             }
         }
 
+        [WebMethod]
+        public void InsertComplete(EntertainmentDto entertainment, ImageEnterDto image)
+        {
+            try
+            {
+                EntertainmentBrl.InsertComplete(entertainment, image, content);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         [WebMethod]
@@ -42,13 +54,13 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
         {
             try
             {
-                EntertainmentDto entertainment1 = EntertainmentBrl.GetDto(int.Parse(entertainment.EntertainmentId.ToString()), content);
+                EntertainmentDto entertainment1 = EntertainmentBrl.GetDto(long.Parse(entertainment.EntertainmentId.ToString()), content);
                 entertainment1.Title = entertainment.Title;
                 entertainment1.Details = entertainment.Details;
                 entertainment1.DateHour = entertainment.DateHour;
                 entertainment1.Discontinued = entertainment.Discontinued;
                 entertainment1.Deleted = entertainment.Deleted;
-
+               // entertainment1.CategoryEnter = CategoryBrl.GetDto(entertainment.CategoryEnter.CategoryId,content);
                 EntertainmentBrl.Update(entertainment, content);
             }
             catch (Exception ex)
@@ -86,7 +98,6 @@ namespace Univalle.Fie.Sistemas.UniBook.WebEntertainmentsServices
             {
                 throw ex;
             }
-
             return entertainment;
 
         }

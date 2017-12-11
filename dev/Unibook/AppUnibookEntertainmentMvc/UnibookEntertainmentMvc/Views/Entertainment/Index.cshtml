@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Models.EntertainmentModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EntertainmentId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlaceAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateHour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deleted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Discontinued)
+                </th>
+               
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntertainmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaceAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discontinued)
+            </td>
+         
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.EntertainmentId }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.EntertainmentId }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.EntertainmentId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

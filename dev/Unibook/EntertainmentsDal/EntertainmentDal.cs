@@ -10,6 +10,8 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
 {
     public class EntertainmentDal
     {
+
+        
         #region metodos
         /// <summary>
         /// Method for Get Entertainment like object
@@ -17,7 +19,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
         /// <param name="id">id from Entertainment Table for search</param>
         /// <param name="objContex"></param>
         /// <returns>return a Entertainment Object</returns>
-        public static Entertainment Get(int id, ModelUnibookContainer objContex)
+        public static Entertainment Get(long id, ModelUnibookContainer objContex)
         {
             Entertainment EntertainmentReturn = null;
 
@@ -41,6 +43,43 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
 
             return EntertainmentReturn;
         }
+
+
+        /// <summary>
+        /// Method for Get Entertainment like object
+        /// </summary>
+        /// <param name="id">id from Entertainment Table for search</param>
+        /// <param name="objContex"></param>
+        /// <returns>return a Entertainment Object</returns>
+        public static long GetLastId(ModelUnibookContainer objContex)
+        {
+            //Entertainment EntertainmentReturn = null;
+
+            long LastRegister;
+            try
+            {
+                //EntertainmentReturn = (from entertainment in objContex.Entertainment
+                //                       where entertainment.Deleted == false && entertainment.EntertainmentId == id
+                //                       select entertainment).Single<Entertainment>();
+
+                 LastRegister = objContex.Entertainment
+                     .OrderByDescending(x => x.EntertainmentId)
+                     .First().EntertainmentId;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
+                throw ex;
+            }
+
+            return LastRegister;
+        }
+
 
         /// <summary>
         /// Method for insert a new Entertainment without image
@@ -66,6 +105,8 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
             }
         }
 
+
+        
         /// <summary>
         /// Method for insert a new Entertainment with image
         /// </summary>
@@ -73,23 +114,29 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
         /// <param name="objContex"></param>
         public static void Insert(Entertainment entertainment, ImageEnter image, ModelUnibookContainer objContex)
         {
+            var dbContextTransaction = objContex.Database.BeginTransaction();
+
             try
             {
-                var LastId = objContex.Entertainment.OrderByDescending(x => x.EntertainmentId).First().EntertainmentId;
-                // image.EntertainmentId = 
+               
                 objContex.Entertainment.Add(entertainment);
+                long LastId = objContex.Entertainment.OrderByDescending(x => x.EntertainmentId).First().EntertainmentId;
+                image.Entertainment = Get(LastId+1,objContex);
                 objContex.ImageEnter.Add(image);
                 objContex.SaveChanges();
+                dbContextTransaction.Commit();
             }
             catch (DbEntityValidationException ex)
             {
                 System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
+                dbContextTransaction.Rollback();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.Write(string.Format("{0} {1} Error: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.Message));
                 throw ex;
+                dbContextTransaction.Rollback();
             }
         }
         /// <summary>

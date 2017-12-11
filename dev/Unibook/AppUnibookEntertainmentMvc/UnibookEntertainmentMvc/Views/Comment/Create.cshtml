@@ -1,0 +1,52 @@
+﻿@model Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Models.CommentModel
+
+@*@{
+    ViewData["Title"] = "Create";
+}*@
+
+<h2>Create</h2>
+
+<h4>CommentModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="CommentId" class="control-label"></label>
+                <input asp-for="CommentId" class="form-control" />
+                <span asp-validation-for="CommentId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="CommentText" class="control-label"></label>
+                <input asp-for="CommentText" class="form-control" />
+                <span asp-validation-for="CommentText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateHour" class="control-label"></label>
+                <input asp-for="DateHour" class="form-control" />
+                <span asp-validation-for="DateHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Deleted" /> @Html.DisplayNameFor(model => model.Deleted)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Entertainment.EntertainmentId, (IEnumerable<SelectListItem>)ViewBag.listEntertainment, "--Select Entertainment--")
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

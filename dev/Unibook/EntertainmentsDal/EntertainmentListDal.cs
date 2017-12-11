@@ -23,7 +23,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsDal
             try
             {
                 EntertainmentsReturn = (from entertainment in objContex.Entertainment
-                                            // where entertainment.Deleted == false
+                                            where entertainment.Deleted == false
                                         select entertainment).ToList<Entertainment>();
             }
             catch (DbEntityValidationException ex)

@@ -52,19 +52,21 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             try
             {
                 ImageEnter image = ImageDal.Get(id, objContex);
-                imageDto = new ImageEnterDto();
-                imageDto.ImageId = image.ImageId;
-                imageDto.PathImage = image.PathImage;
-                imageDto.Deleted = image.Deleted;
+                imageDto = new ImageEnterDto
+                {
+                    ImageId = image.ImageId,
+                    PathImage = image.PathImage,
+                    Deleted = image.Deleted
+                };
 
-                imageDto.Entertainment = new EntertainmentDto();
-                imageDto.Entertainment.EntertainmentId = image.Entertainment.EntertainmentId;
-                imageDto.Entertainment.Title = image.Entertainment.Title;
-                imageDto.Entertainment.PlaceAddress = image.Entertainment.PlaceAddress;
-                imageDto.Entertainment.DateHour = image.Entertainment.DateHour;
-                imageDto.Entertainment.Details = image.Entertainment.Details;
-                imageDto.Entertainment.Deleted = image.Entertainment.Deleted;
-                imageDto.Entertainment.Discontinued = image.Entertainment.Discontinued;
+                //imageDto.Entertainment = new EntertainmentDto();
+                //imageDto.Entertainment.EntertainmentId = image.Entertainment.EntertainmentId;
+                //imageDto.Entertainment.Title = image.Entertainment.Title;
+                //imageDto.Entertainment.PlaceAddress = image.Entertainment.PlaceAddress;
+                //imageDto.Entertainment.DateHour = image.Entertainment.DateHour;
+                //imageDto.Entertainment.Details = image.Entertainment.Details;
+                //imageDto.Entertainment.Deleted = image.Entertainment.Deleted;
+                //imageDto.Entertainment.Discontinued = image.Entertainment.Discontinued;
 
 
             }
@@ -115,7 +117,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 image.ImageId = imageDto.ImageId;
                 image.PathImage = imageDto.PathImage;
                 image.Deleted = imageDto.Deleted;
-                image.Entertainment = EntertainmentBrl.Get(int.Parse(imageDto.Entertainment.EntertainmentId.ToString()), objContex);
+               // image.Entertainment = EntertainmentBrl.Get(int.Parse(imageDto.Entertainment.EntertainmentId.ToString()), objContex);
 
 
                 ImageDal.Update(objContex);

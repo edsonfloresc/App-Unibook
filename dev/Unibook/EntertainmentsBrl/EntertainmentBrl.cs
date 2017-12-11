@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Univalle.Fie.Sistemas.Unibook.EntertainmentsDal;
+
 using Univalle.Fie.Sistemas.Unibook.Common;
 using System.Data.Entity.Validation;
 using Univalle.Fie.Sistemas.UniBook.CommonDto;
@@ -13,6 +14,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 {
     public class EntertainmentBrl
     {
+        public static object ImageEnterDal { get; private set; }
         #region metodos
         /// <summary>
         /// Method for Get Entertainment like object
@@ -20,7 +22,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// <param name="id">id from Entertainment Table for search</param>
         /// <param name="objContex"></param>
         /// <returns>return a Entertainment Object</returns>
-        public static Entertainment Get(int id, ModelUnibookContainer objContex)
+        public static Entertainment Get(long id, ModelUnibookContainer objContex)
         {
 
 
@@ -44,7 +46,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         /// <param name="id">id from Entertainment Table for search</param>
         /// <param name="objContex"></param>
         /// <returns>return a Entertainment Object</returns>
-        public static EntertainmentDto GetDto(int id, ModelUnibookContainer objContex)
+        public static EntertainmentDto GetDto(long id, ModelUnibookContainer objContex)
         {
 
             EntertainmentDto entertainmentDto = null;
@@ -60,18 +62,12 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
                 entertainmentDto.PlaceAddress = entertainment.PlaceAddress;
                 entertainmentDto.DateHour = entertainment.DateHour;
                 entertainmentDto.Details = entertainment.Details;
-                //entertainmentDto.Deleted = entertainment.Deleted;
-                //entertainmentDto.Discontinued = entertainment.Discontinued;
-                //entertainmentDto.CategoryEnter = new CategoryEnterDto();
-                //entertainmentDto.CategoryEnter.CategoryId = entertainment.CategoryEnter.CategoryId;
-                //entertainmentDto.CategoryEnter.Description = entertainment.CategoryEnter.Description;
-                //entertainmentDto.CategoryEnter.Deleted = entertainment.CategoryEnter.Deleted;
-                //entertainmentDto.User = new UserDto();
-                //entertainmentDto.User.UserId = entertainment.User.UserId;
-                //entertainmentDto.User.Email = entertainment.User.Email;
-                //entertainmentDto.User.Password = entertainment.User.Password;
-                //entertainmentDto.User.Deleted = entertainment.User.Deleted;
-                // entertainmentDto.User.RoleId = entertainment.User.RoleId;
+                entertainmentDto.Deleted = entertainment.Deleted;
+                entertainmentDto.Discontinued = entertainment.Discontinued;
+                entertainmentDto.CategoryEnter = CategoryBrl.GetDto(1, objContex);
+                //entertainmentDto.CategoryEnter = CategoryBrl.GetDto(entertainmentDto.CategoryEnter.CategoryId, objContex);
+                //   entertainmentDto.Users = UserBrl.GetDto(entertainmentDto.Users.UserId, objContex);
+
             }
 
             catch (Exception)
@@ -112,7 +108,48 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
             }
         }
 
+       
+        
+        /// <summary>
+          /// Method for insert a new Entertainment without image
+          /// </summary>
+          /// <param name="entertainment"> object from class Entertainment for insert</param>
+          /// <param name="objContex"></param>
+        public static void InsertComplete(EntertainmentDto entertainmentDto, ImageEnterDto imageDto, ModelUnibookContainer objContex)
+        {
+            try
+            {
+                Entertainment entertainment = new Entertainment
+                {
+                    Title = entertainmentDto.Title,
+                    PlaceAddress = entertainmentDto.PlaceAddress,
+                    DateHour = entertainmentDto.DateHour,
+                    Details = entertainmentDto.Details,
+                    Deleted = entertainmentDto.Deleted,
+                    Discontinued = entertainmentDto.Discontinued,
+                    CategoryEnter = CategoryBrl.Get(entertainmentDto.CategoryEnter.CategoryId, objContex),
+                    User = UserBrl.Get(entertainmentDto.Users.UserId, objContex)
+                };
 
+                ImageEnter image = new ImageEnter
+                {
+                    PathImage = (EntertainmentDal.GetLastId(objContex) + 1).ToString(),
+                    Deleted = false,
+                    Entertainment = EntertainmentBrl.Get((EntertainmentDal.GetLastId(objContex) + 1),objContex)
+
+
+                };
+                EntertainmentDal.Insert(entertainment,image, objContex);
+
+
+              
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// Method for Update Entertainment
@@ -123,7 +160,7 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
         {
             try
             {
-                Entertainment entertainment = EntertainmentBrl.Get(int.Parse(entertainmentDto.EntertainmentId.ToString()), objContex);
+                Entertainment entertainment = EntertainmentBrl.Get(long.Parse(entertainmentDto.EntertainmentId.ToString()), objContex);
                 entertainment.Title = entertainmentDto.Title;
                 entertainment.PlaceAddress = entertainmentDto.PlaceAddress;
                 entertainment.DateHour = entertainmentDto.DateHour;

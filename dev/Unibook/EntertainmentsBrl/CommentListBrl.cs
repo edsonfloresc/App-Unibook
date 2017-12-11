@@ -21,16 +21,19 @@ namespace Univalle.Fie.Sistemas.Unibook.EntertainmentsBrl
 
                 foreach (var item in CommentListDal.Get(objContex))
                 {
-                    CommentEnterDto comment = new CommentEnterDto()
-                    {
-                        Deleted = item.Deleted,
-                        CommentText = item.CommentText,
-                        DateHour = item.DateHour,
-                        CommentId = item.CommentId,
-                        Entertainment = new EntertainmentDto() { EntertainmentId = item.Entertainment.EntertainmentId, Title = item.Entertainment.Title, PlaceAddress = item.Entertainment.PlaceAddress, DateHour = item.Entertainment.DateHour, Details = item.Entertainment.Details, Discontinued = item.Entertainment.Discontinued, Deleted = item.Entertainment.Deleted },
-                        User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Deleted = item.User.Deleted }
+                    CommentEnterDto comment= CommentBrl.GetDto(int.Parse(item.CommentId.ToString()),objContex);
+                    //CommentEnterDto comment = new CommentEnterDto()
+                    //{
 
-                    };
+
+                    //   // Deleted = item.Deleted,
+                    //   // CommentText = item.CommentText,
+                    //   // DateHour = item.DateHour,
+                    //   // CommentId = item.CommentId,
+                    //   // Entertainment = new EntertainmentDto() { EntertainmentId = item.Entertainment.EntertainmentId, Title = item.Entertainment.Title, PlaceAddress = item.Entertainment.PlaceAddress, DateHour = item.Entertainment.DateHour, Details = item.Entertainment.Details, Discontinued = item.Entertainment.Discontinued, Deleted = item.Entertainment.Deleted }
+                    //   //// User = new UserDto() { UserId = item.User.UserId, Email = item.User.Email, Deleted = item.User.Deleted }
+
+                    //};
 
                     commentList.Add(comment);
                 }

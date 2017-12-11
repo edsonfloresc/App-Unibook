@@ -71,6 +71,7 @@ namespace Univalle.Fie.Sistemas.UniBook.UsersBrl
             {
                 User user = UserDal.Get(id, objContex);
                 userDto = new UserDto();
+                userDto.UserId = user.UserId;
                 userDto.Email = user.Email;
                 userDto.Deleted = user.Deleted;
                 userDto.Role = new RoleDto() { RoleId = user.Role.RoleId, Name = user.Role.Name, Deleted = user.Role.Deleted};

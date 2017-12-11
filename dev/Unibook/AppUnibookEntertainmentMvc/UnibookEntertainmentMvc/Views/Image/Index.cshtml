@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Univalle.Fie.Sistemas.UniBook.UnibookEntertainmentMvc.Models.ImageModel>
+
+@*@{
+    ViewData["Title"] = "Index";
+}*@
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PathImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deleted)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PathImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ImageId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.ImageId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.ImageId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
