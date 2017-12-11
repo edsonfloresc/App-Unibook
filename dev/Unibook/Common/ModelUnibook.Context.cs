@@ -34,5 +34,9 @@ namespace Univalle.Fie.Sistemas.Unibook.Common
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Password> Password { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<LostObject> LostObject { get; set; }
     }
 }
