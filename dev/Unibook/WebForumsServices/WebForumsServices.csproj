@@ -85,6 +85,8 @@
     <Content Include="Web.config" />
     <Content Include="WebCategoryListService.asmx" />
     <Content Include="WebCategoryService.asmx" />
+    <Content Include="WebQuestionsListService.asmx" />
+    <Content Include="WebQuestionsService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -97,6 +99,14 @@
     </Compile>
     <Compile Include="WebCategoryService.asmx.cs">
       <DependentUpon>WebCategoryService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebQuestionsListService.asmx.cs">
+      <DependentUpon>WebQuestionsListService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebQuestionsService.asmx.cs">
+      <DependentUpon>WebQuestionsService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

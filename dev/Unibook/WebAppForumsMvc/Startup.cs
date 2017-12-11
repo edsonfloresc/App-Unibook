@@ -43,7 +43,7 @@ namespace WebAppForumsMvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Category}/{action=Index}/{id?}");
+                    template: "{controller=Question}/{action=Index}/{id?}");
             });
         }
     }
